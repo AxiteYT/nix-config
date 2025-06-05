@@ -1,9 +1,9 @@
 { pkgs, self, ... }:
 {
   imports = [
-    (self + /servarr)
-    (self + /wireguard)
-    (self + systems/common/mounts/plex.nix)
+    (self + /modules/servarr)
+    (self + /modules/wireguard)
+    (self + /systems/common/mounts/plex.nix)
     ../server
     ./network-config.nix
   ];
