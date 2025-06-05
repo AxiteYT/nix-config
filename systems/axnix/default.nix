@@ -113,4 +113,6 @@
 
   # Enable ratbag daemon
   services.ratbagd.enable = true;
+
+  system.stateVersion = "25.11";
 }
