@@ -3,12 +3,13 @@
   config,
   lib,
   pkgs,
+  self,
   ...
 }:
 {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
-    ../../hardware/qemu-guest
+    (self + /hardware/qemu-guest)
   ];
 
   # Disable DHCP
