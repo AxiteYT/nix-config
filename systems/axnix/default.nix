@@ -87,6 +87,20 @@
     zed-editor
   ];
 
+  # OBS Config
+  programs.obs-studio = {
+    enable = true;
+    package = pkgs.obs-studio;
+    plugins = with pkgs.obs-studio-plugins; [
+      obs-aitum-multistream
+      obs-backgroundremoval
+      obs-gstreamer
+      obs-vaapi
+      obs-vkcapture
+      wlrobs
+    ];
+  };
+
   # Enable sound
   security.rtkit.enable = true;
   services.pipewire = {
