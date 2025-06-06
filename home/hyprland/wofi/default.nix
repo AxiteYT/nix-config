@@ -59,7 +59,7 @@
             margin: 0px;
             font-size: 28px;
         	color: #8EC07C;
-        	background-color: #554444;
+        	background-color:rgb(45, 76, 94);
         }
 
         #inner-box {
