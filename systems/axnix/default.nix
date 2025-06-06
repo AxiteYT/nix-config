@@ -46,7 +46,6 @@
     libreoffice-qt
     lmstudio
     lutris
-    lutris
     neovim
     networkmanagerapplet
     nexusmods-app-unfree
@@ -56,7 +55,6 @@
     ntfs3g
     obsidian
     ollama
-    patchelf
     patchelf
     piper
     powershell
@@ -71,7 +69,6 @@
     unityhub
     vim
     virt-viewer
-    vlc
     vlc
     vscodium
     wayland-utils
