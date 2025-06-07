@@ -66,6 +66,7 @@
     rpcs3
     ryujinx
     spotify
+    stress-ng
     unityhub
     vim
     virt-viewer
