@@ -1,10 +1,6 @@
 {
-  fileSystems."/Apollo" = {
-    device = "/dev/sda1";
-    fsType = "ntfs-3g"; # TODO: Change
-    options = [
-      "rw"
-      "uid=1000"
-    ];
+  fileSystems."/mnt/Apollo" = {
+    device = "/dev/disk/by-uuid/2dac6082-0700-45e6-89c8-2c3a7783f80a";
+    fsType = "ext4";
   };
 }
