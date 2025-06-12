@@ -69,7 +69,7 @@
     spotify
     stress-ng
     unityhub
-    ventoy-full-qt
+    ventoy-full-gtk
     vim
     virt-viewer
     vlc
