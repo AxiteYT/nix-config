@@ -8,6 +8,9 @@
     # Flake utils
     flake-utils.url = "github:numtide/flake-utils";
 
+    # Hardware
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     # Disko
     disko = {
       url = "github:nix-community/disko";
@@ -31,6 +34,7 @@
       disko,
       home-manager,
       treefmt-nix,
+      nixos-hardware,
       ...
     }:
     flake-utils.lib.eachDefaultSystem (
@@ -115,6 +119,29 @@
             # Disko Setup
             disko.nixosModules.disko
             ./hardware/disk-config
+
+            # Home-manager
+            home-manager.nixosModules.home-manager
+          ];
+          specialArgs = { inherit self inputs; };
+        };
+        acr = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+
+            # Common system config
+            ./systems/common
+
+            # System specific config
+            ./systems/acr
+
+            # Disko Setup
+            disko.nixosModules.disko
+            { disko.devices.disk.main.device = "/dev/nvme0n1"; }
+            ./hardware/disk-config
+
+            # Hardware
+            nixos-hardware.nixosModules.dell-latitude-7430
 
             # Home-manager
             home-manager.nixosModules.home-manager
