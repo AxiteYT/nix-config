@@ -8,8 +8,13 @@
   # Import undetected modules
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = _: true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = _: true;
+    permittedInsecurePackages = [
+      "ventoy-qt5-1.1.05"
+    ];
+  };
 
   # Enable the Nix command and flakes
   nix.settings.experimental-features = [
