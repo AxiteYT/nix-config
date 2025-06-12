@@ -54,4 +54,7 @@
       };
     };
   };
+
+  # Needed for gparted
+  security.polkit.enable = true;
 }
