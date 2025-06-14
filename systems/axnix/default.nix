@@ -41,6 +41,7 @@ in
     gimp
     git
     github-desktop
+    glogg
     gparted
     handbrake
     hunspell
