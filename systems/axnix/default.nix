@@ -66,6 +66,7 @@ in
     prismlauncher
     protontricks
     protonup-qt
+    runelite
     putty
     remmina
     rpcs3
