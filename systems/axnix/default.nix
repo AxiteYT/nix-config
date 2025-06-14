@@ -5,6 +5,9 @@
   inputs,
   ...
 }:
+let
+  runemate = pkgs.callPackage (self + /pkgs/runemate) { };
+in
 {
   imports = [
     (self + /hardware/amd)
@@ -65,6 +68,7 @@
     putty
     remmina
     rpcs3
+    runemate
     ryujinx
     spotify
     stress-ng
