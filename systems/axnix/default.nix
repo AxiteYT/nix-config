@@ -62,6 +62,7 @@ in
     ollama
     patchelf
     piper
+    postman
     powershell
     prismlauncher
     protontricks
