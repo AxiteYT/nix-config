@@ -3,6 +3,6 @@
   services.actual = {
     enable = true;
     openFirewall = true;
-    settings.port = 5006;
+    settings.port = "5006";
   };
 }
