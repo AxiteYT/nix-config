@@ -148,6 +148,28 @@
           ];
           specialArgs = { inherit self inputs; };
         };
+        actual = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+
+            # Common system config
+            ./systems/common
+
+            # Common server config
+            ./systems/server
+
+            # System specific config
+            ./systems/actual
+
+            # Disko Setup
+            disko.nixosModules.disko
+            ./hardware/disk-config
+
+            # Home-manager
+            home-manager.nixosModules.home-manager
+          ];
+          specialArgs = { inherit self inputs; };
+        };
       };
     };
 }
