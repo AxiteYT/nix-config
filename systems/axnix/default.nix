@@ -75,7 +75,7 @@ in
     ryujinx
     spotify
     stress-ng
-    unityhub
+    #TODO: (Uncomment once https://github.com/nixos/nixpkgs/issues/418451 is resolved):unityhub
     ventoy-full-gtk
     vim
     virt-viewer
