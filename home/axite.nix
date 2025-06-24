@@ -4,8 +4,6 @@
   imports = [
     ./alacritty
     ./hyprland
-    ./themes
-    catppuccin.homeManagerModules.catppuccin
   ];
 
   home = {

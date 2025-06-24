@@ -11,6 +11,7 @@ in
 {
   imports = [
     (self + /hardware/amd)
+    (self + /modules/catppuccin)
     (self + /hardware/keychron)
     (self + /modules/flatpak)
     (self + /modules/hyprland)
