@@ -11,7 +11,6 @@ in
 {
   imports = [
     (self + /hardware/amd)
-    (self + /modules/catppuccin)
     (self + /hardware/keychron)
     (self + /modules/flatpak)
     (self + /modules/hyprland)
@@ -19,10 +18,17 @@ in
     (self + /systems/common/mounts/apollo.nix)
     ./kernel.nix
     ./network-config.nix
+    catppuccin.nixosModules.catppuccin
   ];
 
   # Enable home-manager
   home-manager.users.axite = import (self + /home/axite.nix);
+
+  # Theming
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+  };
 
   # System Packages
   environment.systemPackages = with pkgs; [
