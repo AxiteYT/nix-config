@@ -3,6 +3,7 @@
   lib,
   self,
   inputs,
+  catppuccin,
   ...
 }:
 let
@@ -18,16 +19,20 @@ in
     (self + /systems/common/mounts/apollo.nix)
     ./kernel.nix
     ./network-config.nix
-    catppuccin.nixosModules.catppuccin
   ];
 
   # Enable home-manager
-  home-manager.users.axite = import (self + /home/axite.nix);
-
-  # Theming
-  catppuccin = {
-    enable = true;
-    flavor = "mocha";
+  home-manager.users.axite = {
+    imports = [
+      (self + /home/axite.nix)
+      inputs.catppuccin.homeManagerModules.catppuccin
+      {
+        catppuccin = {
+          enable = true;
+          flavor = "mocha";
+        };
+      }
+    ];
   };
 
   # System Packages
