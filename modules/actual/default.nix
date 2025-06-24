@@ -22,8 +22,8 @@
     settings = {
       port = 443;
       https = {
-        key = "/home/actual/certs/selfhost.key";
-        cert = "/home/actual/certs/selfhost.key";
+        key = "/var/lib/actual/certs/selfhost.key";
+        cert = "/var/lib/actual/certs/selfhost.key";
       };
     };
   };
