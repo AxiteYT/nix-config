@@ -20,10 +20,9 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINMXEwWst3Kkag14hG+nCtiRX8KHcn6w/rUeZC5Ww7RU axite@axitemedia.com"
       ];
     };
+    groups.actual = {
+      name = "actual";
+    };
   };
-  groups.actual = {
-    name = "actual";
-  };
-
   system.stateVersion = "25.11";
 }
