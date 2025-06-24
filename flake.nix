@@ -25,6 +25,9 @@
 
     # Treefmt
     treefmt-nix.url = "github:numtide/treefmt-nix";
+
+    # Catppuccin Theming
+    catppuccin.url = "github:catppuccin/nix";
   };
   outputs =
     inputs@{
@@ -35,14 +38,13 @@
       home-manager,
       treefmt-nix,
       nixos-hardware,
+      catppuccin,
       ...
     }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = import nixpkgs {
-          inherit system;
-        };
+        pkgs = import nixpkgs { inherit system; };
 
         fmtcfg = {
           projectRootFile = "flake.nix";
@@ -77,6 +79,10 @@
             ./hardware/disk-config
 
             # Home-manager
+            home-manager.nixosModules.home-manager
+
+            # Catppuccin Theming
+            catppuccin.nixosModules.catppuccin
             home-manager.nixosModules.home-manager
           ];
           specialArgs = { inherit self inputs; };
