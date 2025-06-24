@@ -23,7 +23,7 @@
       port = 443;
       https = {
         key = "/var/lib/actual/certs/selfhost.key";
-        cert = "/var/lib/actual/certs/selfhost.key";
+        cert = "/var/lib/actual/certs/selfhost.crt";
       };
     };
   };
