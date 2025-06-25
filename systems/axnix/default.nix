@@ -25,7 +25,7 @@ in
   home-manager.users.axite = {
     imports = [
       (self + /home/axite.nix)
-      inputs.catppuccin.homeManagerModules.catppuccin
+      inputs.catppuccin.homeModules.catppuccin
       {
         catppuccin = {
           enable = true;
@@ -34,6 +34,9 @@ in
       }
     ];
   };
+
+  # qt theme
+  qt.style = "adwaita-dark";
 
   # System Packages
   environment.systemPackages = with pkgs; [
@@ -59,6 +62,7 @@ in
     hunspell
     input-remapper
     k4dirstat
+    kdePackages.ark
     killall
     libreoffice-qt
     lmstudio
@@ -72,6 +76,7 @@ in
     ntfs3g
     obsidian
     ollama
+    p7zip
     patchelf
     piper
     postman

@@ -48,7 +48,27 @@ tooltip {
 #backlight {
 }
 
-#tray {
+#tray menu {
+  background-color: #32302f;
+
+  border: 1px solid #9ccfd8;
+
+  color: #f5e0dc;
+
+  font-size: 22px;
+
+  padding: 4px;
+}
+
+#tray menu menuitem {
+  padding-top: 3px;
+  padding-bottom: 3px;
+
+  font-size: 22px;
+}
+
+#tray menu menuitem:hover {
+  background-color: #9ccfd8;
 }
 
 #workspaces {

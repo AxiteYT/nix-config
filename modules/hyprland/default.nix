@@ -17,6 +17,7 @@
   # Hyprland related packages
   environment.systemPackages = with pkgs; [
     kdePackages.dolphin
+    hyprls
     kitty
     nwg-look
     waybar
