@@ -8,6 +8,6 @@
     x11.enable = true;
     package = pkgs.capitaine-cursors;
     name = "capitaine-cursors";
-    size = 24;
+    size = 32;
   };
 }
