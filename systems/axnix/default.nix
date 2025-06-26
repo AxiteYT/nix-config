@@ -43,7 +43,6 @@ in
     bitwarden
     blender
     bolt-launcher
-    bottles
     brave
     cargo
     cifs-utils
