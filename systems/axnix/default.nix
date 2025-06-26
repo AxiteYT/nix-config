@@ -118,6 +118,7 @@ in
       # obs-aitum-multistream
       obs-backgroundremoval
       obs-gstreamer
+      obs-teleport
       obs-vaapi
       obs-vkcapture
       wlrobs
