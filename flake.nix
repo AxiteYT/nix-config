@@ -17,6 +17,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # SOPS
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Home-Manager
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -39,6 +45,7 @@
       treefmt-nix,
       nixos-hardware,
       catppuccin,
+      sops-nix,
       ...
     }:
     flake-utils.lib.eachDefaultSystem (
@@ -77,6 +84,9 @@
             disko.nixosModules.disko
             { disko.devices.disk.main.device = "/dev/nvme0n1"; }
             ./hardware/disk-config
+
+            # Sops-nix
+            sops-nix.nixosModules.sops
 
             # Home-manager
             home-manager.nixosModules.home-manager
