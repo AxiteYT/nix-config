@@ -114,6 +114,9 @@
             disko.nixosModules.disko
             ./hardware/disk-config
 
+            # Sops-nix
+            sops-nix.nixosModules.sops
+
             # Home-manager
             home-manager.nixosModules.home-manager
           ];

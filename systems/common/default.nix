@@ -25,9 +25,13 @@
   sops = {
     defaultSopsFile = (self + /secrets/secrets.yaml);
     defaultSopsFormat = "yaml";
-    age.keyFile = "/home/axite/.config/sops/age/keys.txt";
+    age.keyFile = "/root/.config/sops/age/keys.txt";
     secrets.example-key = { };
   };
+
+  systemd.tmpfiles.rules = [
+    "d /root/.config/sops/age 0700 root root -"
+  ];
 
   # Enable the Nix command and flakes
   nix.settings.experimental-features = [
