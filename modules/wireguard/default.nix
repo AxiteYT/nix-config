@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   # WG Application
   environment.systemPackages = with pkgs; [
@@ -6,12 +6,15 @@
     libnatpmp
   ];
 
+  # SOPS Key
+  sops.secrets."BestaWG/key" = { };
+
   # WireGuard VPN Configuration
   networking = {
     wg-quick.interfaces.wg0 = {
       address = [ "10.2.0.2/32" ];
       dns = [ "10.2.0.1" ];
-      privateKeyFile = "/root/.wg/besta-AU-1.key";
+      privateKeyFile = "/run/secrets/BestaWG/key";
       peers = [
         {
           publicKey = "dpcwy7V6UxFxZ5BEYED5w30sqpz2Bak+7HchFbUNHUw=";

@@ -2,11 +2,16 @@
   modulesPath,
   lib,
   pkgs,
+  inputs,
+  self,
   ...
 }:
 {
   # Import undetected modules
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    inputs.sops-nix.nixosModules.sops
+  ];
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -14,6 +19,14 @@
     permittedInsecurePackages = [
       "ventoy-gtk3-1.1.05"
     ];
+  };
+
+  # Sops
+  sops = {
+    defaultSopsFile = (self + /secrets/secrets.yaml);
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/axite/.config/sops/age/keys.txt";
+    secrets.example-key = { };
   };
 
   # Enable the Nix command and flakes
@@ -76,5 +89,4 @@
 
   # Set kernel to use latest Linux kernel
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-
 }
