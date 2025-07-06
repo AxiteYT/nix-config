@@ -84,6 +84,9 @@
     };
   };
 
+  # Ensure resolved is enabled
+  services.resolved.enable = true;
+
   # IP Forwarding
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 }
