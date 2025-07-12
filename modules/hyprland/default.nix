@@ -2,6 +2,7 @@
 {
   imports = [
     ./greetd
+    ./waybar
   ];
 
   # Enable hyprland
