@@ -1,13 +1,11 @@
 { pkgs, ... }:
 {
-  imports = [ ../services/torrent/qbittorrent.nix ];
-
   services.qbittorrent = {
     enable = true;
     openFirewall = true;
-    dataDir = "/var/lib/qbittorrent";
     user = "qbittorrent";
     group = "servarr";
-    port = 8443;
+    webuiPort = 8443;
+    torrentingPort = 26504;
   };
 }
