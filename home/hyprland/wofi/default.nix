@@ -9,8 +9,8 @@
   home.file = {
     ".config/wofi/config" = {
       text = ''
-        width=780
-        lines=15
+        width=40%
+        height=40%
         location=0
         prompt=Search...
         filter_rate=100
