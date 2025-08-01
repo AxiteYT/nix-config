@@ -13,5 +13,7 @@
     };
     xwayland.enable = true;
     extraConfig = builtins.readFile ./hyprland.conf;
+    plugins = with pkgs; [ ]
+    ;
   };
 }
