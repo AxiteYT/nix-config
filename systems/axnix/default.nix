@@ -88,7 +88,7 @@ in
     remmina
     rpcs3
     runemate
-    ryujinx
+    ryubing
     spotify
     stress-ng
     thunderbird
