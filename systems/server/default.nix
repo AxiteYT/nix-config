@@ -15,8 +15,8 @@
   # Disable DHCP
   networking = {
     useDHCP = false;
-    defaultGateway = "192.168.1.1";
-    nameservers = [ "192.168.1.1" ];
+    defaultGateway = "10.1.10.1";
+    nameservers = [ "10.1.10.1" ];
   };
 
   # Enable serial port

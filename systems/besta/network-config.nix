@@ -9,14 +9,14 @@
     interfaces = {
       ens18.ipv4.addresses = [
         {
-          address = "192.168.1.85";
+          address = "10.1.10.85";
           prefixLength = 24;
         }
       ];
       wg0 = {
         ipv4.routes = [
           {
-            address = "192.168.1.0";
+            address = "10.1.10.0";
             prefixLength = 24;
           }
           {
