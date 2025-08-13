@@ -29,7 +29,9 @@
         wg set wg0 fwmark 51820
         ${pkgs.iptables}/bin/iptables -t mangle -A OUTPUT -o wg0 -m mark --mark 51820 -j ACCEPT
         ${pkgs.iptables}/bin/iptables -t mangle -A OUTPUT ! -o wg0 -m addrtype --dst-type LOCAL -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -t mangle -A OUTPUT ! -o wg0 -d 10.1.0.0/24 -j ACCEPT
         ${pkgs.iptables}/bin/iptables -t mangle -A OUTPUT ! -o wg0 -d 10.1.10.0/24 -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -t mangle -A OUTPUT ! -o wg0 -d 10.1.20.0/24 -j ACCEPT
         ${pkgs.iptables}/bin/iptables -t mangle -A OUTPUT ! -o wg0 -d 10.1.1.0/24 -j ACCEPT
         ${pkgs.iptables}/bin/iptables -t mangle -A OUTPUT ! -o wg0 -m mark --mark 0 -j MARK --set-xmark 51820
       '';
@@ -37,7 +39,9 @@
       postDown = ''
         ${pkgs.iptables}/bin/iptables -t mangle -D OUTPUT -o wg0 -m mark --mark 51820 -j ACCEPT
         ${pkgs.iptables}/bin/iptables -t mangle -D OUTPUT ! -o wg0 -m addrtype --dst-type LOCAL -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -t mangle -D OUTPUT ! -o wg0 -d 10.1.0.0/24 -j ACCEPT
         ${pkgs.iptables}/bin/iptables -t mangle -D OUTPUT ! -o wg0 -d 10.1.10.0/24 -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -t mangle -D OUTPUT ! -o wg0 -d 10.1.20.0/24 -j ACCEPT
         ${pkgs.iptables}/bin/iptables -t mangle -D OUTPUT ! -o wg0 -d 10.1.1.0/24 -j ACCEPT
         ${pkgs.iptables}/bin/iptables -t mangle -D OUTPUT ! -o wg0 -m mark --mark 0 -j MARK --set-xmark 0
       '';
