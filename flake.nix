@@ -6,7 +6,7 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
     # NixpkgsMaster
-    nixpkgs-master.url = "nixpkgs/master";
+    pkgsMaster.url = "nixpkgs/master";
 
     # Flake utils
     flake-utils.url = "github:numtide/flake-utils";
@@ -42,7 +42,7 @@
     inputs@{
       self,
       nixpkgs,
-      nixpkgs-master,
+      pkgsMaster,
       flake-utils,
       disko,
       home-manager,

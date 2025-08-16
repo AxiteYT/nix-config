@@ -108,21 +108,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-master": {
-      "locked": {
-        "lastModified": 1755360077,
-        "narHash": "sha256-TNer1ww+PWoVS65CCiJn7WldgfW2ZmO04weJbxZ0rUA=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "7037d9a4ef4f30a86e6a884b5ffce00d424dc6bf",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "master",
-        "type": "indirect"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1755186698,
@@ -154,6 +139,21 @@
         "type": "github"
       }
     },
+    "pkgsMaster": {
+      "locked": {
+        "lastModified": 1755360077,
+        "narHash": "sha256-TNer1ww+PWoVS65CCiJn7WldgfW2ZmO04weJbxZ0rUA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "7037d9a4ef4f30a86e6a884b5ffce00d424dc6bf",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "master",
+        "type": "indirect"
+      }
+    },
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
@@ -162,7 +162,7 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-master": "nixpkgs-master",
+        "pkgsMaster": "pkgsMaster",
         "sops-nix": "sops-nix",
         "treefmt-nix": "treefmt-nix"
       }
