@@ -1,7 +1,7 @@
 {
   imports = [
     ../qbittorrent
-    #./bazarr
+    ./bazarr
     ./flaresolverr
     ./prowlarr
     ./radarr
