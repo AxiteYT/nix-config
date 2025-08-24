@@ -136,6 +136,126 @@ in
       enable = true;
       support32Bit = true;
     };
+    wireplumber = {
+      enable = true;
+      extraConfig."50-communication-roles.conf" = {
+        "stream.roles" = [
+          # WEBRTC VoiceEngine
+          {
+            matches = [
+              {
+                "application.name" = "WEBRTC VoiceEngine";
+                "media.class" = "Stream/Output/Audio";
+              }
+            ];
+            actions.update-props."media.role" = "Communication";
+          }
+
+          # Chromium/Chrome RTC fallback
+          {
+            matches = [
+              {
+                "application.name" = "Chromium";
+                "media.name" = "~.*RTC.*";
+              }
+            ];
+            actions.update-props."media.role" = "Communication";
+          }
+
+          # Native Discord binaries
+          {
+            matches = [
+              {
+                "application.name" = "Discord";
+                "media.class" = "Stream/Output/Audio";
+              }
+              {
+                "application.process.binary" = "Discord";
+                "media.class" = "Stream/Output/Audio";
+              }
+              {
+                "application.app-id" = "com.discordapp.Discord";
+                "media.class" = "Stream/Output/Audio";
+              }
+            ];
+            actions.update-props."media.role" = "Communication";
+          }
+
+          # Steam voice
+          {
+            matches = [
+              { "application.name" = "Steam Voice Settings"; }
+              {
+                "application.name" = "Steam";
+                "media.name" = "~.*Voice.*";
+              }
+            ];
+            actions.update-props."media.role" = "Communication";
+          }
+        ];
+      };
+      extraConfig."61-media-role-ducking.conf" = {
+        "wireplumber.settings" = {
+          "node.stream.default-media-role" = "Multimedia";
+          "linking.role-based.duck-level" = 0.3; # 0.3 = 30% of original volume
+        };
+
+        # Require the role loopbacks profile
+        "wireplumber.profiles" = {
+          main."policy.linking.role-based.loopbacks" = "required";
+        };
+
+        # Two role loopbacks: Multimedia (games/music) and Communication (calls)
+        "wireplumber.components" = [
+          {
+            name = "libpipewire-module-loopback";
+            type = "pw-module";
+            arguments = {
+              "node.name" = "loopback.role.multimedia";
+              "node.description" = "Multimedia";
+              "capture.props" = {
+                "device.intended-roles" = [
+                  "Music"
+                  "Movie"
+                  "Game"
+                  "Multimedia"
+                ];
+                "policy.role-based.priority" = 10;
+                "policy.role-based.action.same-priority" = "mix";
+                "policy.role-based.action.lower-priority" = "mix";
+              };
+            };
+            provides = "loopback.role.multimedia";
+          }
+          {
+            name = "libpipewire-module-loopback";
+            type = "pw-module";
+            arguments = {
+              "node.name" = "loopback.role.communication";
+              "node.description" = "Communication";
+              "capture.props" = {
+                "device.intended-roles" = [
+                  "Communication"
+                  "Phone"
+                ];
+                "policy.role-based.priority" = 50;
+                "policy.role-based.action.same-priority" = "mix";
+                "policy.role-based.action.lower-priority" = "duck";
+              };
+            };
+            provides = "loopback.role.communication";
+          }
+          {
+            type = "virtual";
+            provides = "policy.linking.role-based.loopbacks";
+            requires = [
+              "loopback.role.multimedia"
+              "loopback.role.communication"
+            ];
+          }
+        ];
+      };
+    };
   };
   services.pulseaudio.enable = false;
 
