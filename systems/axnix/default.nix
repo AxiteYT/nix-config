@@ -92,7 +92,7 @@ in
     spotify
     stress-ng
     thunderbird
-    #TODO: (Uncomment once https://github.com/nixos/nixpkgs/issues/418451 is resolved):unityhub
+    unityhub
     ventoy-full-gtk
     vim
     virt-viewer
