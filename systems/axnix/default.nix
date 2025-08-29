@@ -40,6 +40,7 @@ in
 
   # System Packages
   environment.systemPackages = with pkgs; [
+    alsa-scarlett-gui
     bitwarden
     blender
     bolt-launcher
