@@ -50,6 +50,8 @@ in
     cifs-utils
     davinci-resolve
     discord
+    discord-rpc
+    
     dolphin-emu
     ffmpeg-full
     filezilla
