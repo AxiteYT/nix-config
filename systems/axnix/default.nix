@@ -123,6 +123,7 @@ in
       obs-gstreamer
       obs-teleport
       obs-vaapi
+      obs-vertical-canvas
       obs-vkcapture
       wlrobs
     ];
