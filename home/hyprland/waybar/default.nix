@@ -111,6 +111,12 @@
           interval = "once";
           tooltip = false;
         };
+        "bluetooth" = {
+          format = " 󰂯 ";
+          tooltip = true;
+          tooltip-format = "Bluetooth Settings";
+          on-click = "blueman-applet";
+        };
         "custom/endright" = {
           format = "_";
           interval = "once";

@@ -4,4 +4,7 @@
     pavucontrol
     pamixer
   ];
+
+  # Bluetooth applet
+  services.blueman.enable = true;
 }

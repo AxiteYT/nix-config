@@ -51,7 +51,6 @@ in
     davinci-resolve
     discord
     discord-rpc
-    
     dolphin-emu
     ffmpeg-full
     filezilla
