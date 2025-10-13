@@ -5,6 +5,7 @@
     (self + /modules/plex)
     (self + /systems/common/mounts/plex.nix)
     ./network-config.nix
+    ./tdarr.nix
   ];
 
   # Enable Hardware decoding
