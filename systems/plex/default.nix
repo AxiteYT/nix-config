@@ -5,7 +5,6 @@
     (self + /modules/plex)
     (self + /systems/common/mounts/plex.nix)
     ./network-config.nix
-    ./tdarr.nix
   ];
 
   # Enable Hardware decoding
@@ -22,6 +21,8 @@
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "i965";
   };
+
+  hardware.intel-gpu-tools.enable = true;
 
   # Add handbrake
   environment.systemPackages = with pkgs; [ handbrake ];
