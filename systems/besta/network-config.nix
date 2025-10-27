@@ -45,9 +45,10 @@
     restartUnits = [ "systemd-networkd.service" ];
   };
 
-  ############################
-  # WireGuard via systemd-networkd
-  ############################
+  ##################################
+  # WireGuard via systemd-networkd #
+  ##################################
+  
   systemd.network.netdevs."wg0" = {
     netdevConfig = {
       Kind = "wireguard";
