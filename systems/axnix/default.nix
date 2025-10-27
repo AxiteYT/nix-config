@@ -89,7 +89,7 @@ in
     runelite
     putty
     remmina
-    rpcs3
+    #todo: add back when not broken rpcs3
     runemate
     ryubing
     spotify
@@ -124,6 +124,7 @@ in
       obs-gstreamer
       obs-teleport
       obs-vaapi
+
       #todo: add back when not broken obs-vertical-canvas
       obs-vkcapture
       wlrobs
