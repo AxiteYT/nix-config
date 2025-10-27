@@ -124,7 +124,7 @@ in
       obs-gstreamer
       obs-teleport
       obs-vaapi
-      obs-vertical-canvas
+      #todo: add back when not broken obs-vertical-canvas
       obs-vkcapture
       wlrobs
     ];
