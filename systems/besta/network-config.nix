@@ -59,68 +59,60 @@
     };
     wireguardPeers = [
       {
-        wireguardPeerConfig = {
-          PublicKey = "dpcwy7V6UxFxZ5BEYED5w30sqpz2Bak+7HchFbUNHUw=";
-          Endpoint = "180.149.228.66:51820";
-          AllowedIPs = [ "0.0.0.0/0" ];
-          PersistentKeepalive = 25;
-        };
+        PublicKey = "dpcwy7V6UxFxZ5BEYED5w30sqpz2Bak+7HchFbUNHUw=";
+        Endpoint = "180.149.228.66:51820";
+        AllowedIPs = [ "0.0.0.0/0" ];
+        PersistentKeepalive = 25;
       }
     ];
   };
 
   systemd.network.networks."40-wg0" = {
     matchConfig.Name = "wg0";
-    address = [ "10.2.0.2/32" ];
+
+    # must be a list of attrsets
+    addresses = [
+      { Address = "10.2.0.2/32"; }
+    ];
+
     networkConfig.DNS = [ "10.2.0.1" ];
 
     routes = [
       {
-        routeConfig = {
-          Destination = "0.0.0.0/0";
-          Table = 51820;
-          Scope = "link";
-        };
+        Destination = "0.0.0.0/0";
+        Table = 51820;
+        Scope = "link";
       }
     ];
 
     routingPolicyRules = [
       {
-        routingPolicyRuleConfig = {
-          To = "10.1.0.0/24";
-          Table = "main";
-          Priority = 100;
-        };
+        To = "10.1.0.0/24";
+        Table = "main";
+        Priority = 100;
       }
       {
-        routingPolicyRuleConfig = {
-          To = "10.1.10.0/24";
-          Table = "main";
-          Priority = 101;
-        };
+        To = "10.1.10.0/24";
+        Table = "main";
+        Priority = 101;
       }
       {
-        routingPolicyRuleConfig = {
-          To = "10.1.20.0/24";
-          Table = "main";
-          Priority = 102;
-        };
+        To = "10.1.20.0/24";
+        Table = "main";
+        Priority = 102;
       }
       {
-        routingPolicyRuleConfig = {
-          To = "10.1.1.0/24";
-          Table = "main";
-          Priority = 103;
-        };
+        To = "10.1.1.0/24";
+        Table = "main";
+        Priority = 103;
       }
 
+      # keep 'InvertRule' (systemd key name)
       {
-        routingPolicyRuleConfig = {
-          FirewallMark = 51820;
-          InvertRule = true;
-          Table = 51820;
-          Priority = 200;
-        };
+        FirewallMark = 51820;
+        InvertRule = true;
+        Table = 51820;
+        Priority = 200;
       }
     ];
   };
