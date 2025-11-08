@@ -48,7 +48,7 @@
   ##################################
   # WireGuard via systemd-networkd #
   ##################################
-  
+
   systemd.network.netdevs."wg0" = {
     netdevConfig = {
       Kind = "wireguard";
