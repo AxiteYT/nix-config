@@ -34,9 +34,6 @@
       Session\GlobalMaxSeedingMinutes=1440
       Session\GlobalUPSpeedLimit=1
       Session\IgnoreSlowTorrentsForQueueing=true
-      Session\Interface=wg0
-      Session\InterfaceAddress=10.2.0.2
-      Session\InterfaceName=wg0
       Session\MaxActiveDownloads=5
       Session\MaxActiveTorrents=20
       Session\MaxActiveUploads=5
