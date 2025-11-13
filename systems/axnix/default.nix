@@ -6,9 +6,6 @@
   catppuccin,
   ...
 }:
-let
-  runemate = pkgs.callPackage (self + /pkgs/runemate) { };
-in
 {
   imports = [
     (self + /hardware/amd)
@@ -89,8 +86,7 @@ in
     runelite
     putty
     remmina
-    #todo: add back when not broken rpcs3
-    runemate
+    rpcs3
     ryubing
     spotify
     stress-ng
@@ -124,8 +120,7 @@ in
       obs-gstreamer
       obs-teleport
       obs-vaapi
-
-      #todo: add back when not broken obs-vertical-canvas
+      #todo: obs-vertical-canvas
       obs-vkcapture
       wlrobs
     ];

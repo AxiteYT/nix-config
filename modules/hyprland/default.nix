@@ -35,10 +35,8 @@
       hunspellDicts.en_US
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       source-han-sans
-      source-han-sans-japanese
-      source-han-serif-japanese
       nerd-fonts.meslo-lg
     ];
     fontconfig = {
