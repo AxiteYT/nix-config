@@ -95,6 +95,7 @@
     ventoy-full-gtk
     vim
     virt-viewer
+    virtualbox
     vlc
     vscodium
     wayland-utils
