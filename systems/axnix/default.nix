@@ -95,7 +95,6 @@
     ventoy-full-gtk
     vim
     virt-viewer
-    virtualbox
     vlc
     vscodium
     wayland-utils
@@ -126,6 +125,15 @@
       wlrobs
     ];
   };
+
+  # VirtualBox
+  virtualisation.virtualbox = {
+    host = {
+      enable = true;
+      enableExtensionPack = true;
+    };
+  };
+  users.extraGroups.vboxusers.members = [ "axite" ];
 
   # Enable sound
   security.rtkit.enable = true;
