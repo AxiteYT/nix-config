@@ -33,8 +33,8 @@
     ".config/wofi/style.css" = {
       text = ''
         :root {
-          --bg: ${hexa "66" colors.base00};
-          --bg-weak: ${hexa "40" colors.base00};
+          --bg: ${hexa "33" colors.base00};      /* ~20% opacity */
+          --bg-weak: ${hexa "1a" colors.base00}; /* ~10% opacity */
           --fg: ${hex colors.base06};
           --accent: ${hex colors.base0D};
           --muted: ${hex colors.base03};
