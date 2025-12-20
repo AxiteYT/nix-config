@@ -35,11 +35,12 @@
   programs.zsh = {
     enable = true;
     initContent = lib.mkBefore ''
-      [ ! -d "$HOME/.zsh/fsh/" ] && mkdir $HOME/.zsh/fsh/
-      export FAST_WORK_DIR=$HOME/.zsh/fsh/;
-      export PATH=$PATH:~/tools
-      export PATH=$PATH:~/.npm-global/bin
-      export PATH="$PATH:$HOME/.protostar/dist/protostar"
+      fsh_dir="$HOME/.zsh/fsh"
+      [ -d "$fsh_dir" ] || mkdir -p "$fsh_dir"
+      export FAST_WORK_DIR="$fsh_dir"
+      export PATH="$PATH:$HOME/tools"
+      export PATH="$PATH:$HOME/.npm-global/bin"
+      [ -d "$HOME/.protostar/dist/protostar" ] && export PATH="$PATH:$HOME/.protostar/dist/protostar"
     '';
     plugins = [
       {
