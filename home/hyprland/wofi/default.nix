@@ -1,9 +1,9 @@
 { pkgs, config, ... }:
-let
-  colors = config.lib.stylix.colors;
-  hex = c: "#${c}";
-  hexa = a: c: "#${c}${a}";
-in
+  let
+    colors = config.lib.stylix.colors;
+    hex = c: "#${c}";
+    hexa = a: c: "#${c}${a}";
+  in
 {
   home = {
     packages = with pkgs; [
@@ -33,8 +33,8 @@ in
     ".config/wofi/style.css" = {
       text = ''
         :root {
-          --bg: ${hexa "99" colors.base00};
-          --bg-weak: ${hexa "66" colors.base00};
+          --bg: ${hexa "66" colors.base00};
+          --bg-weak: ${hexa "40" colors.base00};
           --fg: ${hex colors.base06};
           --accent: ${hex colors.base0D};
           --muted: ${hex colors.base03};

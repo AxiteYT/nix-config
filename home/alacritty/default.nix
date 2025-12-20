@@ -23,7 +23,7 @@
         };
       };
       window = {
-        opacity = 1.0;
+        opacity = lib.mkForce 0.2;
         blur = true;
         dynamic_padding = true;
       };
@@ -74,4 +74,5 @@
       }
     ];
   };
+
 }

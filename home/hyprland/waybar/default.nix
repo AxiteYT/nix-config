@@ -20,8 +20,8 @@ in
       }
 
       window#waybar {
-        background-color: alpha(@base00, 0.5);
-        border-bottom: 2px solid alpha(@base02, 0.5);
+        background-color: alpha(@base00, 0.25);
+        border-bottom: 2px solid alpha(@base02, 0.35);
         transition: background-color 0.5s ease;
       }
 

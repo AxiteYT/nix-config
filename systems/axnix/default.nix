@@ -47,6 +47,9 @@
     };
   };
 
+  # Ensure Qt apps (Dolphin, etc.) pick up the Stylix/Kvantum theme
+  environment.sessionVariables.QT_STYLE_OVERRIDE = "kvantum";
+
   # Enable home-manager
   home-manager.users.axite = {
     imports = [
