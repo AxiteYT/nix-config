@@ -3,6 +3,7 @@ let
   colors = config.lib.stylix.colors;
   hex = c: "#${c}";
   hexa = a: c: "#${c}${a}";
+  font = config.stylix.fonts.monospace.name;
 in
 {
   programs.waybar = {
@@ -21,7 +22,7 @@ in
       * {
         border: none;
         border-radius: 0;
-        font-family: ${hex colors.base05};
+        font-family: "${font}", monospace;
         font-weight: bold;
         font-size: 14px;
         min-height: 0;
