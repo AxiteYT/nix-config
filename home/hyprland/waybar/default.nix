@@ -9,16 +9,6 @@ in
   programs.waybar = {
     enable = true;
     style = ''
-      :root {
-        --bg: ${hexa "80" colors.base00};
-        --bg-strong: ${hex colors.base00};
-        --fg: ${hex colors.base06};
-        --muted: ${hex colors.base03};
-        --accent: ${hex colors.base0D};
-        --accent-strong: ${hex colors.base0B};
-        --panel-height: 32px;
-      }
-
       * {
         border: none;
         border-radius: 0;
@@ -26,34 +16,34 @@ in
         font-weight: bold;
         font-size: 14px;
         min-height: 0;
-        color: var(--fg);
+        color: @base06;
       }
 
       window#waybar {
-        background-color: var(--bg);
-        border-bottom: 2px solid ${hexa "80" colors.base02};
+        background-color: alpha(@base00, 0.5);
+        border-bottom: 2px solid alpha(@base02, 0.5);
         transition: background-color 0.5s ease;
       }
 
       #workspaces button.active,
       #workspaces button.focused {
-        color: var(--accent);
+        color: @base0D;
       }
 
       #tray menu {
-        background-color: var(--bg-strong);
-        border: 1px solid var(--accent);
-        color: var(--fg);
+        background-color: @base00;
+        border: 1px solid @base0D;
+        color: @base06;
         font-size: 14px;
         padding: 4px;
       }
 
       #tray menu menuitem:hover {
-        background-color: var(--accent);
+        background-color: @base0D;
       }
 
       #custom-div {
-        color: var(--muted);
+        color: @base03;
       }
     '';
     settings = [
