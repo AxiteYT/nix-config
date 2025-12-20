@@ -7,9 +7,9 @@
       {
         layer = "top";
         position = "top";
-        mod = "dock";
+        mode = "dock";
         exclusive = true;
-        passtrough = false;
+        passthrough = false;
         gtk-layer-shell = true;
         height = 0;
         modules-left = [
@@ -33,7 +33,7 @@
           format = "{}";
           separate-outputs = true;
         };
-        "wlr/workspaces" = {
+        "hyprland/workspaces" = {
           on-scroll-up = "hyprctl dispatch workspace e+1";
           on-scroll-down = "hyprctl dispatch workspace e-1";
           all-outputs = true;
