@@ -32,11 +32,11 @@
         name = "Noto Sans";
       };
       monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+        package = pkgs.nerd-fonts.fira-code;
         name = "FiraCode Nerd Font";
       };
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
       };
     };
@@ -51,7 +51,6 @@
   home-manager.users.axite = {
     imports = [
       (self + /home/axite.nix)
-      inputs.stylix.homeManagerModules.stylix
     ];
   };
 

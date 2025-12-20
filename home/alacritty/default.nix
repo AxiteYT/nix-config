@@ -10,19 +10,20 @@
     settings = {
       font = {
         normal = {
-          family = "Fira Code";
-          style = "Retina";
+          family = "FiraCode Nerd Font";
+          style = "Regular";
         };
         bold = {
-          family = "Fira Code";
+          family = "FiraCode Nerd Font";
           style = "Bold";
         };
         italic = {
-          family = "Fira Code";
+          family = "FiraCode Nerd Font";
+          style = "Italic";
         };
       };
       window = {
-        opacity = 0.2;
+        opacity = 1.0;
         blur = true;
         dynamic_padding = true;
       };
