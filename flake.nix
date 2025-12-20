@@ -32,8 +32,11 @@
     # Treefmt
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
-    # Catppuccin Theming
-    catppuccin.url = "github:catppuccin/nix";
+    # Stylix theming
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # awww wallpaper daemon
     awww.url = "git+https://codeberg.org/LGFae/awww";
@@ -48,7 +51,7 @@
       home-manager,
       treefmt-nix,
       nixos-hardware,
-      catppuccin,
+      stylix,
       sops-nix,
       ...
     }:
@@ -83,6 +86,7 @@
 
             # System specific config
             ./systems/axnix
+            stylix.nixosModules.stylix
 
             # Disko Setup
             disko.nixosModules.disko
@@ -91,10 +95,6 @@
 
             # Home-manager
             home-manager.nixosModules.home-manager
-
-            # Catppuccin Theming
-            catppuccin.nixosModules.catppuccin
-
           ];
           specialArgs = { inherit self inputs; };
         };

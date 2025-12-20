@@ -3,7 +3,6 @@
   lib,
   self,
   inputs,
-  catppuccin,
   ...
 }:
 {
@@ -18,22 +17,43 @@
     ./network-config.nix
   ];
 
+  stylix = {
+    enable = true;
+    image = self + /home/hyprland/wallpapers/lake.jpg;
+    polarity = "dark";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    fonts = {
+      serif = {
+        package = pkgs.noto-fonts;
+        name = "Noto Serif";
+      };
+      sansSerif = {
+        package = pkgs.noto-fonts;
+        name = "Noto Sans";
+      };
+      monospace = {
+        package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+        name = "FiraCode Nerd Font";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-emoji;
+        name = "Noto Color Emoji";
+      };
+    };
+    cursor = {
+      package = pkgs.capitaine-cursors;
+      name = "capitaine-cursors";
+      size = 32;
+    };
+  };
+
   # Enable home-manager
   home-manager.users.axite = {
     imports = [
       (self + /home/axite.nix)
-      inputs.catppuccin.homeModules.catppuccin
-      {
-        catppuccin = {
-          enable = true;
-          flavor = "mocha";
-        };
-      }
+      inputs.stylix.homeManagerModules.stylix
     ];
   };
-
-  # qt theme
-  qt.style = "adwaita-dark";
 
   # System Packages
   environment.systemPackages = with pkgs; [

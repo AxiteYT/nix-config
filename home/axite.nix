@@ -4,7 +4,6 @@
   imports = [
     ./alacritty
     ./hyprland
-    ./theming
   ];
 
   home = {
