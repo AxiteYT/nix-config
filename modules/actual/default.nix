@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 {
-  # Enable access for actual to bind to port 80
+  # Configure actual for HTTPS on port 443 and open 80/443 in the firewall
   boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0;
 
   # Allow web port access
