@@ -37,7 +37,11 @@
 
     # Catppuccin Theming
     catppuccin.url = "github:catppuccin/nix";
+
+    # awww wallpaper daemon
+      awww.url = "git+https://codeberg.org/LGFae/awww";
   };
+
   outputs =
     inputs@{
       self,

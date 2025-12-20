@@ -4,6 +4,7 @@
     ./waybar
     ./wofi
     ./wlogout
+    ./wallpapers/awww
   ];
   wayland.windowManager.hyprland = {
     enable = true;
