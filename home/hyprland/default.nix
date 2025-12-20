@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
   colors = config.lib.stylix.colors;
   argb = alpha: color: "0x${alpha}${color}";
@@ -32,4 +32,7 @@ in
         }
       '';
   };
+
+  # Wallpaper is handled by awww; keep hyprpaper disabled to avoid conflicts.
+  services.hyprpaper.enable = lib.mkForce false;
 }
