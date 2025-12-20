@@ -5,9 +5,6 @@
     # Nixpkgs
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
-    # NixpkgsMaster
-    pkgsMaster.url = "nixpkgs/master";
-
     # Flake utils
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -46,7 +43,6 @@
     inputs@{
       self,
       nixpkgs,
-      pkgsMaster,
       flake-utils,
       disko,
       home-manager,
@@ -93,9 +89,6 @@
             { disko.devices.disk.main.device = "/dev/nvme0n1"; }
             ./hardware/disk-config
 
-            # Sops-nix
-            sops-nix.nixosModules.sops
-
             # Home-manager
             home-manager.nixosModules.home-manager
 
@@ -121,9 +114,6 @@
             # Disko Setup
             disko.nixosModules.disko
             ./hardware/disk-config
-
-            # Sops-nix
-            sops-nix.nixosModules.sops
 
             # Home-manager
             home-manager.nixosModules.home-manager

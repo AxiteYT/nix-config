@@ -191,21 +191,6 @@
         "type": "github"
       }
     },
-    "pkgsMaster": {
-      "locked": {
-        "lastModified": 1766197901,
-        "narHash": "sha256-tZNbJ7rLX001dhhrYG6RoAfplMkNT/DxqIizUf6FOFk=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "efc014a4a23ae1dd6bc3d3e2bfb91ec80925fba7",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "master",
-        "type": "indirect"
-      }
-    },
     "root": {
       "inputs": {
         "awww": "awww",
@@ -215,7 +200,6 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
-        "pkgsMaster": "pkgsMaster",
         "sops-nix": "sops-nix",
         "treefmt-nix": "treefmt-nix"
       }
