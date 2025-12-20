@@ -21,7 +21,7 @@
     enable = true;
     image = self + /home/hyprland/wallpapers/lake.jpg;
     polarity = "dark";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     fonts = {
       serif = {
         package = pkgs.noto-fonts;
