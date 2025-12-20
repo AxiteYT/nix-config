@@ -47,12 +47,12 @@
     curl
     dig
     dmidecode
+    fastfetch
     gawk
     gitMinimal
     home-manager
     htop
     killall
-    neofetch
     ookla-speedtest
     pciutils
     tmux
