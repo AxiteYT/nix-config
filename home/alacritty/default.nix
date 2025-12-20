@@ -39,7 +39,7 @@
       export FAST_WORK_DIR=$HOME/.zsh/fsh/;
       export PATH=$PATH:~/tools
       export PATH=$PATH:~/.npm-global/bin
-      export PATH="$PATH:/home/thomas/.protostar/dist/protostar"
+      export PATH="$PATH:$HOME/.protostar/dist/protostar"
     '';
     plugins = [
       {
