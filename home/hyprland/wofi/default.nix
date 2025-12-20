@@ -1,4 +1,9 @@
 { pkgs, config, ... }:
+let
+  colors = config.lib.stylix.colors;
+  hex = c: "#${c}";
+  hexa = a: c: "#${c}${a}";
+in
 {
   home = {
     packages = with pkgs; [
@@ -27,11 +32,18 @@
     };
     ".config/wofi/style.css" = {
       text = ''
+        :root {
+          --bg: ${hexa "99" colors.base00};
+          --bg-weak: ${hexa "66" colors.base00};
+          --fg: ${hex colors.base06};
+          --accent: ${hex colors.base0D};
+          --muted: ${hex colors.base03};
+        }
         /* The name of the window itself */
         #window {
-          background-color: rgba(24, 24, 24, 0.6);
-          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-            0 4px 6px -4px rgba(0, 0, 0, 0.1);
+          background-color: var(--bg);
+          box-shadow: 0 10px 15px -3px var(--bg-weak),
+            0 4px 6px -4px var(--bg-weak);
           border-radius: 1rem;
           font-size: 1.2rem;
           /* The name of the box that contains everything */
@@ -41,10 +53,10 @@
           /* The name of the scrolled window containing all of the entries */
         }
         #window #outer-box #input {
-          background-color: rgba(24, 24, 24, 0.6);
-          color: #f2f2f2;
+          background-color: var(--bg);
+          color: var(--fg);
           border: none;
-          border-bottom: 1px solid rgba(24, 24, 24, 0.2);
+          border-bottom: 1px solid var(--muted);
           padding: 0.8rem 1rem;
           font-size: 1.5rem;
           border-radius: 1rem 1rem 0 0;
@@ -65,8 +77,8 @@
           /* entries with multiple actions */
         }
         #window #outer-box #scroll #inner-box #entry {
-          color: #fff;
-          background-color: rgba(24, 24, 24, 0.1);
+          color: var(--fg);
+          background-color: var(--bg-weak);
           padding: 0.6rem 1rem;
           /* The name of all images in entries displayed in image mode */
           /* The name of all the text in entries */
@@ -76,8 +88,8 @@
           margin-right: 0.5rem;
         }
         #window #outer-box #scroll #inner-box #entry:selected {
-          color: #fff;
-          background-color: rgba(255, 255, 255, 0.1);
+          color: var(--fg);
+          background-color: var(--accent);
           outline: none;
         }
 

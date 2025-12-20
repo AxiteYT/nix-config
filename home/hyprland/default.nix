@@ -1,4 +1,8 @@
-{ ... }:
+{ config, ... }:
+let
+  colors = config.lib.stylix.colors;
+  argb = alpha: color: "0x${alpha}${color}";
+in
 {
   imports = [
     ./waybar
@@ -12,6 +16,20 @@
       variables = [ "--all" ];
     };
     xwayland.enable = true;
-    extraConfig = builtins.readFile ./hyprland.conf;
+    extraConfig =
+      (builtins.readFile ./hyprland.conf)
+      + ''
+        # Stylix palette overrides
+        general {
+            col.active_border = ${argb "ff" colors.base0D}
+            col.inactive_border = ${argb "cc" colors.base03}
+        }
+
+        decoration {
+            shadow {
+                color = ${argb "ee" colors.base00}
+            }
+        }
+      '';
   };
 }

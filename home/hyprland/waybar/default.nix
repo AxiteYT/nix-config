@@ -1,8 +1,60 @@
-{ ... }:
+{ config, ... }:
+let
+  colors = config.lib.stylix.colors;
+  hex = c: "#${c}";
+  hexa = a: c: "#${c}${a}";
+in
 {
   programs.waybar = {
     enable = true;
-    style = builtins.readFile ./style.css;
+    style = ''
+      :root {
+        --bg: ${hexa "80" colors.base00};
+        --bg-strong: ${hex colors.base00};
+        --fg: ${hex colors.base06};
+        --muted: ${hex colors.base03};
+        --accent: ${hex colors.base0D};
+        --accent-strong: ${hex colors.base0B};
+        --panel-height: 32px;
+      }
+
+      * {
+        border: none;
+        border-radius: 0;
+        font-family: ${hex colors.base05};
+        font-weight: bold;
+        font-size: 14px;
+        min-height: 0;
+        color: var(--fg);
+      }
+
+      window#waybar {
+        background-color: var(--bg);
+        border-bottom: 2px solid ${hexa "80" colors.base02};
+        transition: background-color 0.5s ease;
+      }
+
+      #workspaces button.active,
+      #workspaces button.focused {
+        color: var(--accent);
+      }
+
+      #tray menu {
+        background-color: var(--bg-strong);
+        border: 1px solid var(--accent);
+        color: var(--fg);
+        font-size: 14px;
+        padding: 4px;
+      }
+
+      #tray menu menuitem:hover {
+        background-color: var(--accent);
+      }
+
+      #custom-div {
+        color: var(--muted);
+      }
+    '';
     settings = [
       {
         layer = "top";
