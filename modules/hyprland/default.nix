@@ -19,6 +19,9 @@
   # Hyprland related packages
   environment.systemPackages = with pkgs; [
     kdePackages.dolphin
+    kdePackages.kio
+    kdePackages.kio-fuse
+    kdePackages.kio-extras
     hyprls
     kitty
     nwg-look
