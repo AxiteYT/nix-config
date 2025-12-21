@@ -18,9 +18,11 @@ in
     openFirewall = true;
 
     extraPlugins = [
+      hamaTvPlugin
     ];
+
     extraScanners = [
-      (fetchFromGitHub {
+      (pkgs.fetchFromGitHub {
         owner = "ZeroQI";
         repo = "Absolute-Series-Scanner";
         rev = "773a39f502a1204b0b0255903cee4ed02c46fde0";
