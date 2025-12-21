@@ -1,35 +1,30 @@
 { pkgs, inputs, ... }:
+let
+  hamaTvPlugin = pkgs.stdenv.mkDerivation {
+    name = "Hama.bundle";
+    src = pkgs.fetchFromGitHub {
+      owner = "ZeroQI";
+      repo = "Hama.bundle";
+      rev = "16c8a40a7b004ed14e46cd457d8c393672a09c5a";
+      sha256 = "08a0pfjr1ba9q41b0lcgmqrlj8i2a4d4irqxbckc5a1z6xzcr8nr";
+    };
+    buildInputs = [ pkgs.unzip ];
+    installPhase = "mkdir -p $out; cp -R * $out/";
+  };
+in
 {
   services.plex = {
     enable = true;
     openFirewall = true;
 
     extraPlugins = [
-      (builtins.path {
-        name = "YouTube-Agent.bundle";
-        path = pkgs.fetchFromGitHub {
-          owner = "ZeroQI";
-          repo = "YouTube-Agent.bundle";
-          rev = "19aeeee561de4997741d7ddd9c6e449195b3ae76";
-          sha256 = "sha256-joJPzHNZN6EpDUFMq6FuLSGdQ+MtW20t2s+GPaNzIX0=";
-        };
-      })
-      (builtins.path {
-        name = "Youtube-DL-Agent.bundle";
-        path = pkgs.fetchFromGitHub {
-          owner = "JordyAlkema";
-          repo = "Youtube-DL-Agent.bundle";
-          rev = "8f6b96180f4cae62978cb364b9e76e7892a4a508";
-          sha256 = "sha256-Nvm3s3mN/zCHchot/VwE+UFkIsnv7/8B1+e5WFl2u3I=";
-        };
-      })
     ];
     extraScanners = [
-      (pkgs.fetchFromGitHub {
+      (fetchFromGitHub {
         owner = "ZeroQI";
         repo = "Absolute-Series-Scanner";
-        rev = "048e8001a525ba1c04afda2aa2005feb74709eb8";
-        sha256 = "sha256-+j4BiGjB3vAmMYjALI+4SNyj1zlriKE0qaCNQOlmpuY=";
+        rev = "773a39f502a1204b0b0255903cee4ed02c46fde0";
+        sha256 = "4l+vpiDdC8L/EeJowUgYyB3JPNTZ1sauN8liFAcK+PY=";
       })
     ];
   };
