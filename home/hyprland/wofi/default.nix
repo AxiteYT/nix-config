@@ -1,9 +1,9 @@
 { pkgs, config, ... }:
-  let
-    colors = config.lib.stylix.colors;
-    hex = c: "#${c}";
-    hexa = a: c: "#${c}${a}";
-  in
+let
+  colors = config.lib.stylix.colors;
+  hex = c: "#${c}";
+  hexa = a: c: "#${c}${a}";
+in
 {
   home = {
     packages = with pkgs; [
