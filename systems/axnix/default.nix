@@ -77,6 +77,7 @@
     gimp
     git
     github-desktop
+    gnome-calculator
     glogg
     gparted
     handbrake
@@ -110,6 +111,7 @@
     remmina
     rpcs3
     ryubing
+    Satty
     spotify
     stress-ng
     thunderbird
