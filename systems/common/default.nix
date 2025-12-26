@@ -57,6 +57,7 @@
     pciutils
     tmux
     tree
+    unrar
     unzip
     wget
   ];
