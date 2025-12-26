@@ -59,13 +59,10 @@
 
   # System Packages
   environment.systemPackages = with pkgs; [
-    alsa-scarlett-gui
-    bitwarden-desktop
     blender
     bolt-launcher
     bottles
     brave
-    cargo
     cifs-utils
     davinci-resolve
     discord
@@ -104,9 +101,7 @@
     postman
     powershell
     prismlauncher
-    protontricks
     protonup-qt
-    putty
     remmina
     rpcs3
     runelite
@@ -130,7 +125,6 @@
     xorg.xrandr
     xorg.xwininfo
     yad
-    zed-editor
   ];
 
   # OBS Config
@@ -143,13 +137,13 @@
       obs-gstreamer
       obs-teleport
       obs-vaapi
-      #todo: obs-vertical-canvas
+      #todo: obs-vertical-canvas (currently broken)
       obs-vkcapture
       wlrobs
     ];
   };
 
-  # VirtualBox
+  # VirtualBox Config
   virtualisation.virtualbox = {
     host = {
       enable = true;
