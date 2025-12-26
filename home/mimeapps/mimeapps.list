@@ -1,0 +1,37 @@
+[Added Associations]
+video/mp4=vlc-3.desktop;vlc-2.desktop;vlc.desktop;
+video/x-matroska=vlc-4.desktop;vlc.desktop;
+x-scheme-handler/http=brave-browser.desktop;firefox.desktop;
+x-scheme-handler/https=brave-browser.desktop;firefox.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-GG4692.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-GG4692.desktop;
+x-scheme-handler/webcal=userapp-Thunderbird-7Y4AA3.desktop;
+x-scheme-handler/webcals=userapp-Thunderbird-7Y4AA3.desktop;
+
+[Default Applications]
+application/x-extension-htm=firefox.desktop
+application/x-extension-html=firefox.desktop
+application/x-extension-ics=userapp-Thunderbird-7Y4AA3.desktop
+application/x-extension-shtml=firefox.desktop
+application/x-extension-xht=firefox.desktop
+application/x-extension-xhtml=firefox.desktop
+application/xhtml+xml=firefox.desktop
+inode/directory=org.kde.dolphin.desktop
+message/rfc822=userapp-Thunderbird-GG4692.desktop
+text/calendar=userapp-Thunderbird-7Y4AA3.desktop
+text/html=brave-browser.desktop
+video/mp4=vlc-3.desktop;
+video/x-matroska=vlc-4.desktop;
+x-scheme-handler/about=brave-browser.desktop
+x-scheme-handler/bitwarden=Bitwarden.desktop
+x-scheme-handler/chrome=firefox.desktop
+x-scheme-handler/discord-409416265891971072=discord-409416265891971072.desktop
+x-scheme-handler/discord-742222376518811669=discord-742222376518811669.desktop
+x-scheme-handler/http=brave-browser.desktop
+x-scheme-handler/https=brave-browser.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-GG4692.desktop
+x-scheme-handler/mid=userapp-Thunderbird-GG4692.desktop
+x-scheme-handler/nxm=com.nexusmods.app.desktop
+x-scheme-handler/unknown=brave-browser.desktop
+x-scheme-handler/webcal=userapp-Thunderbird-7Y4AA3.desktop
+x-scheme-handler/webcals=userapp-Thunderbird-7Y4AA3.desktop

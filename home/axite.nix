@@ -3,7 +3,12 @@
 {
   imports = [
     ./alacritty
+    ./brave
+    ./btop
     ./codium
+    ./flameshot
+    ./mimeapps
+    ./pavucontrol
     ./hyprland
   ];
 
