@@ -77,8 +77,8 @@
     gimp
     git
     github-desktop
-    gnome-calculator
     glogg
+    gnome-calculator
     gparted
     handbrake
     hunspell
@@ -106,10 +106,10 @@
     prismlauncher
     protontricks
     protonup-qt
-    runelite
     putty
     remmina
     rpcs3
+    runelite
     ryubing
     satty
     spotify

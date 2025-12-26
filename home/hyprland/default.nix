@@ -6,8 +6,8 @@ in
 {
   imports = [
     ./waybar
-    ./wofi
     ./wlogout
+    ./wofi
   ];
   wayland.windowManager.hyprland = {
     enable = true;

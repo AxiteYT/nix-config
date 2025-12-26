@@ -18,11 +18,11 @@
 
   # Hyprland related packages
   environment.systemPackages = with pkgs; [
+    hyprls
     kdePackages.dolphin
     kdePackages.kio
-    kdePackages.kio-fuse
     kdePackages.kio-extras
-    hyprls
+    kdePackages.kio-fuse
     kitty
     nwg-look
     waybar
@@ -37,11 +37,11 @@
       font-awesome
       hunspellDicts.en_AU
       hunspellDicts.en_US
+      nerd-fonts.meslo-lg
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
       source-han-sans
-      nerd-fonts.meslo-lg
     ];
     fontconfig = {
       enable = true;
