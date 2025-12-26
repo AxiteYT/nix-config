@@ -3,6 +3,7 @@
 {
   imports = [
     ./alacritty
+    ./codium
     ./hyprland
   ];
 
