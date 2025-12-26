@@ -120,7 +120,6 @@
     vim
     virt-viewer
     vlc
-    vscodium
     wayland-utils
     wgnord
     winetricks
