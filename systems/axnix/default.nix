@@ -111,7 +111,7 @@
     remmina
     rpcs3
     ryubing
-    Satty
+    satty
     spotify
     stress-ng
     thunderbird
