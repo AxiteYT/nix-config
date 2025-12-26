@@ -47,6 +47,7 @@
         ];
       userSettings = {
         "explorer.confirmDelete" = false;
+        "git.confirmSync" = false;
       };
     };
   };
