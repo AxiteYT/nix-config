@@ -108,6 +108,7 @@
     ryubing
     satty
     spotify
+    streamcontroller
     stress-ng
     thunderbird
     unityhub
