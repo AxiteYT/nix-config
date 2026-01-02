@@ -121,6 +121,7 @@
     winetricks
     wineWowPackages.stable
     wineWowPackages.waylandFull
+    xemu
     xdotool
     xorg.xprop
     xorg.xrandr
