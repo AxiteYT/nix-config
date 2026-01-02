@@ -6,6 +6,7 @@
     ./brave
     ./btop
     ./codium
+    ./desktop
     ./flameshot
     ./mimeapps
     ./pavucontrol

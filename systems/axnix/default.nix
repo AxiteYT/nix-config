@@ -13,7 +13,6 @@
     (self + /modules/hyprland)
     (self + /modules/steam)
     (self + /systems/common/mounts/apollo.nix)
-    ./desktop.nix
     ./kernel.nix
     ./network-config.nix
   ];
