@@ -51,10 +51,13 @@
   environment.sessionVariables.QT_STYLE_OVERRIDE = "kvantum";
 
   # Enable home-manager
-  home-manager.users.axite = {
-    imports = [
-      (self + /home/axite.nix)
-    ];
+  home-manager = {
+    users.axite = {
+      imports = [
+        (self + /home/axite.nix)
+      ];
+    };
+    backupFileExtension = "hm-bak";
   };
 
   # System Packages
