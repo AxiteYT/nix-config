@@ -4,6 +4,7 @@
   imports = [
     ./alacritty
     ./btop
+    ./brave
     ./codium
     ./flameshot
     ./mimeapps
@@ -15,6 +16,11 @@
     username = "axite";
     homeDirectory = "/home/axite";
     stateVersion = "25.11";
+
+    file.".config/kwalletrc".text = ''
+      [Wallet]
+      Enabled=false
+    '';
   };
   programs.home-manager.enable = true;
 }
