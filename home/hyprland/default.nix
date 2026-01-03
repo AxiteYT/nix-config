@@ -17,6 +17,7 @@ in
     };
     xwayland.enable = true;
     extraConfig = (builtins.readFile ./hyprland.conf) + ''
+
       # Stylix palette overrides
       general {
           col.active_border = ${argb "ff" colors.base0D}
