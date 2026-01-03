@@ -23,4 +23,6 @@
     '';
   };
   programs.home-manager.enable = true;
+  # Enable XDG support so desktop entries are placed in ~/.local/share/applications.
+  xdg.enable = true;
 }
