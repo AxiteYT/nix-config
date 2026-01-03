@@ -3,7 +3,6 @@
 {
   imports = [
     ./alacritty
-    ./brave
     ./btop
     ./codium
     ./flameshot
