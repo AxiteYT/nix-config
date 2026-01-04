@@ -62,9 +62,9 @@
 
   # System Packages
   environment.systemPackages = with pkgs; [
+    (pkgs.bottles.override { removeWarningPopup = true; })
     blender
     bolt-launcher
-    bottles
     brave
     cifs-utils
     davinci-resolve
