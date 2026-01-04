@@ -40,6 +40,9 @@
 
     # awww wallpaper daemon
     awww.url = "git+https://codeberg.org/LGFae/awww";
+
+    # CachyOS Kernel
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
   outputs =
@@ -50,6 +53,7 @@
       disko,
       home-manager,
       treefmt-nix,
+      nix-cachyos-kernel,
       nixos-hardware,
       stylix,
       sops-nix,
