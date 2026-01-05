@@ -32,6 +32,12 @@
     # Treefmt
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
+    # Nix Darwin
+    nix-darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Stylix theming
     stylix = {
       url = "github:danth/stylix";
@@ -57,6 +63,7 @@
       nixos-hardware,
       stylix,
       sops-nix,
+      nix-darwin,
       ...
     }:
     flake-utils.lib.eachDefaultSystem (
@@ -80,6 +87,15 @@
       }
     )
     // {
+      darwinConfigurations = {
+        axdarwin = nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          specialArgs = { inherit self inputs; };
+          modules = [
+            ./systems/darwin/axdarwin.nix
+          ];
+        };
+      };
       nixosConfigurations = {
         axnix = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
