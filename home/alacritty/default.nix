@@ -70,7 +70,7 @@
       {
         name = "powerlevel10k-config";
         src = lib.cleanSource ./zsh;
-        file = if pkgs.stdenv.isDarwin then "darwin.zsh" else "p10k.zsh";
+        file = "p10k.zsh";
       }
     ];
   };
