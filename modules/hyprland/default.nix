@@ -19,15 +19,24 @@
   # Hyprland related packages
   environment.systemPackages = with pkgs; [
     hyprls
-    kdePackages.dolphin
-    kdePackages.kio
-    kdePackages.kio-extras
-    kdePackages.kio-fuse
     kitty
+    nautilus
     nwg-look
     waybar
     wofi
   ];
+
+  # Enable open terminal in nautilus
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = "alacritty";
+  };
+
+  # Enable trash for nautilus
+  services.gvfs.enable = true;
+
+  # Enable sushi for nautilus
+  services.gnome.sushi.enable = true;
 
   # Fonts
   fonts = {
