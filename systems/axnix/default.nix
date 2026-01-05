@@ -58,6 +58,7 @@
       ];
     };
     backupFileExtension = "hm-bak";
+    overwriteBackup = true;
   };
 
   # System Packages
