@@ -6,7 +6,7 @@ in
 {
   imports = [
     ./waybar
-    ./wlogout
+    ./wleave
     ./wofi
   ];
   wayland.windowManager.hyprland = {
