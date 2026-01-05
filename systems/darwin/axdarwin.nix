@@ -1,4 +1,9 @@
-{ self, inputs, pkgs, ... }:
+{
+  self,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   imports = [
     inputs.home-manager.darwinModules.home-manager
@@ -20,7 +25,10 @@
   services.nix-daemon.enable = true;
 
   programs.zsh.enable = true;
-  environment.shells = [ pkgs.zsh pkgs.bashInteractive ];
+  environment.shells = [
+    pkgs.zsh
+    pkgs.bashInteractive
+  ];
 
   users.users.axite = {
     name = "axite";
