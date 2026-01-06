@@ -116,7 +116,6 @@
     stress-ng
     thunderbird
     unityhub
-    ventoy-full-gtk
     vim
     virt-viewer
     vlc

@@ -16,9 +16,6 @@
   nixpkgs.config = {
     allowUnfree = true;
     allowUnfreePredicate = _: true;
-    permittedInsecurePackages = [
-      "ventoy-gtk3-1.1.07"
-    ];
   };
 
   # Sops
