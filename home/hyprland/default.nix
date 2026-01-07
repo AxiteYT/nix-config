@@ -6,6 +6,12 @@
 let
   colors = config.lib.stylix.colors;
   argb = alpha: color: "0x${alpha}${color}";
+  hostName = lib.attrByPath [ "networking" "hostName" ] "default" config;
+  monitorsPath = ./conf.d/monitors/${hostName}.conf;
+  monitorsSource =
+    if builtins.pathExists monitorsPath
+    then monitorsPath
+    else ./conf.d/monitors/default.conf;
 in
 {
   imports = [
@@ -13,6 +19,18 @@ in
     ../wleave
     ../wofi
   ];
+
+  xdg.configFile = {
+    "hypr/conf.d/00-monitors.conf".source = monitorsSource;
+    "hypr/conf.d/10-programs.conf".source = ./conf.d/10-programs.conf;
+    "hypr/conf.d/20-autostart.conf".source = ./conf.d/20-autostart.conf;
+    "hypr/conf.d/30-env.conf".source = ./conf.d/30-env.conf;
+    "hypr/conf.d/40-look-and-feel.conf".source = ./conf.d/40-look-and-feel.conf;
+    "hypr/conf.d/50-input.conf".source = ./conf.d/50-input.conf;
+    "hypr/conf.d/60-keybindings.conf".source = ./conf.d/60-keybindings.conf;
+    "hypr/conf.d/70-rules.conf".source = ./conf.d/70-rules.conf;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     systemd = {
