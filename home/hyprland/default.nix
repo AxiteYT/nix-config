@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  self,
   ...
 }:
 let
@@ -10,9 +9,9 @@ let
 in
 {
   imports = [
-    (self + /home/waybar)
-    (self + /home/wleave)
-    (self + /home/wofi)
+    ../waybar
+    ../wleave
+    ../wofi
   ];
   wayland.windowManager.hyprland = {
     enable = true;
