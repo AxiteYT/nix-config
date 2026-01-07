@@ -19,7 +19,6 @@
 
   stylix = {
     enable = true;
-    image = self + /home/hyprland/wallpapers/lake.jpg;
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
     fonts = {
