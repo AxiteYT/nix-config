@@ -6,12 +6,6 @@
 let
   colors = config.lib.stylix.colors;
   argb = alpha: color: "0x${alpha}${color}";
-  hostName = lib.attrByPath [ "networking" "hostName" ] "default" config;
-  monitorsPath = ./conf.d/monitors/${hostName}.conf;
-  monitorsSource =
-    if builtins.pathExists monitorsPath
-    then monitorsPath
-    else ./conf.d/monitors/default.conf;
 in
 {
   imports = [
@@ -21,7 +15,7 @@ in
   ];
 
   xdg.configFile = {
-    "hypr/conf.d/00-monitors.conf".source = monitorsSource;
+    "hypr/conf.d/00-monitors.conf".source = ./conf.d/monitors/axnix.conf;
     "hypr/conf.d/10-programs.conf".source = ./conf.d/10-programs.conf;
     "hypr/conf.d/20-autostart.conf".source = ./conf.d/20-autostart.conf;
     "hypr/conf.d/30-env.conf".source = ./conf.d/30-env.conf;
@@ -37,7 +31,6 @@ in
       enable = true;
       variables = [ "--all" ];
     };
-    settings.xwayland.enable = true;
     extraConfig = (builtins.readFile ./hyprland.conf) + ''
 
       # Stylix palette overrides
