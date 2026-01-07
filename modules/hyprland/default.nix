@@ -23,7 +23,7 @@
     nautilus
     nwg-look
     waybar
-    rofi-wayland
+    wofi
   ];
 
   # Enable open terminal in nautilus
