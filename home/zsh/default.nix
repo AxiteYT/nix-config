@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [ ./alacritty ];
@@ -7,20 +7,22 @@
 
   programs.zsh = {
     enable = true;
+    dotDir = "${config.xdg.configHome}/zsh";
 
-    initContent = lib.mkBefore ''
-      fsh_dir="$HOME/.zsh/fsh"
-      [ -d "$fsh_dir" ] || mkdir -p "$fsh_dir"
-      export FAST_WORK_DIR="$fsh_dir"
-      export PATH="$PATH:$HOME/tools"
-      export PATH="$PATH:$HOME/.npm-global/bin"
-      [ -d "$HOME/.protostar/dist/protostar" ] && export PATH="$PATH:$HOME/.protostar/dist/protostar"
-    '';
-
-    # This runs after OMZ/theme init (good place to source p10k config)
-    initExtra = ''
-      [[ -r ~/.p10k.zsh ]] && source ~/.p10k.zsh
-    '';
+    initContent = lib.mkMerge [
+      (lib.mkBefore ''
+        fsh_dir="$HOME/.zsh/fsh"
+        [ -d "$fsh_dir" ] || mkdir -p "$fsh_dir"
+        export FAST_WORK_DIR="$fsh_dir"
+        export PATH="$PATH:$HOME/tools"
+        export PATH="$PATH:$HOME/.npm-global/bin"
+        [ -d "$HOME/.protostar/dist/protostar" ] && export PATH="$PATH:$HOME/.protostar/dist/protostar"
+      '')
+      (lib.mkAfter ''
+        # This runs after OMZ/theme init (good place to source p10k config)
+        [[ -r ~/.p10k.zsh ]] && source ~/.p10k.zsh
+      '')
+    ];
 
     plugins = [
       {
