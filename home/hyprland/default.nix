@@ -7,7 +7,7 @@ in
   imports = [
     ./waybar
     ./wleave
-    ./wofi
+    ./rofi
   ];
   wayland.windowManager.hyprland = {
     enable = true;
