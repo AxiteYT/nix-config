@@ -2,8 +2,12 @@
 
 {
   imports = [ ./alacritty ];
+
+  home.file.".p10k.zsh".source = ./p10k.zsh;
+
   programs.zsh = {
     enable = true;
+
     initContent = lib.mkBefore ''
       fsh_dir="$HOME/.zsh/fsh"
       [ -d "$fsh_dir" ] || mkdir -p "$fsh_dir"
@@ -12,6 +16,12 @@
       export PATH="$PATH:$HOME/.npm-global/bin"
       [ -d "$HOME/.protostar/dist/protostar" ] && export PATH="$PATH:$HOME/.protostar/dist/protostar"
     '';
+
+    # This runs after OMZ/theme init (good place to source p10k config)
+    initExtra = ''
+      [[ -r ~/.p10k.zsh ]] && source ~/.p10k.zsh
+    '';
+
     plugins = [
       {
         name = "zsh-autosuggestions";
@@ -35,10 +45,6 @@
         name = "powerlevel10k";
         src = pkgs.zsh-powerlevel10k;
         file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-      {
-        name = "powerlevel10k-config";
-        file = "p10k.zsh";
       }
     ];
 
