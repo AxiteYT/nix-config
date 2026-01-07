@@ -1,13 +1,18 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  self,
+  ...
+}:
 let
   colors = config.lib.stylix.colors;
   argb = alpha: color: "0x${alpha}${color}";
 in
 {
   imports = [
-    ./waybar
-    ./wleave
-    ./wofi
+    (self + /home/waybar)
+    (self + /home/wleave)
+    (self + /home/wofi)
   ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -16,7 +21,7 @@ in
       variables = [ "--all" ];
     };
     xwayland.enable = true;
-    extraConfig = (builtins.readFile ./config/hyprland.conf) + ''
+    extraConfig = (builtins.readFile ./hyprland.conf) + ''
 
       # Stylix palette overrides
       general {
