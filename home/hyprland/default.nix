@@ -16,7 +16,7 @@ in
       variables = [ "--all" ];
     };
     xwayland.enable = true;
-    extraConfig = (builtins.readFile ./hyprland.conf) + ''
+    extraConfig = (builtins.readFile ./config/hyprland.conf) + ''
 
       # Stylix palette overrides
       general {

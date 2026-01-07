@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./alacritty
     ./btop
     ./brave
     ./codium
@@ -10,6 +9,7 @@
     ./mimeapps
     ./pavucontrol
     ./hyprland
+    ./zsh
   ];
 
   home = {
