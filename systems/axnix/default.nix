@@ -158,16 +158,21 @@
 
   # Enable sound
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-    jack.enable = true;
-    alsa = {
+  services = {
+    pipewire = {
       enable = true;
-      support32Bit = true;
+      wireplumber = {
+        enable = true;
+      };
+      pulse.enable = true;
+      jack.enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
     };
+    pulseaudio.enable = false;
   };
-  services.pulseaudio.enable = false;
 
   # Enable Bluetooth
   hardware.bluetooth = {
