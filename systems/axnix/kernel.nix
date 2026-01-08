@@ -7,11 +7,7 @@
   ...
 }:
 {
-  nixpkgs.overlays = [
-    inputs.nix-cachyos-kernel.overlays.default
-  ];
   boot = {
-    kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest;
     initrd = {
       availableKernelModules = [
         "ahci"
