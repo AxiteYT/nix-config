@@ -111,7 +111,7 @@
     ryubing
     satty
     spotify
-    #todo: decide between this or streamdeck-ui | streamcontroller
+    streamcontroller
     stress-ng
     thunderbird
     unityhub
@@ -145,12 +145,6 @@
       obs-vkcapture
       wlrobs
     ];
-  };
-
-  # Stream Deck
-  programs.streamdeck-ui = {
-    enable = true;
-    autoStart = true; # optional
   };
 
   # VirtualBox Config
