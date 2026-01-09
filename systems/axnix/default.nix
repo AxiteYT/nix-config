@@ -105,6 +105,7 @@
     powershell
     prismlauncher
     protonup-qt
+    pulseaudioFull
     remmina
     rpcs3
     runelite
@@ -163,6 +164,24 @@
       enable = true;
       wireplumber = {
         enable = true;
+        extraConfig = {
+          "51-elgato-xlr-pro-audio" = {
+            "monitor.alsa.rules" = [
+              {
+                matches = [
+                  {
+                    device.name = "alsa_card.usb-Elgato_Systems_Elgato_XLR_Dock_*";
+                  }
+                ];
+                actions = {
+                  update-props = {
+                    device.profile = "pro-audio";
+                  };
+                };
+              }
+            ];
+          };
+        };
       };
       pulse.enable = true;
       jack.enable = true;
@@ -175,6 +194,10 @@
       enable = false;
       package = pkgs.pulseaudioFull;
     };
+    udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0fd9", ATTR{idProduct}=="0084", \
+       RUN+="${pkgs.systemd}/bin/systemctl --user restart pipewire wireplumber pipewire-pulse"
+    '';
   };
 
   # Enable Bluetooth
