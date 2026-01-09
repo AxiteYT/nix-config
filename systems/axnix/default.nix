@@ -171,7 +171,10 @@
         support32Bit = true;
       };
     };
-    pulseaudio.enable = false;
+    pulseaudio = {
+      enable = false;
+      package = pkgs.pulseaudioFull;
+    };
   };
 
   # Enable Bluetooth
