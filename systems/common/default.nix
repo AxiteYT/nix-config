@@ -89,6 +89,18 @@
   # Allow all firmware
   hardware.enableAllFirmware = true;
 
+  # Garbage Collection
+  nix = {
+    optimise = {
+      automatic = true;
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 8d";
+    };
+  };
+
   # Set kernel to use latest Linux kernel
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 }
