@@ -49,6 +49,9 @@
 
     # CachyOS Kernel
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
+    # HytaleLauncherFlake
+    hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
   };
 
   outputs =
@@ -58,6 +61,7 @@
       flake-utils,
       disko,
       home-manager,
+      hytale-launcher,
       treefmt-nix,
       nix-cachyos-kernel,
       nixos-hardware,

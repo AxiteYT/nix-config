@@ -83,6 +83,7 @@
     handbrake
     hunspell
     input-remapper
+    inputs.hytale-launcher.packages.${pkgs.system}.default
     k4dirstat
     kdePackages.ark
     killall
