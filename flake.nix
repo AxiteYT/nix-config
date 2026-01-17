@@ -70,6 +70,7 @@
       nix-darwin,
       ...
     }:
+
     flake-utils.lib.eachDefaultSystem (
       system:
       let
@@ -91,6 +92,12 @@
       }
     )
     // {
+      # Overlays
+      overlays.default = final: prev: {
+        kometa = final.callPackage ./pkgs/kometa { };
+      };
+
+      # Systems
       darwinConfigurations = {
         axdarwin = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
@@ -125,6 +132,14 @@
         besta = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+
+            # kometa overlay
+            (
+              { ... }:
+              {
+                nixpkgs.overlays = [ self.overlays.default ];
+              }
+            )
 
             # Common system config
             ./systems/common
