@@ -6,7 +6,10 @@
     ./network-config.nix
   ];
 
-  environment.systemPackages = with pkgs; [ ffmpeg ];
+  environment.systemPackages = with pkgs; [
+    ffmpeg
+    kometa
+  ];
 
   # Add besta user
   users.users.besta = {
