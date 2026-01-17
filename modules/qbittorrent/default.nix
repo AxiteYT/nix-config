@@ -38,7 +38,7 @@
       Session\MaxActiveTorrents=20
       Session\MaxActiveUploads=5
       Session\Port=26504
-      Session\QueueingSystemEnabled=true
+      Session\QueueingSystemEnabled=false
       Session\SSL\Port=17335
       Session\SlowTorrentsDownloadRate=100
       Session\TempPath=/media/Plex/Downloads
