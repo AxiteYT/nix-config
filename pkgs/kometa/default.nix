@@ -17,7 +17,7 @@ let
     };
     tmdbapis = {
       version = "1.2.30";
-      hash = "sha256-mSK9c1PDBjR/j+ROHBMe0sYo4TD8cm8bqnhKPbNcRtw=";
+      hash = "sha256-FnIJGjSor0grVTCjn70rcICU011Ih/fWnuwKik+vlwg=";
       deps = [
         requests
       ];
@@ -72,7 +72,7 @@ stdenv.mkDerivation rec {
     owner = "Kometa-Team";
     repo = "Kometa";
     rev = "v${version}";
-    hash = "sha256-2RmnnKQRVL1/WYD2tL9GBVF8n1n6EGp835l+Z+Bn7Hk=";
+    hash = "sha256-ZM4a0ip2EE67zJgBIeBoh4Ro1OFzZ93TlvS2ab9zi+4=";
   };
 
   nativeBuildInputs = [
