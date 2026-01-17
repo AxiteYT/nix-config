@@ -75,6 +75,10 @@ stdenv.mkDerivation rec {
     hash = "sha256-ZM4a0ip2EE67zJgBIeBoh4Ro1OFzZ93TlvS2ab9zi+4=";
   };
 
+  patches = [
+    ./xdg-config.patch
+  ];
+
   nativeBuildInputs = [
     makeWrapper
   ];
