@@ -93,9 +93,6 @@
     )
     // {
       # Overlays
-      overlays.default = final: prev: {
-        kometa = final.callPackage ./pkgs/kometa { };
-      };
 
       # Systems
       darwinConfigurations = {
@@ -132,14 +129,6 @@
         besta = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-
-            # kometa overlay
-            (
-              { ... }:
-              {
-                nixpkgs.overlays = [ self.overlays.default ];
-              }
-            )
 
             # Common system config
             ./systems/common
