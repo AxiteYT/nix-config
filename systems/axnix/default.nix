@@ -90,6 +90,7 @@
     libreoffice-qt
     lmstudio
     lutris
+    mdbook
     neovim
     networkmanagerapplet
     nexusmods-app-unfree
