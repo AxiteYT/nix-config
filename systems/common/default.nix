@@ -16,6 +16,7 @@
   nixpkgs.config = {
     allowUnfree = true;
     allowUnfreePredicate = _: true;
+    permittedInsecurePackages = [ "nexusmods-app-unfree-0.21.1" ];
   };
 
   # Sops
