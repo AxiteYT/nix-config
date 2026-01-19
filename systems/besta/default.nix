@@ -13,6 +13,8 @@
     isNormalUser = true;
     home = "/home/besta";
     description = "Besta User";
+    autoSubUidGidRange = true;
+    linger = true;
     extraGroups = [
       "networkmanager"
       "servarr"
