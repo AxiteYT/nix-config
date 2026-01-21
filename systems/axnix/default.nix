@@ -144,7 +144,7 @@
       obs-gstreamer
       obs-teleport
       obs-vaapi
-      #todo: obs-vertical-canvas (currently broken)
+      obs-vertical-canvas
       obs-vkcapture
       wlrobs
     ];
