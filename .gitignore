@@ -2,3 +2,4 @@
 result
 *.iso
 .vscode/
+.temp/
