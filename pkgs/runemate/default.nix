@@ -3,7 +3,7 @@
   stdenv,
   fetchurl,
   makeWrapper,
-  jdk23,
+  jdk21,
   openjfx,
   glib,
   mesa,
@@ -12,7 +12,7 @@
 }:
 
 let
-  openjdk = jdk23.override { enableJavaFX = true; };
+  openjdk = jdk21.override { enableJavaFX = true; };
   openjfxWithWebKit = openjfx.override { withWebKit = true; };
   version = "4.17.5.1";
   versionUnderscore = lib.replaceStrings [ "." ] [ "_" ] version;
