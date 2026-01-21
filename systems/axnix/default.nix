@@ -111,6 +111,7 @@
     remmina
     rpcs3
     runelite
+    runemate
     ryubing
     satty
     spotify
