@@ -27,5 +27,10 @@
     extraModulePackages = [ ];
   };
 
+  hardware = {
+    graphics.enable = true;
+    amdgpu.opencl.enable = true;
+  };
+
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
