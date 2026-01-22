@@ -71,7 +71,14 @@
     discord
     discord-rpc
     dolphin-emu
-    ffmpeg-full
+    (pkgs.ffmpeg-full.override {
+      withUnfree = true;
+      withVaapi = true;
+      withDrm = true;
+      withAmf = true;
+      withOpencl = true;
+      withVulkan = true;
+    })
     filezilla
     firefox
     gh

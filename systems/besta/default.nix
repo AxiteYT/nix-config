@@ -6,7 +6,11 @@
     ./network-config.nix
   ];
 
-  environment.systemPackages = with pkgs; [ ffmpeg ];
+  environment.systemPackages = with pkgs; [
+    (pkgs.ffmpeg-full.override {
+      withUnfree = true;
+    })
+  ];
 
   # Add besta user
   users.users.besta = {
