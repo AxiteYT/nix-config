@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  # Enable GPU Driivers
+  # Enable GPU Drivers
   hardware = {
     graphics = {
       enable = true;
