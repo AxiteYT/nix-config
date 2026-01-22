@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   services.sonarr =
     #TODO: Remove sqlite pinning once it resolved upstream: https://github.com/NixOS/nixpkgs/issues/481098
@@ -12,7 +13,7 @@
     in
     {
       enable = true;
-      package = pkgs.unstable.sonarr.override { sqlite = sqlite-3-50; };
+      package = pkgs.sonarr.override { sqlite = sqlite-3-50; };
       group = "servarr";
       openFirewall = true;
     };
