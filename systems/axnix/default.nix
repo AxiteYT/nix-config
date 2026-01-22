@@ -73,6 +73,7 @@
     dolphin-emu
     ffmpeg-full
     filezilla
+    firefox
     gh
     gimp
     git
