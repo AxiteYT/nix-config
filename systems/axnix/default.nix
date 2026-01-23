@@ -81,6 +81,7 @@
     })
     filezilla
     firefox
+    flameshot
     gh
     gimp
     git
@@ -88,6 +89,7 @@
     glogg
     gnome-calculator
     gparted
+    grim
     handbrake
     hunspell
     input-remapper

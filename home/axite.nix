@@ -5,10 +5,10 @@
     ./btop
     ./brave
     ./codium
-    ./flameshot
     ./mimeapps
     ./pavucontrol
     ./hyprland
+    ./satty
     ./zsh
   ];
 
