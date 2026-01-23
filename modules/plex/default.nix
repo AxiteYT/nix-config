@@ -11,6 +11,16 @@ let
     buildInputs = [ pkgs.unzip ];
     installPhase = "mkdir -p $out; cp -R * $out/";
   };
+  xbmcNfoTvImporterPlugin = pkgs.stdenv.mkDerivation {
+    name = "XBMCnfoTVImporter.bundle";
+    src = pkgs.fetchFromGitHub {
+      owner = "gboudreau";
+      repo = "XBMCnfoTVImporter.bundle";
+      rev = "534e7737886135b2d0b43d8ae9ee394f1a116051";
+      sha256 = "vygO3w8xTMq420sz1OtxDRXJPL/pvWV3SqHb253r2bE=";
+    };
+    installPhase = "mkdir -p $out; cp -R * $out/";
+  };
 in
 {
   services.plex = {
@@ -19,6 +29,7 @@ in
 
     extraPlugins = [
       hamaTvPlugin
+      xbmcNfoTvImporterPlugin
     ];
 
     extraScanners = [
