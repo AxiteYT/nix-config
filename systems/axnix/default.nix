@@ -123,7 +123,6 @@
     runelite
     runemate
     ryubing
-    satty
     spotify
     streamcontroller
     stress-ng
