@@ -110,6 +110,7 @@
     ntfs3g
     obsidian
     ollama
+    openrgb-with-all-plugins
     p7zip
     patchelf
     piper
