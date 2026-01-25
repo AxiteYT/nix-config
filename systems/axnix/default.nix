@@ -110,7 +110,6 @@
     ntfs3g
     obsidian
     ollama
-    openrgb-with-all-plugins
     p7zip
     patchelf
     piper
@@ -218,6 +217,13 @@
 
   # Enable ratbag daemon
   services.ratbagd.enable = true;
+
+  # Enable open-rgb
+  services.hardware.openrgb = {
+    enable = true;
+    package = pkgs.openrgb-with-all-plugins;
+    motherboard = "intel";
+  };
 
   system.stateVersion = "25.11";
 }
