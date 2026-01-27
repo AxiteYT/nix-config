@@ -110,6 +110,7 @@
     ntfs3g
     obsidian
     ollama
+    overlayed
     p7zip
     patchelf
     piper
