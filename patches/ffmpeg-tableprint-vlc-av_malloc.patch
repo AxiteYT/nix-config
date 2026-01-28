@@ -1,0 +1,42 @@
+--- a/libavcodec/tableprint_vlc.h
++++ b/libavcodec/tableprint_vlc.h
+@@
+ #ifndef AVCODEC_TABLEPRINT_VLC_H
+ #define AVCODEC_TABLEPRINT_VLC_H
+ 
++#include <stddef.h>
++
+ #define AVUTIL_LOG_H
+ #define av_log(a, ...) while(0)
+ #define ff_dlog(a, ...) while(0)
+ #define AVUTIL_MEM_H
+-#define av_malloc(s) NULL
+-#define av_malloc_array(a, b) NULL
+-#define av_realloc_f(p, o, n) NULL
+-#define av_free(p) while(0)
+-#define av_freep(p) while(0)
++#ifdef av_malloc
++#undef av_malloc
++#endif
++#ifdef av_malloc_array
++#undef av_malloc_array
++#endif
++#ifdef av_realloc_f
++#undef av_realloc_f
++#endif
++#ifdef av_free
++#undef av_free
++#endif
++#ifdef av_freep
++#undef av_freep
++#endif
++
++static inline void *av_malloc(size_t s) { (void)s; return NULL; }
++static inline void *av_malloc_array(size_t a, size_t b) { (void)a; (void)b; return NULL; }
++static inline void *av_realloc_f(void *p, size_t o, size_t n) { (void)p; (void)o; (void)n; return NULL; }
++static inline void av_free(void *p) { (void)p; }
++static inline void av_freep(void *p) { (void)p; }
+ #define AVUTIL_INTERNAL_H
+ #define avpriv_request_sample(...)
+ #include "tableprint.h"
+*** End Patch
