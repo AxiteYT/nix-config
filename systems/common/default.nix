@@ -39,8 +39,13 @@
             ""
           ];
           ffmpegTableprintPatch = final.writeText "ffmpeg-tableprint-vlc-av_malloc.patch" ffmpegTableprintPatchText;
+          obsAitumStreamSuite = prev.qt6Packages.callPackage (self + /pkgs/obs-aitum-stream-suite) { };
         in
         {
+          obs-aitum-stream-suite = obsAitumStreamSuite;
+          obs-studio-plugins = prev.obs-studio-plugins // {
+            obs-aitum-stream-suite = obsAitumStreamSuite;
+          };
           runemate = prev.callPackage (self + /pkgs/runemate) { };
           ffmpeg-full = prev.ffmpeg-full.overrideAttrs (old: {
             patches = (old.patches or [ ]) ++ [ ffmpegTableprintPatch ];

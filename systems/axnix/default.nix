@@ -149,14 +149,20 @@
   programs.obs-studio = {
     enable = true;
     enableVirtualCamera = true;
-    package = pkgs.obs-studio;
+    package = pkgs.symlinkJoin {
+      name = "obs-studio-xwayland";
+      paths = [ pkgs.obs-studio ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/obs --set QT_QPA_PLATFORM xcb
+      '';
+    };
     plugins = with pkgs.obs-studio-plugins; [
-      obs-aitum-multistream
+      obs-aitum-stream-suite
       obs-backgroundremoval
       obs-gstreamer
       obs-teleport
       obs-vaapi
-      #obs-vertical-canvas
       obs-vkcapture
       wlrobs
     ];
