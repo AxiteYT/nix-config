@@ -93,46 +93,50 @@
       }
       // lib.optionalAttrs (system == "x86_64-linux") {
         # Bootable ISO built from nixpkgs/unstable using the latest kernel
-        packages.bootable-iso = (nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ({ modulesPath, lib, ... }: {
-              imports = [
-                (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
-              ];
+        packages.bootable-iso =
+          (nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [
+              (
+                { modulesPath, lib, ... }:
+                {
+                  imports = [
+                    (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
+                  ];
 
-              # Ensure the ISO uses the newest available kernel
-              boot.kernelPackages = pkgs.linuxPackages_latest;
-              # Drop ZFS to avoid broken module on newest kernels
-              boot.supportedFilesystems = lib.mkForce [
-                "btrfs"
-                "ext4"
-                "f2fs"
-                "xfs"
-                "vfat"
-              ];
+                  # Ensure the ISO uses the newest available kernel
+                  boot.kernelPackages = pkgs.linuxPackages_latest;
+                  # Drop ZFS to avoid broken module on newest kernels
+                  boot.supportedFilesystems = lib.mkForce [
+                    "btrfs"
+                    "ext4"
+                    "f2fs"
+                    "xfs"
+                    "vfat"
+                  ];
 
-              # SSH access for installer: enable sshd and allow root key auth with existing key
-              services.openssh = {
-                enable = true;
-                settings = {
-                  PermitRootLogin = "prohibit-password";
-                  PasswordAuthentication = false;
-                };
-              };
-              users.users.root.openssh.authorizedKeys.keys = [
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINMXEwWst3Kkag14hG+nCtiRX8KHcn6w/rUeZC5Ww7RU axite@axitemedia.com"
-              ];
+                  # SSH access for installer: enable sshd and allow root key auth with existing key
+                  services.openssh = {
+                    enable = true;
+                    settings = {
+                      PermitRootLogin = "prohibit-password";
+                      PasswordAuthentication = false;
+                    };
+                  };
+                  users.users.root.openssh.authorizedKeys.keys = [
+                    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINMXEwWst3Kkag14hG+nCtiRX8KHcn6w/rUeZC5Ww7RU axite@axitemedia.com"
+                  ];
 
-              # Make flake/Nix command available inside the installer environment
-              nix.settings.experimental-features = [
-                "flakes"
-                "nix-command"
-              ];
-            })
-          ];
-          specialArgs = { inherit self inputs; };
-        }).config.system.build.isoImage;
+                  # Make flake/Nix command available inside the installer environment
+                  nix.settings.experimental-features = [
+                    "flakes"
+                    "nix-command"
+                  ];
+                }
+              )
+            ];
+            specialArgs = { inherit self inputs; };
+          }).config.system.build.isoImage;
       }
     )
     // {
