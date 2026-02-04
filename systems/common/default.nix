@@ -90,6 +90,7 @@
     home-manager
     htop
     killall
+    nix-output-monitor
     ookla-speedtest
     pciutils
     tmux
