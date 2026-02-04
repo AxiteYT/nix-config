@@ -1,6 +1,6 @@
 {
-  fileSystems."/mnt/Apollo" = {
-    device = "/dev/disk/by-uuid/2dac6082-0700-45e6-89c8-2c3a7783f80a";
+  fileSystems."/home/axite/Videos" = {
+    device = "/dev/disk/by-uuid/c2d2d9b1-6308-44fa-89c1-c7c0c4b7ff61";
     fsType = "ext4";
   };
 }
