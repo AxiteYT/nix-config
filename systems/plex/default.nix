@@ -12,17 +12,20 @@
     intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
   };
 
-  hardware.graphics = {
-    # hardware.graphics on unstable
-    enable = true;
-    extraPackages = with pkgs; [ intel-vaapi-driver ];
-  };
+  /*
+    TODO: Add when GPU is re-installed
+    hardware.graphics = {
+      # hardware.graphics on unstable
+      enable = true;
+      extraPackages = with pkgs; [ intel-vaapi-driver ];
+    };
 
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "i965";
-  };
+    environment.sessionVariables = {
+      LIBVA_DRIVER_NAME = "i965";
+    };
 
-  hardware.intel-gpu-tools.enable = true;
+    hardware.intel-gpu-tools.enable = true;
+  */
 
   # Add handbrake
   environment.systemPackages = with pkgs; [ handbrake ];
