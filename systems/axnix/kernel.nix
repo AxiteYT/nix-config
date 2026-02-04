@@ -21,11 +21,14 @@
       kernelModules = [ ];
     };
     kernelModules = [
-      "kvm-intel"
-      "btintel"
+      "kvm-amd"
+    ];
+    kernelParams = [
+      "amd_pstate=active"
+      "iommu=pt"
     ];
     extraModulePackages = [ ];
   };
 
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

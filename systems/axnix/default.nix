@@ -229,7 +229,7 @@
   services.hardware.openrgb = {
     enable = true;
     package = pkgs.openrgb-with-all-plugins;
-    motherboard = "intel";
+    motherboard = "amd";
   };
 
   system.stateVersion = "25.11";
