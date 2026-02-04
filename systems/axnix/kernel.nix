@@ -22,10 +22,13 @@
     };
     kernelModules = [
       "kvm-amd"
+      "i2c-dev"
+      "i2c-piix4"
     ];
     kernelParams = [
       "amd_pstate=active"
       "iommu=pt"
+      "acpi_enforce_resources=lax"
     ];
     extraModulePackages = [ ];
   };
