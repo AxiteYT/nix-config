@@ -4,6 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "nixpkgs/nixos-25.11";
 
     # Flake utils
     flake-utils.url = "github:numtide/flake-utils";
@@ -58,6 +59,7 @@
     inputs@{
       self,
       nixpkgs,
+      nixpkgs-stable,
       flake-utils,
       disko,
       home-manager,
@@ -92,9 +94,8 @@
         formatter = treefmtEval.config.build.wrapper;
       }
       // lib.optionalAttrs (system == "x86_64-linux") {
-        # Bootable ISO built from nixpkgs/unstable using the latest kernel
         packages.bootable-iso =
-          (nixpkgs.lib.nixosSystem {
+          (nixpkgs-stable.lib.nixosSystem {
             inherit system;
             modules = [
               (
