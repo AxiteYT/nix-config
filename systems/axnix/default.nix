@@ -12,7 +12,7 @@
     (self + /modules/flatpak)
     (self + /modules/hyprland)
     (self + /modules/steam)
-    (self + /systems/common/mounts/apollo.nix)
+    #(self + /systems/common/mounts/apollo.nix)
     ./kernel.nix
     ./network-config.nix
   ];
