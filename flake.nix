@@ -175,6 +175,28 @@
           ];
           specialArgs = { inherit self inputs; };
         };
+        axtop = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+
+            # Common system config
+            ./systems/common
+
+            # System specific config
+            ./systems/axtop
+            stylix.nixosModules.stylix
+
+            nixos-hardware.nixosModules.microsoft-surface-pro-3
+
+            # Disko Setup
+            disko.nixosModules.disko
+            ./hardware/disk-config
+
+            # Home-manager
+            home-manager.nixosModules.home-manager
+          ];
+          specialArgs = { inherit self inputs; };
+        };
         besta = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
