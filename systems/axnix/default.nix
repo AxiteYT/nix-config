@@ -101,8 +101,6 @@
     lm_sensors
     lmstudio
     lutris
-    mdbook
-    neovim
     networkmanagerapplet
     nexusmods-app-unfree
     nixfmt
@@ -110,7 +108,6 @@
     nodejs
     ntfs3g
     obsidian
-    ollama
     overlayed
     p7zip
     patchelf
@@ -122,9 +119,7 @@
     pulseaudioFull
     remmina
     rpcs3
-    runelite
-    runemate
-    ryubing
+        ryubing
     spotify
     streamcontroller
     stress-ng
