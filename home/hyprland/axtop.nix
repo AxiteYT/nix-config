@@ -23,6 +23,7 @@ in
     "hypr/conf.d/50-input.conf".source = ./conf.d/50-input.conf;
     "hypr/conf.d/60-keybindings.conf".source = ./conf.d/60-keybindings.conf;
     "hypr/conf.d/70-rules.conf".source = ./conf.d/70-rules.conf;
+    "hypr.conf.d/80-gestures.conf".source = ./conf.d/80-gestures.conf;
   };
 
   wayland.windowManager.hyprland = {
