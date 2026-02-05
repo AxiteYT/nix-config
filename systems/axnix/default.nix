@@ -98,6 +98,7 @@
     kdePackages.ark
     killall
     libreoffice-qt
+    lm_sensors
     lmstudio
     lutris
     mdbook
