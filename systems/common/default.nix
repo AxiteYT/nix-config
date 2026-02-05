@@ -64,7 +64,6 @@
     defaultSopsFile = (self + /secrets/secrets.yaml);
     defaultSopsFormat = "yaml";
     age.keyFile = "/root/.config/sops/age/keys.txt";
-    secrets.AxitePW.neededForUsers = true;
   };
 
   systemd.tmpfiles.rules = [
@@ -116,7 +115,6 @@
   users.users.axite = {
     isNormalUser = true;
     description = "Kyle Smith";
-    hashedPasswordFile = config.sops.secrets.AxitePW.path;
     extraGroups = [
       "networkmanager"
       "wheel"
