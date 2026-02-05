@@ -1,9 +1,8 @@
 { pkgs, ... }:
 {
-  services.sonarr =
-    {
-      enable = true;
-      group = "servarr";
-      openFirewall = true;
-    };
+  services.sonarr = {
+    enable = true;
+    group = "servarr";
+    openFirewall = true;
+  };
 }

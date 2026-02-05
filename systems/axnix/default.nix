@@ -119,7 +119,7 @@
     pulseaudioFull
     remmina
     rpcs3
-        ryubing
+    ryubing
     spotify
     streamcontroller
     stress-ng
