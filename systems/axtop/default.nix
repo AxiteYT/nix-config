@@ -50,7 +50,7 @@
   home-manager = {
     users.axite = {
       imports = [
-        (self + /home/axite.nix)
+        (self + /home/axtop.nix)
       ];
     };
     backupFileExtension = "hm-bak";

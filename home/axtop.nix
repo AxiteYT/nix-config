@@ -7,7 +7,7 @@
     ./codium
     ./mimeapps
     ./pavucontrol
-    ./hyprland/axite.nix
+    ./hyprland/axtop.nix
     ./satty
     ./zsh
   ];
