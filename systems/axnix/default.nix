@@ -109,7 +109,6 @@
     nodejs
     ntfs3g
     obsidian
-    overlayed
     p7zip
     patchelf
     piper
@@ -155,7 +154,7 @@
       '';
     };
     plugins = with pkgs.obs-studio-plugins; [
-      obs-aitum-stream-suite
+      obs-aitum-multistream
       obs-backgroundremoval
       obs-gstreamer
       obs-teleport
