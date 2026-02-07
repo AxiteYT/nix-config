@@ -96,6 +96,7 @@
     inputs.hytale-launcher.packages.${pkgs.system}.default
     k4dirstat
     kdePackages.ark
+    kdePackages.kdenlive
     killall
     libreoffice-qt
     lm_sensors
