@@ -71,7 +71,6 @@
     discord
     discord-rpc
     dolphin-emu
-    easyeffects
     (pkgs.ffmpeg-full.override {
       withUnfree = true;
       withVaapi = true;

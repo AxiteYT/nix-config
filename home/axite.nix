@@ -5,6 +5,7 @@
     ./btop
     ./brave
     ./codium
+    ./easyeffects
     ./mimeapps
     ./pavucontrol
     ./hyprland/axite.nix
