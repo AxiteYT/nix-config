@@ -164,14 +164,16 @@
     ];
   };
 
-  # VirtualBox Config
-  virtualisation.virtualbox = {
-    host = {
-      enable = true;
-      enableExtensionPack = true;
+  /*
+    # VirtualBox Config
+    virtualisation.virtualbox = {
+      host = {
+        enable = true;
+        enableExtensionPack = true;
+      };
     };
-  };
-  users.extraGroups.vboxusers.members = [ "axite" ];
+    users.extraGroups.vboxusers.members = [ "axite" ];
+  */
 
   # Enable sound
   security.rtkit.enable = true;
