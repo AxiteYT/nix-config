@@ -123,7 +123,6 @@
     spotify
     streamcontroller
     stress-ng
-    thunderbird
     unityhub
     vim
     virt-viewer
@@ -140,6 +139,11 @@
     xorg.xwininfo
     yad
   ];
+
+  # Thunderbird
+  programs.thunderbird = {
+    enable = true;
+  };
 
   # OBS Config
   programs.obs-studio = {
