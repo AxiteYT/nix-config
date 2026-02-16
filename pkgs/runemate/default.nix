@@ -8,7 +8,9 @@
   glib,
   mesa,
   gtk3,
-  xorg,
+  libXxf86vm,
+  xwininfo,
+  xprop,
 }:
 
 let
@@ -42,8 +44,8 @@ stdenv.mkDerivation {
         --add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED \
         --add-opens=javafx.graphics/com.sun.javafx.css=ALL-UNNAMED \
         -jar $out/bin/runemate-client.jar" \
-      --set LD_LIBRARY_PATH "${xorg.libXxf86vm}/lib:${glib}/lib:${mesa}/lib:${gtk3}/lib:${openjfxWithWebKit}/lib:$LD_LIBRARY_PATH" \
-      --set PATH "${xorg.xwininfo}/bin:${xorg.xprop}/bin:$PATH"
+      --set LD_LIBRARY_PATH "${libXxf86vm}/lib:${glib}/lib:${mesa}/lib:${gtk3}/lib:${openjfxWithWebKit}/lib:$LD_LIBRARY_PATH" \
+      --set PATH "${xwininfo}/bin:${xprop}/bin:$PATH"
   '';
 
   meta = with lib; {

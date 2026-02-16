@@ -93,7 +93,7 @@
     handbrake
     hunspell
     input-remapper
-    inputs.hytale-launcher.packages.${pkgs.system}.default
+    inputs.hytale-launcher.packages.${pkgs.stdenv.hostPlatform.system}.default
     k4dirstat
     kdePackages.ark
     kdePackages.kdenlive
@@ -130,13 +130,13 @@
     wayland-utils
     wgnord
     winetricks
-    wineWowPackages.stable
-    wineWowPackages.waylandFull
+    wineWow64Packages.stable
+    wineWow64Packages.waylandFull
     xemu
     xdotool
-    xorg.xprop
-    xorg.xrandr
-    xorg.xwininfo
+    xprop
+    xrandr
+    xwininfo
     yad
   ];
 
