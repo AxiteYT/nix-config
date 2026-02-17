@@ -49,6 +49,7 @@
         "explorer.confirmDelete" = false;
         "git.confirmSync" = false;
         "git.enableSmartCommit" = true;
+        "workbench.startupEditor" = "none";
       };
     };
   };
