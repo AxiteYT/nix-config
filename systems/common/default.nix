@@ -41,11 +41,16 @@
           ];
           ffmpegTableprintPatch = final.writeText "ffmpeg-tableprint-vlc-av_malloc.patch" ffmpegTableprintPatchText;
           obsAitumStreamSuite = prev.qt6Packages.callPackage (self + /pkgs/obs-aitum-stream-suite) { };
+          openMultichatRs = prev.callPackage (self + /pkgs/open-multichat-rs) {
+            src = inputs.openMultichatSrc;
+          };
         in
         {
           obs-aitum-stream-suite = obsAitumStreamSuite;
+          open-multichat-rs = openMultichatRs;
           obs-studio-plugins = prev.obs-studio-plugins // {
             obs-aitum-stream-suite = obsAitumStreamSuite;
+            open-multichat-rs = openMultichatRs;
           };
           runemate = prev.callPackage (self + /pkgs/runemate) { };
           ffmpeg-full = prev.ffmpeg-full.overrideAttrs (old: {

@@ -53,6 +53,12 @@
 
     # HytaleLauncherFlake
     hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
+
+    # Local OBS multi-chat plugin source
+    openMultichatSrc = {
+      url = "path:../open-multichat-rs";
+      flake = false;
+    };
   };
 
   outputs =

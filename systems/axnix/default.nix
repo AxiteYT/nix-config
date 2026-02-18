@@ -161,6 +161,7 @@
       obs-aitum-multistream
       obs-backgroundremoval
       obs-gstreamer
+      open-multichat-rs
       obs-teleport
       obs-vaapi
       obs-vkcapture

@@ -530,6 +530,18 @@
         "type": "github"
       }
     },
+    "openMultichatSrc": {
+      "flake": false,
+      "locked": {
+        "path": "../open-multichat-rs",
+        "type": "path"
+      },
+      "original": {
+        "path": "../open-multichat-rs",
+        "type": "path"
+      },
+      "parent": []
+    },
     "root": {
       "inputs": {
         "awww": "awww",
@@ -542,6 +554,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-stable": "nixpkgs-stable",
+        "openMultichatSrc": "openMultichatSrc",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "treefmt-nix": "treefmt-nix"
