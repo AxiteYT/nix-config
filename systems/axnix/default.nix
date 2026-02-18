@@ -67,6 +67,7 @@
     bolt-launcher
     brave
     cifs-utils
+    codex
     davinci-resolve
     discord
     discord-rpc
