@@ -42,7 +42,7 @@
           ffmpegTableprintPatch = final.writeText "ffmpeg-tableprint-vlc-av_malloc.patch" ffmpegTableprintPatchText;
           obsAitumStreamSuite = prev.qt6Packages.callPackage (self + /pkgs/obs-aitum-stream-suite) { };
           openMultichatRs = prev.callPackage (self + /pkgs/open-multichat-rs) {
-            src = inputs.openMultichatSrc;
+            src = inputs.openMultichatSrc.outPath;
           };
         in
         {

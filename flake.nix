@@ -56,7 +56,7 @@
 
     # Local OBS multi-chat plugin source
     openMultichatSrc = {
-      url = "path:../open-multichat-rs";
+      url = "path:/home/axite/code/open-multichat-rs";
       flake = false;
     };
   };

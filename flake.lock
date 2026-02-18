@@ -533,14 +533,15 @@
     "openMultichatSrc": {
       "flake": false,
       "locked": {
-        "path": "../open-multichat-rs",
+        "lastModified": 1771403466,
+        "narHash": "sha256-3wIYxw1v51PKOgoCcBwmLL223YaPwnp3RgO18GGghAc=",
+        "path": "/home/axite/code/open-multichat-rs",
         "type": "path"
       },
       "original": {
-        "path": "../open-multichat-rs",
+        "path": "/home/axite/code/open-multichat-rs",
         "type": "path"
-      },
-      "parent": []
+      }
     },
     "root": {
       "inputs": {
