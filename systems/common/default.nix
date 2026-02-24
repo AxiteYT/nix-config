@@ -12,6 +12,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.sops-nix.nixosModules.sops
+    (self + /modules/open-multichat-rs)
   ];
 
   nixpkgs = {

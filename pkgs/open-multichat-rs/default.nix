@@ -1,45 +1,37 @@
 {
   lib,
   rustPlatform,
-  pkg-config,
-  clang,
-  llvmPackages,
-  obs-studio,
-  src,
+  fetchFromGitHub,
+  src ? fetchFromGitHub {
+    owner = "AxiteYT";
+    repo = "open-multichat-rs";
+    rev = "5c40ad441c666838f1b3b57185a187c32b1ad988";
+    hash = "sha256-ykD5us3J1LD2OprxXNDaG7i9rSIx57xidWkXFjpXs4k=";
+  },
 }:
 
 rustPlatform.buildRustPackage rec {
   pname = "open-multichat-rs";
-  version = "0.1.0";
+  version = "1.0.0";
 
   inherit src;
 
-  cargoLock = {
-    lockFile = "${src}/Cargo.lock";
-  };
+  cargoHash = "sha256-LIu4ChlitJ2vYK7S/m4ZqI+jWCSPdHDpw1e3+nMXV2M=";
 
-  nativeBuildInputs = [
-    pkg-config
-    clang
-  ];
-
-  buildInputs = [
-    obs-studio
-  ];
-
-  LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";
+  doCheck = false;
 
   postInstall = ''
-    mkdir -p $out/lib/obs-plugins
-
-    if [ -f "$out/lib/libobs_multichat.so" ]; then
-      mv "$out/lib/libobs_multichat.so" "$out/lib/obs-plugins/"
-    fi
+    install -Dm644 README.md $out/share/doc/open-multichat-rs/README.md
+    install -Dm644 LICENSE $out/share/doc/open-multichat-rs/LICENSE
+    install -Dm644 config.example.toml $out/share/doc/open-multichat-rs/config.example.toml
   '';
 
-  meta = {
-    description = "OBS source plugin that merges Twitch and YouTube live chat";
-    license = lib.licenses.gpl2Plus;
-    platforms = lib.platforms.linux;
+  meta = with lib; {
+    description = "Multi-streaming chat overlay for Twitch and YouTube with an OBS-friendly web UI";
+    homepage = "https://github.com/AxiteYT/open-multichat-rs";
+    license = licenses.gpl3Plus;
+    mainProgram = "open-multichat-rs";
+    platforms = platforms.unix;
+    maintainers = with maintainers; [ ];
   };
 }

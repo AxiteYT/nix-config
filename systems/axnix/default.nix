@@ -183,7 +183,17 @@
 
   # Enable sound
   security.rtkit.enable = true;
+
   services = {
+    open-multichat-rs = {
+      enable = true;
+      openFirewall = false;
+      settings = {
+        bind_address = "127.0.0.1";
+        port = 8787;
+      };
+    };
+
     pipewire = {
       enable = true;
       wireplumber = {
