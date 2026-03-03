@@ -12,6 +12,7 @@ in
     ../waybar
     ../wleave
     ../wofi
+    ../../modules/hyprland/swaync
   ];
 
   xdg.configFile = {
