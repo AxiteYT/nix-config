@@ -70,6 +70,8 @@ in
           "custom/divider"
           "pulseaudio"
           "custom/divider"
+          "custom/notification"
+          "custom/divider"
           "clock"
         ];
         "hyprland/window" = {
@@ -164,6 +166,26 @@ in
           format = "_";
           interval = "once";
           tooltip = false;
+        };
+        "custom/notification" = {
+          tooltip = true;
+          format = "<span size='12pt'>{icon}</span>";
+          format-icons = {
+            notification = "󱅫";
+            none = "󰂜";
+            dnd-notification = "󰂠";
+            dnd-none = "󰪓";
+            inhibited-notification = "󰂛";
+            inhibited-none = "󰪑";
+            dnd-inhibited-notification = "󰂛";
+            dnd-inhibited-none = "󰪑";
+          };
+          return-type = "json";
+          exec-if = "which swaync-client";
+          exec = "swaync-client -swb";
+          on-click = "swaync-client -t -sw";
+          on-click-right = "swaync-client -d -sw";
+          escape = true;
         };
       }
     ];
