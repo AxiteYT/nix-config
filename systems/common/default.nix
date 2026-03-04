@@ -22,25 +22,9 @@
       permittedInsecurePackages = [ "nexusmods-app-unfree-0.21.1" ];
     };
     overlays = [
-      #TODO: Remove once resolved upstream: https://github.com/NixOS/nixpkgs/issues/484121 , https://github.com/NixOS/nixpkgs/issues/483540 , patches/ffmpeg-tableprint-vlc-av_malloc.patch
-      # ffmpeg failures
       (
         final: prev:
         let
-          ffmpegTableprintPatchText = builtins.concatStringsSep "\n" [
-            "--- a/libavcodec/tableprint_vlc.h"
-            "+++ b/libavcodec/tableprint_vlc.h"
-            "@@ -28,6 +28,7 @@"
-            " #define ff_dlog(a, ...) while(0)"
-            " #define ff_tlog(a, ...) while(0)"
-            " #define AVUTIL_MEM_H"
-            " #define av_mallocz(s) NULL"
-            "+#define av_malloc(s) NULL"
-            " #define av_malloc_array(a, b) NULL"
-            " #define av_realloc_f(p, o, n) NULL"
-            ""
-          ];
-          ffmpegTableprintPatch = final.writeText "ffmpeg-tableprint-vlc-av_malloc.patch" ffmpegTableprintPatchText;
           obsAitumStreamSuite = prev.qt6Packages.callPackage (self + /pkgs/obs-aitum-stream-suite) { };
           openMultichatRs = prev.callPackage (self + /pkgs/open-multichat-rs) {
             src = inputs.openMultichatSrc.outPath;
@@ -54,12 +38,6 @@
             open-multichat-rs = openMultichatRs;
           };
           runemate = prev.callPackage (self + /pkgs/runemate) { };
-          ffmpeg-full = prev.ffmpeg-full.overrideAttrs (old: {
-            patches = (old.patches or [ ]) ++ [ ffmpegTableprintPatch ];
-          });
-          ffmpeg_7-full = prev.ffmpeg_7-full.overrideAttrs (old: {
-            patches = (old.patches or [ ]) ++ [ ffmpegTableprintPatch ];
-          });
         }
       )
     ];
