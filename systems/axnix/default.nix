@@ -110,6 +110,7 @@
     nodejs
     ntfs3g
     obsidian
+    openresolv
     p7zip
     patchelf
     piper
@@ -133,6 +134,7 @@
     winetricks
     wineWow64Packages.stable
     wineWow64Packages.waylandFull
+    wireguard-tools
     xemu
     xdotool
     xprop
