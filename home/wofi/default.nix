@@ -3,6 +3,8 @@ let
   colors = config.lib.stylix.colors;
   hex = c: "#${c}";
   hexa = a: c: "#${c}${a}";
+  font = config.stylix.fonts.sansSerif.name;
+  monoFont = config.stylix.fonts.monospace.name;
 in
 {
   home = {
@@ -45,6 +47,7 @@ in
           box-shadow: 0 10px 15px -3px var(--bg-weak),
             0 4px 6px -4px var(--bg-weak);
           border-radius: 1rem;
+          font-family: "${font}", "Noto Sans Symbols 2", "Noto Color Emoji", sans-serif;
           font-size: 1.2rem;
           /* The name of the box that contains everything */
         }
@@ -57,6 +60,7 @@ in
           color: var(--fg);
           border: none;
           border-bottom: 1px solid var(--muted);
+          font-family: "${font}", "Noto Sans Symbols 2", "Noto Color Emoji", sans-serif;
           padding: 0.8rem 1rem;
           font-size: 1.5rem;
           border-radius: 1rem 1rem 0 0;
@@ -79,6 +83,7 @@ in
         #window #outer-box #scroll #inner-box #entry {
           color: var(--fg);
           background-color: var(--bg-weak);
+          font-family: "${font}", "${monoFont}", "Noto Sans Symbols 2", "Noto Color Emoji", sans-serif;
           padding: 0.6rem 1rem;
           /* The name of all images in entries displayed in image mode */
           /* The name of all the text in entries */

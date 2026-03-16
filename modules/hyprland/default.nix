@@ -46,24 +46,36 @@
       font-awesome
       hunspellDicts.en_AU
       hunspellDicts.en_US
-      nerd-fonts.meslo-lg
+      nerd-fonts.fira-code
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
       source-han-sans
+      unifont
     ];
     fontconfig = {
       enable = true;
       defaultFonts = {
-        monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
+        monospace = [
+          "FiraCode Nerd Font Mono"
+          "FiraCode Nerd Font"
+          "Noto Sans Mono"
+          "Noto Sans Symbols 2"
+          "Noto Color Emoji"
+        ];
         serif = [
           "Noto Serif"
+          "Noto Sans Symbols 2"
+          "Noto Color Emoji"
           "Source Han Serif"
         ];
         sansSerif = [
           "Noto Sans"
+          "Noto Sans Symbols 2"
+          "Noto Color Emoji"
           "Source Han Sans"
         ];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
   };

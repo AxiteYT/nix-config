@@ -23,6 +23,13 @@
     '';
   };
   programs.home-manager.enable = true;
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+  };
   # Enable XDG support so desktop entries are placed in ~/.local/share/applications.
   xdg.enable = true;
 }

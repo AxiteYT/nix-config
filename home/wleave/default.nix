@@ -13,7 +13,7 @@ in
     style = ''
       window {
         background-color: ${hexa "d8" colors.base00};
-        font-family: "${font}", sans-serif;
+        font-family: "${font}", "Noto Sans Symbols 2", "Noto Color Emoji", sans-serif;
         --window-bg-color: ${hexa "f2" colors.base00};
         --view-bg-color: ${hexa "eb" colors.base01};
         --view-fg-color: ${hex colors.base06};
@@ -39,7 +39,7 @@ in
 
       button label.keybind {
         font-size: 0.95rem;
-        font-family: "${monoFont}", monospace;
+        font-family: "${monoFont}", "Noto Sans Symbols 2", "Noto Color Emoji", monospace;
         opacity: 0.75;
       }
 
