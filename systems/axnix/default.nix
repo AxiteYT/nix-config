@@ -9,6 +9,7 @@
   imports = [
     (self + /hardware/amd)
     (self + /hardware/keychron)
+    (self + /hardware/openrazer)
     (self + /modules/flatpak)
     (self + /modules/hyprland)
     (self + /modules/steam)
@@ -254,6 +255,9 @@
     package = pkgs.openrgb-with-all-plugins;
     motherboard = "amd";
   };
+
+  # Open Razer
+  users.users.axite.extraGroups = [ "openrazer" ];
 
   system.stateVersion = "25.11";
 }
