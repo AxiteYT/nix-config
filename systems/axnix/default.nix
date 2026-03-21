@@ -143,6 +143,12 @@
     yad
   ];
 
+  # Git
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
+  };
+
   # Thunderbird
   programs.thunderbird = {
     enable = true;

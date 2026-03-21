@@ -6,6 +6,7 @@
     ./prowlarr
     ./radarr
     ./sonarr
+    ./tdarr
   ];
 
   users.groups.servarr = { };
