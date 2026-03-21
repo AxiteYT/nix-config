@@ -1,4 +1,5 @@
 [Added Associations]
+inode/directory=org.gnome.Nautilus.desktop;
 video/mp4=vlc-3.desktop;vlc-2.desktop;vlc.desktop;
 video/x-matroska=vlc-4.desktop;vlc.desktop;
 x-scheme-handler/http=brave-browser.desktop;firefox.desktop;
@@ -30,7 +31,7 @@ audio/basic=vlc.desktop
 audio/flac=vlc.desktop
 audio/3gpp=vlc.desktop
 audio/ac3=vlc.desktop
-inode/directory=org.kde.dolphin.desktop
+inode/directory=org.gnome.Nautilus.desktop
 message/rfc822=userapp-Thunderbird-GG4692.desktop
 text/calendar=userapp-Thunderbird-7Y4AA3.desktop
 text/html=brave-browser.desktop
