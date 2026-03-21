@@ -17,6 +17,7 @@
     ./network-config.nix
   ];
 
+  # Stylix
   stylix = {
     enable = true;
     polarity = "dark";
