@@ -5,8 +5,13 @@
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
+    unitConfig = {
+      RequiresMountsFor = [ "/media/Plex" ];
+    };
 
     environment = {
+      inContainer = "true";
+      openBrowser = "false";
       rootDataPath = "/var/lib/tdarr/server";
     };
 
@@ -22,9 +27,9 @@
       Restart = "on-failure";
       RestartSec = "5s";
       StateDirectory = "tdarr/server";
-      RequiresMountsFor = [ "/media/Plex" ];
       NoNewPrivileges = true;
       PrivateTmp = true;
+      TemporaryFileSystem = "/temp:rw,mode=1777";
     };
   };
 
@@ -37,8 +42,12 @@
     wants = [ "network-online.target" ];
     requires = [ "tdarr-server.service" ];
     wantedBy = [ "multi-user.target" ];
+    unitConfig = {
+      RequiresMountsFor = [ "/media/Plex" ];
+    };
 
     environment = {
+      inContainer = "true";
       nodeName = config.networking.hostName;
       rootDataPath = "/var/lib/tdarr/node";
       serverIP = "127.0.0.1";
@@ -58,9 +67,9 @@
       Restart = "on-failure";
       RestartSec = "5s";
       StateDirectory = "tdarr/node";
-      RequiresMountsFor = [ "/media/Plex" ];
       NoNewPrivileges = true;
       PrivateTmp = true;
+      TemporaryFileSystem = "/temp:rw,mode=1777";
     };
   };
 
