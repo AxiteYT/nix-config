@@ -3,6 +3,7 @@
   imports = [
     (self + /modules/jellyfin)
     (self + /modules/plex)
+    (self + /modules/servarr/tdarr)
     (self + /systems/common/mounts/plex.nix)
     ./network-config.nix
   ];
