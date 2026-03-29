@@ -26,6 +26,7 @@
   programs.home-manager.enable = true;
   gtk = {
     enable = true;
+    gtk4.theme = null;
     iconTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
