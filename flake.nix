@@ -89,7 +89,10 @@
           projectRootFile = "flake.nix";
           programs = {
             nixfmt.enable = true;
-            prettier.enable = true;
+            prettier = {
+              enable = true;
+              package = pkgs.prettier;
+            };
             shfmt.enable = true;
           };
         };
