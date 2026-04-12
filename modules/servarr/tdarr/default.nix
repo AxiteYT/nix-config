@@ -1,4 +1,14 @@
 { config, pkgs, ... }:
+let
+  tdarrPackage =
+    pkg:
+    pkg.overrideAttrs (_: {
+      autoPatchelfIgnoreMissingDeps = [ "libc.musl-x86_64.so.1" ];
+    });
+
+  tdarrServer = tdarrPackage pkgs.tdarr-server;
+  tdarrNode = tdarrPackage pkgs.tdarr-node;
+in
 {
   systemd.services.tdarr-server = {
     description = "Tdarr Server";
@@ -23,7 +33,7 @@
         "render"
         "video"
       ];
-      ExecStart = "${pkgs.tdarr-server}/bin/tdarr-server";
+      ExecStart = "${tdarrServer}/bin/tdarr-server";
       Restart = "on-failure";
       RestartSec = "5s";
       StateDirectory = "tdarr/server";
@@ -63,7 +73,7 @@
         "render"
         "video"
       ];
-      ExecStart = "${pkgs.tdarr-node}/bin/tdarr-node";
+      ExecStart = "${tdarrNode}/bin/tdarr-node";
       Restart = "on-failure";
       RestartSec = "5s";
       StateDirectory = "tdarr/node";
