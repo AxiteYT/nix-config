@@ -70,7 +70,7 @@
     brave
     cifs-utils
     codex
-    davinci-resolve
+    davinci-resolve-studio
     discord
     discord-rpc
     dolphin-emu
@@ -169,10 +169,11 @@
       '';
     };
     plugins = with pkgs.obs-studio-plugins; [
-      obs-aitum-multistream
+      obs-aitum-stream-suite
+      #obs-aitum-multistream
       obs-backgroundremoval
       obs-gstreamer
-      open-multichat-rs
+      #open-multichat-rs
       obs-teleport
       obs-vaapi
       obs-vkcapture
