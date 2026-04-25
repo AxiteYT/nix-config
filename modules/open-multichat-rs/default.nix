@@ -2,12 +2,17 @@
   config,
   lib,
   pkgs,
+  utils,
   ...
 }:
 let
   cfg = config.services.open-multichat-rs;
   tomlFormat = pkgs.formats.toml { };
-  generatedConfig = tomlFormat.generate "open-multichat-rs.toml" cfg.settings;
+  generatedSettings = {
+    port = 8787;
+  }
+  // cfg.settings;
+  generatedConfig = tomlFormat.generate "open-multichat-rs.toml" generatedSettings;
   configPath = if cfg.configFile != null then cfg.configFile else generatedConfig;
   execArgs = [
     "${cfg.package}/bin/open-multichat-rs"
@@ -15,7 +20,8 @@ let
     "${configPath}"
   ]
   ++ cfg.extraArgs;
-  execStart = lib.concatStringsSep " " execArgs;
+  execStart = utils.escapeSystemdExecArgs execArgs;
+  firewallPort = if cfg.configFile == null then generatedSettings.port else cfg.firewallPort;
 in
 {
   options.services.open-multichat-rs = with lib; {
@@ -33,10 +39,13 @@ in
       description = "Whether to open the configured port in the firewall.";
     };
 
-    port = mkOption {
-      type = types.port;
-      default = 8787;
-      description = "Port used for firewall rules when openFirewall is enabled.";
+    firewallPort = mkOption {
+      type = types.nullOr types.port;
+      default = null;
+      description = ''
+        Firewall port to open when using an external configFile.
+        Leave unset when using settings so the port is derived from settings.port.
+      '';
     };
 
     user = mkOption {
@@ -89,6 +98,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = !(cfg.openFirewall && firewallPort == null);
+        message = "services.open-multichat-rs.openFirewall requires settings.port or firewallPort to be set.";
+      }
+    ];
+
     users.groups = lib.mkIf (cfg.group == "open-multichat-rs") {
       open-multichat-rs = { };
     };
@@ -116,6 +132,6 @@ in
       };
     };
 
-    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [ cfg.port ];
+    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [ firewallPort ];
   };
 }
