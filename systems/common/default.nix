@@ -109,7 +109,14 @@
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINMXEwWst3Kkag14hG+nCtiRX8KHcn6w/rUeZC5Ww7RU axite@axitemedia.com"
   ];
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      KbdInteractiveAuthentication = false;
+      PasswordAuthentication = false;
+      PermitRootLogin = "prohibit-password";
+    };
+  };
 
   # Allow all firmware
   hardware.enableAllFirmware = true;
