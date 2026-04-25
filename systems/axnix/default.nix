@@ -221,19 +221,6 @@
       enable = false;
       package = pkgs.pulseaudioFull;
     };
-    udev.extraRules = ''
-      ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", \
-        ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0084", \
-        TAG+="systemd", ENV{SYSTEMD_WANTS}="elgato-xlr-kick.service"
-    '';
-  };
-  systemd.services.elgato-xlr-kick = {
-    description = "Restart PipeWire/WirePlumber on Elgato XLR Dock hotplug";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.util-linux}/bin/runuser -u axite -- ${pkgs.bash}/bin/bash -lc 'XDG_RUNTIME_DIR=/run/user/1000 ${pkgs.systemd}/bin/systemctl --user restart pipewire wireplumber pipewire-pulse'";
-    };
   };
 
   # Enable Bluetooth
