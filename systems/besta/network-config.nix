@@ -23,6 +23,7 @@
   systemd.services.natpmp = {
     description = "NAT-PMP Port Mapping for 26504 via VPN gateway";
     wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.iputils ];
 
     after = [
       "systemd-networkd.service"
