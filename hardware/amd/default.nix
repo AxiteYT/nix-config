@@ -5,15 +5,8 @@
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; [
-        mesa.opencl # Enables Rusticl (OpenCL) support
-      ];
     };
     amdgpu.opencl.enable = true;
-  };
-
-  environment.variables = {
-    RUSTICL_ENABLE = "radeonsi";
   };
 
   # LACT
