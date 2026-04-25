@@ -3,6 +3,9 @@
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;
-    extraPortals = lib.mkForce (with pkgs; [ xdg-desktop-portal-hyprland ]);
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+    ];
   };
 }
