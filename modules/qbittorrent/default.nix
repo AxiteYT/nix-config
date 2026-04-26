@@ -7,6 +7,11 @@
 
 {
   sops.secrets.BestaQB = { };
+  sops.secrets.BestaQuiPassword = {
+    owner = "qbittorrent";
+    group = "servarr";
+    mode = "0400";
+  };
 
   sops.templates."qBittorrent.conf" = {
     content = ''
@@ -60,6 +65,7 @@
       Scheduler\days=Weekday
       Scheduler\end_time=@Variant(\0\0\0\xf\x3n\xe8\0)
       Scheduler\start_time=@Variant(\0\0\0\xf\0\0\0\0)
+      WebUI\Address=127.0.0.1
       WebUI\LocalHostAuth=false
       WebUI\Password_PBKDF2=${config.sops.placeholder.BestaQB}
       WebUI\Port=8443
@@ -77,10 +83,75 @@
 
   services.qbittorrent = {
     enable = true;
-    openFirewall = true;
+    openFirewall = false;
     user = "qbittorrent";
     group = "servarr";
     webuiPort = 8443;
     torrentingPort = 26504;
   };
+
+  systemd.services.qui = {
+    description = "qui for qBittorrent";
+    after = [
+      "network-online.target"
+      "qbittorrent.service"
+    ];
+    wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+
+    preStart = ''
+      qui_password="$(cat ${config.sops.secrets.BestaQuiPassword.path})"
+
+      if [ ! -f /var/lib/qui/config.toml ]; then
+        ${pkgs.qui}/bin/qui generate-config --config-dir /var/lib/qui
+      fi
+
+      if [ ! -f /var/lib/qui/qui.db ]; then
+        ${pkgs.qui}/bin/qui create-user \
+          --config-dir /var/lib/qui \
+          --data-dir /var/lib/qui \
+          --username besta \
+          --password "$qui_password"
+      else
+        ${pkgs.qui}/bin/qui change-password \
+          --config-dir /var/lib/qui \
+          --data-dir /var/lib/qui \
+          --username besta \
+          --new-password "$qui_password"
+      fi
+    '';
+
+    serviceConfig = {
+      Type = "simple";
+      User = "qbittorrent";
+      Group = "servarr";
+      StateDirectory = "qui";
+      WorkingDirectory = "/var/lib/qui";
+      ExecStart = ''
+        ${pkgs.qui}/bin/qui serve \
+          --config-dir /var/lib/qui \
+          --data-dir /var/lib/qui
+      '';
+      Restart = "on-failure";
+      RestartSec = "5s";
+      NoNewPrivileges = true;
+      PrivateTmp = true;
+      ProtectSystem = "strict";
+      ProtectHome = true;
+      ReadWritePaths = [ "/var/lib/qui" ];
+    };
+
+    environment = {
+      QUI__HOST = "0.0.0.0";
+      QUI__PORT = "7476";
+      QUI__DATA_DIR = "/var/lib/qui";
+      QUI__LOG_LEVEL = "INFO";
+    };
+  };
+
+  networking.firewall.allowedTCPPorts = [
+    7476
+    26504
+  ];
+  networking.firewall.allowedUDPPorts = [ 26504 ];
 }
