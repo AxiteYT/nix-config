@@ -16,7 +16,7 @@ in
     wants = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
     unitConfig = {
-      RequiresMountsFor = [ "/media/Plex" ];
+      RequiresMountsFor = [ "/media/Baitai" ];
     };
 
     environment = {
@@ -27,8 +27,8 @@ in
 
     serviceConfig = {
       Type = "simple";
-      User = "plex";
-      Group = "plex";
+      User = "baitai";
+      Group = "baitai";
       SupplementaryGroups = [
         "render"
         "video"
@@ -53,7 +53,7 @@ in
     requires = [ "tdarr-server.service" ];
     wantedBy = [ "multi-user.target" ];
     unitConfig = {
-      RequiresMountsFor = [ "/media/Plex" ];
+      RequiresMountsFor = [ "/media/Baitai" ];
     };
 
     environment = {
@@ -67,8 +67,8 @@ in
 
     serviceConfig = {
       Type = "simple";
-      User = "plex";
-      Group = "plex";
+      User = "baitai";
+      Group = "baitai";
       SupplementaryGroups = [
         "render"
         "video"

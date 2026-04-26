@@ -26,7 +26,7 @@
       Session\AlternativeGlobalUPSpeedLimit=0
       Session\BTProtocol=TCP
       Session\BandwidthSchedulerEnabled=true
-      Session\DefaultSavePath=/media/Plex/Downloads
+      Session\DefaultSavePath=/media/Baitai/Downloads
       Session\ExcludedFileNames=
       Session\GlobalDLSpeedLimit=1
       Session\GlobalMaxInactiveSeedingMinutes=1440
@@ -41,7 +41,7 @@
       Session\QueueingSystemEnabled=false
       Session\SSL\Port=17335
       Session\SlowTorrentsDownloadRate=100
-      Session\TempPath=/media/Plex/Downloads
+      Session\TempPath=/media/Baitai/Downloads
       Session\UseAlternativeGlobalSpeedLimit=false
 
       [Core]

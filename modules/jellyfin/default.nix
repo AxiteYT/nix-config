@@ -2,7 +2,7 @@
   services.jellyfin = {
     enable = true;
     openFirewall = true;
-    group = "plex";
-    user = "plex";
+    group = "baitai";
+    user = "baitai";
   };
 }

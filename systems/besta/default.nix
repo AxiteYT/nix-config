@@ -2,7 +2,7 @@
 {
   imports = [
     (self + /modules/servarr)
-    (self + /systems/common/mounts/plex.nix)
+    (self + /systems/common/mounts/baitai.nix)
     ./network-config.nix
   ];
 

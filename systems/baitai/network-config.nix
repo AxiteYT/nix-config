@@ -1,7 +1,7 @@
 {
   networking = {
     #Hostname
-    hostName = "plex";
+    hostName = "baitai";
 
     # Interface
     interfaces = {

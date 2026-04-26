@@ -228,7 +228,7 @@
           ];
           specialArgs = { inherit self inputs; };
         };
-        plex = nixpkgs.lib.nixosSystem {
+        baitai = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
 
@@ -239,7 +239,7 @@
             ./systems/server
 
             # System specific config
-            ./systems/plex
+            ./systems/baitai
 
             # Disko Setup
             disko.nixosModules.disko
