@@ -3,7 +3,6 @@
   imports = [
     (self + /modules/jellyfin)
     #(self + /modules/plex)
-    (self + /modules/servarr/tdarr)
     (self + /systems/common/mounts/baitai.nix)
     ./network-config.nix
   ];
