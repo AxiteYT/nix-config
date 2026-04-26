@@ -5,6 +5,7 @@
     ./flaresolverr
     ./prowlarr
     ./radarr
+    ./recyclarr
     ./sonarr
   ];
 
