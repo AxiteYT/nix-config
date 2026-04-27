@@ -7,19 +7,20 @@
     ./network-config.nix
   ];
 
-  # Enable Hardware decoding
-  nixpkgs.config.packageOverrides = pkgs: {
-    intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
-  };
-
   hardware.graphics = {
-    # hardware.graphics on unstable
     enable = true;
-    extraPackages = with pkgs; [ intel-vaapi-driver ];
+    extraPackages = with pkgs; [
+      intel-media-driver
+      intel-compute-runtime
+    ];
   };
 
   environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "i965";
+    LIBVA_DRIVER_NAME = "iHD";
+  };
+
+  systemd.services.jellyfin.environment = {
+    LIBVA_DRIVER_NAME = "iHD";
   };
 
   hardware.intel-gpu-tools.enable = true;
