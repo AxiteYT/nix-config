@@ -242,6 +242,15 @@
     enable = true;
     package = pkgs.openrgb-with-all-plugins;
     motherboard = "amd";
+    startupProfile = "/home/axite/.config/OpenRGB/axite.orp";
+  };
+
+  systemd.services.openrgb = {
+    wants = [ "systemd-udev-settle.service" ];
+    after = [ "systemd-udev-settle.service" ];
+    preStart = ''
+      ${pkgs.systemd}/bin/udevadm settle --timeout=10
+    '';
   };
 
   # Open Razer
