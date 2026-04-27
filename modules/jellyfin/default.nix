@@ -25,6 +25,16 @@ in
     transcoding = {
       deleteSegments = true;
       enableHardwareEncoding = true;
+      hardwareDecodingCodecs = {
+        av1 = true;
+        h264 = true;
+        hevc = true;
+        hevc10bit = true;
+        hevcRExt10bit = true;
+        hevcRExt12bit = true;
+        mpeg2 = true;
+        vp9 = true;
+      };
       enableToneMapping = true;
       throttleTranscoding = true;
     };
