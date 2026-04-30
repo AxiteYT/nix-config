@@ -97,6 +97,7 @@
     hunspell
     input-remapper
     inputs.hytale-launcher.packages.${pkgs.stdenv.hostPlatform.system}.default
+    jellyfin-desktop
     k4dirstat
     kdePackages.ark
     kdePackages.kdenlive
