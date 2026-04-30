@@ -29,23 +29,23 @@
   environment.systemPackages = with pkgs; [ handbrake ];
 
   /*
-  # Add plex user
-  users.users.plexuser = {
-    isNormalUser = true;
-    home = "/home/plex";
-    description = "Plex User";
-    extraGroups = [
-      "networkmanager"
-      "plex"
-      "wheel"
-    ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINMXEwWst3Kkag14hG+nCtiRX8KHcn6w/rUeZC5Ww7RU axite@axitemedia.com"
-    ];
-  };
+    # Add plex user
+    users.users.plexuser = {
+      isNormalUser = true;
+      home = "/home/plex";
+      description = "Plex User";
+      extraGroups = [
+        "networkmanager"
+        "plex"
+        "wheel"
+      ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINMXEwWst3Kkag14hG+nCtiRX8KHcn6w/rUeZC5Ww7RU axite@axitemedia.com"
+      ];
+    };
   */
 
-    users.users.baitai = {
+  users.users.baitai = {
     isNormalUser = true;
     home = "/home/baitai";
     description = "Baitai User";
