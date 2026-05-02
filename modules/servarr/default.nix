@@ -3,6 +3,7 @@
     ../qbittorrent
     ./bazarr
     ./flaresolverr
+    ./kapowarr
     ./prowlarr
     ./radarr
     ./recyclarr
