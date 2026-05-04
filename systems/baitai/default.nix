@@ -3,7 +3,6 @@
   imports = [
     (self + /modules/kavita)
     (self + /modules/jellyfin)
-    #(self + /modules/plex)
     (self + /systems/common/mounts/baitai.nix)
     ./network-config.nix
   ];
@@ -31,23 +30,6 @@
     handbrake
     ffmpeg
   ];
-
-  /*
-    # Add plex user
-    users.users.plexuser = {
-      isNormalUser = true;
-      home = "/home/plex";
-      description = "Plex User";
-      extraGroups = [
-        "networkmanager"
-        "plex"
-        "wheel"
-      ];
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINMXEwWst3Kkag14hG+nCtiRX8KHcn6w/rUeZC5Ww7RU axite@axitemedia.com"
-      ];
-    };
-  */
 
   users.users.baitai = {
     isNormalUser = true;
