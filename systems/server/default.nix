@@ -12,6 +12,11 @@
     (self + /hardware/qemu-guest)
   ];
 
+  sops.age = {
+    keyFile = lib.mkForce null;
+    sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  };
+
   # Disable DHCP
   networking = {
     useDHCP = false;

@@ -1,8 +1,12 @@
 keys:
   - &primary age154g76804mnl0zkt42gkk50e48gq2jk7vtekmpqkuzgj26tw3dqks5k2nwz
+  - &baitai age1nzqs5xmq0y50nmdg600x2c2ydlx2ptz6uf2qcntxcfh3n5fn3dsqx2tdgf
+  - &besta age1dstkj5gw6klyt9neyd0why86cwkvc0d2amaja55jwcmxrvgc0acqzt0jdg
 
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:
       - age:
           - *primary
+          - *baitai
+          - *besta
