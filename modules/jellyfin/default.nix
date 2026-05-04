@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   mediaPath = "/media/Baitai";
   jellyfinHost = "jellyfin.${config.networking.domain}";
@@ -51,6 +51,7 @@ in
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
     unitConfig.RequiresMountsFor = mediaPath;
+    path = [ pkgs.jellyfin-ffmpeg ];
   };
 
   networking.firewall.allowedTCPPorts = [
