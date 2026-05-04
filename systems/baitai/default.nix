@@ -1,6 +1,7 @@
 { pkgs, self, ... }:
 {
   imports = [
+    (self + /modules/kavita)
     (self + /modules/jellyfin)
     #(self + /modules/plex)
     (self + /systems/common/mounts/baitai.nix)
