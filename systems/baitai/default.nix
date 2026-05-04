@@ -27,7 +27,10 @@
   hardware.intel-gpu-tools.enable = true;
 
   # Add handbrake
-  environment.systemPackages = with pkgs; [ handbrake ];
+  environment.systemPackages = with pkgs; [
+    handbrake
+    ffmpeg
+  ];
 
   /*
     # Add plex user
