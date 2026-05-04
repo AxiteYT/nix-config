@@ -6,15 +6,11 @@ in
 {
   virtualisation.oci-containers.containers.kapowarr = {
     image = "mrcas/kapowarr:latest";
-    ports = [ "5656:5656" ];
+    extraOptions = [ "--network=host" ];
     environment = {
       PUID = "0";
       PGID = "0";
-      TZ =
-        if config.time.timeZone == null then
-          "Etc/UTC"
-        else
-          config.time.timeZone;
+      TZ = if config.time.timeZone == null then "Etc/UTC" else config.time.timeZone;
     };
     volumes = [
       "/var/lib/kapowarr/db:/app/db"
