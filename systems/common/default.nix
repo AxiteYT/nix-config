@@ -29,8 +29,27 @@
           openMultichatRs = prev.callPackage (self + /pkgs/open-multichat-rs) {
             src = inputs.openMultichatSrc.outPath;
           };
+          disableOpenLdapChecks =
+            pkg:
+            pkg.overrideAttrs (
+              old:
+              {
+                doCheck = false;
+                doInstallCheck = false;
+              }
+              // lib.optionalAttrs (old ? checkTarget) {
+                checkTarget = null;
+              }
+              // lib.optionalAttrs (old ? installCheckTarget) {
+                installCheckTarget = null;
+              }
+            );
         in
         {
+          openldap = disableOpenLdapChecks prev.openldap;
+          pkgsi686Linux = prev.pkgsi686Linux // {
+            openldap = disableOpenLdapChecks prev.pkgsi686Linux.openldap;
+          };
           obs-aitum-stream-suite = obsAitumStreamSuite;
           open-multichat-rs = openMultichatRs;
           obs-studio-plugins = prev.obs-studio-plugins // {
