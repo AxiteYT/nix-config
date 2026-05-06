@@ -27,27 +27,44 @@
 
       [BitTorrent]
       Session\AddExtensionToIncompleteFiles=true
+      Session\AddTrackersEnabled=false
       Session\AlternativeGlobalDLSpeedLimit=0
       Session\AlternativeGlobalUPSpeedLimit=0
       Session\BTProtocol=TCP
       Session\BandwidthSchedulerEnabled=true
       Session\DefaultSavePath=/media/Baitai/Downloads
+      Session\DisableAutoTMMByDefault=false
+      Session\DisableAutoTMMTriggers\CategoryChanged=false
+      Session\DisableAutoTMMTriggers\CategorySavePathChanged=false
+      Session\DisableAutoTMMTriggers\DefaultSavePathChanged=false
+      Session\Encryption=0
       Session\ExcludedFileNames=
       Session\GlobalDLSpeedLimit=1
-      Session\GlobalMaxInactiveSeedingMinutes=1440
-      Session\GlobalMaxRatio=2
-      Session\GlobalMaxSeedingMinutes=1440
+      Session\GlobalMaxInactiveSeedingMinutes=-1
+      Session\GlobalMaxRatio=-1
+      Session\GlobalMaxSeedingMinutes=-1
       Session\GlobalUPSpeedLimit=1
       Session\IgnoreSlowTorrentsForQueueing=true
-      Session\MaxActiveDownloads=5
-      Session\MaxActiveTorrents=20
-      Session\MaxActiveUploads=5
+      Session\IgnoreLimitsOnLAN=false
+      Session\IncludeOverheadInLimits=false
+      Session\MaxActiveCheckingTorrents=-1
+      Session\MaxActiveDownloads=-1
+      Session\MaxActiveTorrents=-1
+      Session\MaxActiveUploads=-1
+      Session\AnonymousModeEnabled=false
       Session\Port=26504
+      Session\Preallocation=false
       Session\QueueingSystemEnabled=false
+      Session\ShareLimitAction=Stop
       Session\SSL\Port=17335
       Session\SlowTorrentsDownloadRate=100
       Session\TempPath=/media/Baitai/Downloads
+      Session\TempPathEnabled=false
+      Session\TorrentContentLayout=Original
+      Session\SubcategoriesEnabled=true
       Session\UseAlternativeGlobalSpeedLimit=false
+      Session\UseCategoryPathsInManualMode=true
+      Session\uTPRateLimited=true
 
       [Core]
       AutoDeleteAddedTorrentFile=Never
