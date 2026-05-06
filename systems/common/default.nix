@@ -12,7 +12,6 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.sops-nix.nixosModules.sops
-    (self + /modules/open-multichat-rs)
   ];
 
   nixpkgs = {
@@ -26,9 +25,6 @@
         final: prev:
         let
           obsAitumStreamSuite = prev.qt6Packages.callPackage (self + /pkgs/obs-aitum-stream-suite) { };
-          openMultichatRs = prev.callPackage (self + /pkgs/open-multichat-rs) {
-            src = inputs.openMultichatSrc.outPath;
-          };
           disableOpenLdapChecks =
             pkg:
             pkg.overrideAttrs (
@@ -51,12 +47,9 @@
             openldap = disableOpenLdapChecks prev.pkgsi686Linux.openldap;
           };
           obs-aitum-stream-suite = obsAitumStreamSuite;
-          open-multichat-rs = openMultichatRs;
           obs-studio-plugins = prev.obs-studio-plugins // {
             obs-aitum-stream-suite = obsAitumStreamSuite;
-            open-multichat-rs = openMultichatRs;
           };
-          runemate = prev.callPackage (self + /pkgs/runemate) { };
         }
       )
     ];
