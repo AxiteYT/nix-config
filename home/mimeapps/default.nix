@@ -1,4 +1,105 @@
 { ... }:
 {
-  xdg.configFile."mimeapps.list".source = ./mimeapps.list;
+  xdg.mimeApps = {
+    enable = true;
+    associations.added = {
+      "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+      "video/mp4" = [
+        "vlc-3.desktop"
+        "vlc-2.desktop"
+        "vlc.desktop"
+      ];
+      "video/x-matroska" = [
+        "vlc-4.desktop"
+        "vlc.desktop"
+      ];
+      "x-scheme-handler/http" = [
+        "brave-browser.desktop"
+        "firefox.desktop"
+      ];
+      "x-scheme-handler/https" = [
+        "brave-browser.desktop"
+        "firefox.desktop"
+      ];
+      "x-scheme-handler/mailto" = [ "userapp-Thunderbird-GG4692.desktop" ];
+      "x-scheme-handler/mid" = [ "userapp-Thunderbird-GG4692.desktop" ];
+      "x-scheme-handler/webcal" = [ "userapp-Thunderbird-7Y4AA3.desktop" ];
+      "x-scheme-handler/webcals" = [ "userapp-Thunderbird-7Y4AA3.desktop" ];
+    };
+    defaultApplications = {
+      "application/x-extension-htm" = [ "firefox.desktop" ];
+      "application/x-extension-html" = [ "firefox.desktop" ];
+      "application/x-extension-ics" = [ "userapp-Thunderbird-7Y4AA3.desktop" ];
+      "application/x-extension-shtml" = [ "firefox.desktop" ];
+      "application/x-extension-xht" = [ "firefox.desktop" ];
+      "application/x-extension-xhtml" = [ "firefox.desktop" ];
+      "application/xhtml+xml" = [ "firefox.desktop" ];
+      "audio/x-wav" = [ "vlc.desktop" ];
+      "audio/x-pn-wav" = [ "vlc.desktop" ];
+      "audio/x-pn-aiff" = [ "vlc.desktop" ];
+      "audio/x-mp3" = [ "vlc.desktop" ];
+      "audio/x-mpeg" = [ "vlc.desktop" ];
+      "audio/x-m4a" = [ "vlc.desktop" ];
+      "audio/x-flac" = [ "vlc.desktop" ];
+      "audio/ogg" = [ "vlc.desktop" ];
+      "audio/mp4" = [ "vlc.desktop" ];
+      "audio/mpeg" = [ "vlc.desktop" ];
+      "audio/basic" = [ "vlc.desktop" ];
+      "audio/flac" = [ "vlc.desktop" ];
+      "audio/3gpp" = [ "vlc.desktop" ];
+      "audio/ac3" = [ "vlc.desktop" ];
+      "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+      "message/rfc822" = [ "userapp-Thunderbird-GG4692.desktop" ];
+      "text/calendar" = [ "userapp-Thunderbird-7Y4AA3.desktop" ];
+      "text/html" = [ "brave-browser.desktop" ];
+      "video/3gpp" = [ "vlc.desktop" ];
+      "video/dv" = [ "vlc.desktop" ];
+      "video/fli" = [ "vlc.desktop" ];
+      "video/flv" = [ "vlc.desktop" ];
+      "video/mp2t" = [ "vlc.desktop" ];
+      "video/mp4" = [ "vlc.desktop" ];
+      "video/mp4v-es" = [ "vlc.desktop" ];
+      "video/mpeg" = [ "vlc.desktop" ];
+      "video/msvideo" = [ "vlc.desktop" ];
+      "video/ogg" = [ "vlc.desktop" ];
+      "video/quicktime" = [ "vlc.desktop" ];
+      "video/vivo" = [ "vlc.desktop" ];
+      "video/vnd.divx" = [ "vlc.desktop" ];
+      "video/vnd.rn-realvideo" = [ "vlc.desktop" ];
+      "video/vnd.vivo" = [ "vlc.desktop" ];
+      "video/webm" = [ "vlc.desktop" ];
+      "video/x-anim" = [ "vlc.desktop" ];
+      "video/x-avi" = [ "vlc.desktop" ];
+      "video/x-flc" = [ "vlc.desktop" ];
+      "video/x-fli" = [ "vlc.desktop" ];
+      "video/x-flic" = [ "vlc.desktop" ];
+      "video/x-flv" = [ "vlc.desktop" ];
+      "video/x-m4v" = [ "vlc.desktop" ];
+      "video/x-matroska" = [ "vlc.desktop" ];
+      "video/x-mpeg" = [ "vlc.desktop" ];
+      "video/x-ms-asf" = [ "vlc.desktop" ];
+      "video/x-ms-asx" = [ "vlc.desktop" ];
+      "video/x-msvideo" = [ "vlc.desktop" ];
+      "video/x-ms-wm" = [ "vlc.desktop" ];
+      "video/x-ms-wmv" = [ "vlc.desktop" ];
+      "video/x-ms-wmx" = [ "vlc.desktop" ];
+      "video/x-ms-wvx" = [ "vlc.desktop" ];
+      "video/x-nsv" = [ "vlc.desktop" ];
+      "video/x-ogm+ogg" = [ "vlc.desktop" ];
+      "video/x-theora+ogg" = [ "vlc.desktop" ];
+      "x-scheme-handler/about" = [ "brave-browser.desktop" ];
+      "x-scheme-handler/bitwarden" = [ "Bitwarden.desktop" ];
+      "x-scheme-handler/chrome" = [ "firefox.desktop" ];
+      "x-scheme-handler/discord-409416265891971072" = [ "discord-409416265891971072.desktop" ];
+      "x-scheme-handler/discord-742222376518811669" = [ "discord-742222376518811669.desktop" ];
+      "x-scheme-handler/http" = [ "brave-browser.desktop" ];
+      "x-scheme-handler/https" = [ "brave-browser.desktop" ];
+      "x-scheme-handler/mailto" = [ "userapp-Thunderbird-GG4692.desktop" ];
+      "x-scheme-handler/mid" = [ "userapp-Thunderbird-GG4692.desktop" ];
+      "x-scheme-handler/nxm" = [ "com.nexusmods.app.desktop" ];
+      "x-scheme-handler/unknown" = [ "brave-browser.desktop" ];
+      "x-scheme-handler/webcal" = [ "userapp-Thunderbird-7Y4AA3.desktop" ];
+      "x-scheme-handler/webcals" = [ "userapp-Thunderbird-7Y4AA3.desktop" ];
+    };
+  };
 }

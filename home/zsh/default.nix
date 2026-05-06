@@ -8,7 +8,7 @@
 {
   imports = [ ./alacritty ];
 
-  home.file.".p10k.zsh".source = ./p10k.zsh;
+  home.file.".p10k.zsh".source = import ./p10k.nix { inherit pkgs; };
 
   programs.zsh = {
     enable = true;
