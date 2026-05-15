@@ -86,7 +86,7 @@
     hunspell
     input-remapper
     inputs.hytale-launcher.packages.${pkgs.stdenv.hostPlatform.system}.default
-    k4dirstat
+    qdirstat
     kdePackages.ark
     killall
     libreoffice-qt
