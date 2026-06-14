@@ -7,6 +7,7 @@
     ./prowlarr
     ./radarr
     ./recyclarr
+    ./seerr
     ./sonarr
   ];
 
