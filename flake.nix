@@ -33,6 +33,12 @@
     # Treefmt
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
+    # MCP-NixOS
+    mcp-nixos = {
+      url = "github:utensils/mcp-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Nix Darwin
     nix-darwin = {
       url = "github:lnl7/nix-darwin";
@@ -93,6 +99,8 @@
         formatter = treefmtEval.config.build.wrapper;
       }
       // lib.optionalAttrs (system == "x86_64-linux") {
+        packages.axnix = self.nixosConfigurations.axnix.config.system.build.toplevel;
+
         packages.bootable-iso =
           (nixpkgs-stable.lib.nixosSystem {
             inherit system;
