@@ -20,6 +20,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
     systemd = {
       enable = true;
       variables = [ "--all" ];
