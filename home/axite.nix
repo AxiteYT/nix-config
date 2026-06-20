@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
@@ -24,9 +24,10 @@
     '';
   };
   programs.home-manager.enable = true;
+  qt.kvantum.enable = lib.mkForce false;
+
   gtk = {
     enable = true;
-    gtk4.theme = null;
     iconTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;

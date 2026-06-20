@@ -1,4 +1,6 @@
 let
+  forceFiles = builtins.mapAttrs (_: file: file // { force = true; });
+
   sharedConfigFiles = {
     "hypr/conf.d/10-programs.conf".text = ''
       ###################
@@ -119,7 +121,6 @@ let
 
       # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
       dwindle {
-          pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
           preserve_split = true # You probably want this
       }
 
@@ -325,8 +326,10 @@ in
 
   mkConfigFiles =
     monitorText:
-    {
-      "hypr/conf.d/00-monitors.conf".text = monitorText;
-    }
-    // sharedConfigFiles;
+    forceFiles (
+      {
+        "hypr/conf.d/00-monitors.conf".text = monitorText;
+      }
+      // sharedConfigFiles
+    );
 }
