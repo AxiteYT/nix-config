@@ -5,6 +5,15 @@
   inputs,
   ...
 }:
+let
+  pkgsStable = import inputs.nixpkgs-stable {
+    system = pkgs.stdenv.hostPlatform.system;
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = _: true;
+    };
+  };
+in
 {
   imports = [
     (self + /hardware/amd)
@@ -97,6 +106,7 @@
     hunspell
     input-remapper
     inputs.hytale-launcher.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.mcp-nixos.packages.${pkgs.stdenv.hostPlatform.system}.default
     jellyfin-desktop
     qdirstat
     kdePackages.ark
@@ -123,13 +133,14 @@
     protonup-qt
     pulseaudioFull
     remmina
-    rpcs3
+    pkgsStable.rpcs3
     ryubing
     spotify
     streamcontroller
     stress-ng
     unityhub
     vim
+    vinegar
     virt-viewer
     vlc
     wayland-utils
