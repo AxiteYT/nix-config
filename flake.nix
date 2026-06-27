@@ -51,9 +51,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # awww wallpaper daemon
-    awww.url = "git+https://codeberg.org/LGFae/awww";
-
     # HytaleLauncherFlake
     hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
   };

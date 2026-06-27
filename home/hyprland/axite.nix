@@ -41,6 +41,5 @@ in
     '';
   };
 
-  # Wallpaper is handled by awww; keep hyprpaper disabled to avoid conflicts.
   services.hyprpaper.enable = lib.mkForce false;
 }

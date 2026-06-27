@@ -20,8 +20,6 @@ let
       ### AUTOSTART ###
       #################
 
-      exec-once = awww-daemon
-      exec-once = awww img ~/Pictures/Wallpapers/snowfall.gif
       exec-once = obs --startreplaybuffer
       exec-once = streamcontroller -b
       exec-once = waybar
