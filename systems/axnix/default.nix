@@ -258,5 +258,18 @@ in
   # Open Razer
   users.users.axite.extraGroups = [ "openrazer" ];
 
+  # Performance
+  powerManagement.cpuFreqGovernor = "performance";
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 25;
+  };
+
+  services.scx = {
+    enable = true;
+    scheduler = "scx_lavd";
+  };
+
   system.stateVersion = "25.11";
 }
