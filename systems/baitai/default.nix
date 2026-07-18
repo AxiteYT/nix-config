@@ -7,25 +7,19 @@
     ./network-config.nix
   ];
 
-  /*
-    hardware.graphics = {
-      enable = true;
-      extraPackages = with pkgs; [
-        intel-media-driver
-        intel-compute-runtime
-      ];
-    };
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      intel-compute-runtime-legacy1
+    ];
+  };
 
-    environment.sessionVariables = {
-      LIBVA_DRIVER_NAME = "iHD";
-    };
-
-    systemd.services.jellyfin.environment = {
-      LIBVA_DRIVER_NAME = "iHD";
-    };
+  systemd.services.jellyfin.environment = {
+    LIBVA_DRIVER_NAME = "iHD";
+  };
 
     hardware.intel-gpu-tools.enable = true;
-  */
 
   # Add handbrake
   environment.systemPackages = with pkgs; [

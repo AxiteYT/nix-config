@@ -14,32 +14,28 @@ in
     cacheDir = "/var/cache/jellyfin";
     logDir = "/var/log/jellyfin";
 
-    /*
-      forceEncodingConfig = true;
+    forceEncodingConfig = false;
 
-      hardwareAcceleration = {
-        enable = true;
-        type = "vaapi";
-        device = "/dev/dri/renderD128";
-      };
+    hardwareAcceleration = {
+      enable = true;
+      type = "vaapi";
+      device = "/dev/dri/renderD128";
+    };
 
-      transcoding = {
-        deleteSegments = true;
-        enableHardwareEncoding = true;
-        hardwareDecodingCodecs = {
-          av1 = true;
-          h264 = true;
-          hevc = true;
-          hevc10bit = true;
-          hevcRExt10bit = true;
-          hevcRExt12bit = true;
-          mpeg2 = true;
-          vp9 = true;
-        };
-        enableToneMapping = true;
-        throttleTranscoding = true;
+    transcoding = {
+      enableHardwareEncoding = true;
+      hardwareDecodingCodecs = {
+        h264 = true;
+        hevc = true;
+        hevc10bit = true;
+        mpeg2 = true;
+        vc1 = true;
+        vp8 = true;
+        vp9 = true;
       };
-    */
+      hardwareEncodingCodecs.hevc = true;
+      enableToneMapping = true;
+    };
   };
 
   users.groups.baitai = { };
