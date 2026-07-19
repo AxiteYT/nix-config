@@ -19,7 +19,7 @@
     LIBVA_DRIVER_NAME = "iHD";
   };
 
-    hardware.intel-gpu-tools.enable = true;
+  hardware.intel-gpu-tools.enable = true;
 
   # Add handbrake
   environment.systemPackages = with pkgs; [
