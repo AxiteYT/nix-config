@@ -14,17 +14,19 @@ in
     cacheDir = "/var/cache/jellyfin";
     logDir = "/var/log/jellyfin";
 
-    forceEncodingConfig = false;
+    forceEncodingConfig = true;
 
     hardwareAcceleration = {
       enable = true;
-      type = "vaapi";
+      type = "qsv";
       device = "/dev/dri/renderD128";
     };
 
     transcoding = {
       enableHardwareEncoding = true;
+
       hardwareDecodingCodecs = {
+        # Enabled
         h264 = true;
         hevc = true;
         hevc10bit = true;
@@ -32,9 +34,23 @@ in
         vc1 = true;
         vp8 = true;
         vp9 = true;
+
+        # Disabled
+        av1 = false;
+        hevcRExt10bit = false;
+        hevcRExt12bit = false;
       };
-      hardwareEncodingCodecs.hevc = true;
+
+      hardwareEncodingCodecs = {
+        hevc = true;
+        av1 = false;
+      };
+
+      enableIntelLowPowerEncoding = false;
+
       enableToneMapping = true;
+      enableSubtitleExtraction = true;
+      throttleTranscoding = true;
     };
   };
 
