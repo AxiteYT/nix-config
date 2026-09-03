@@ -192,16 +192,12 @@ in
     ];
   };
 
-  /*
-    # VirtualBox Config
-    virtualisation.virtualbox = {
-      host = {
-        enable = true;
-        enableExtensionPack = true;
-      };
-    };
-    users.extraGroups.vboxusers.members = [ "axite" ];
-  */
+  # Virtualisation
+  virtualisation = {
+    libvirtd.enable = true;
+    spiceUSBRedirection.enable = true;
+  };
+  programs.virt-manager.enable = true;
 
   # Enable sound
   security.rtkit.enable = true;
