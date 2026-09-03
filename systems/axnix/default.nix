@@ -192,6 +192,11 @@ in
     ];
   };
 
+  # nix-ld
+  programs.nix-ld = {
+    enable = true;
+  };
+
   # Virtualisation
   virtualisation = {
     libvirtd = {
