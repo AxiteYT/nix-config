@@ -3,3 +3,5 @@ result
 *.iso
 .vscode/
 .temp/
+.agents
+.codex
