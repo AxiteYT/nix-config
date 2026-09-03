@@ -96,6 +96,11 @@
     wget
   ];
 
+  # Shell Aliases
+  programs.bash.shellAliases = {
+    cls = "clear";
+  };
+
   # Set TimeZone
   time.timeZone = "Australia/Sydney";
 
