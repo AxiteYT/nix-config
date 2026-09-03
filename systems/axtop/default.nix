@@ -89,7 +89,7 @@
     qdirstat
     kdePackages.ark
     killall
-    libreoffice-qt
+    pkgsStable.libreoffice
     lutris
     networkmanagerapplet
     nixfmt

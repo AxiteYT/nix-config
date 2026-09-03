@@ -112,7 +112,7 @@ in
     kdePackages.ark
     kdePackages.kdenlive
     killall
-    libreoffice-qt
+    pkgsStable.libreoffice
     lm_sensors
     lmstudio
     lutris
