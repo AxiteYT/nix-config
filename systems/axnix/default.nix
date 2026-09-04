@@ -182,7 +182,6 @@ in
     };
     plugins = with pkgs.obs-studio-plugins; [
       obs-aitum-stream-suite
-      #obs-aitum-multistream
       obs-backgroundremoval
       obs-gstreamer
       obs-teleport
