@@ -10,13 +10,13 @@
 
 stdenv.mkDerivation rec {
   pname = "obs-aitum-stream-suite";
-  version = "1.2.2";
+  version = "1.2.3";
 
   src = fetchFromGitHub {
     owner = "Aitum";
     repo = "obs-aitum-stream-suite";
     tag = version;
-    hash = "sha256-kxL7AWaPFPN4llzwrsfLsWFavXqb7wvnE2LdqIYzLO8=";
+    hash = "sha256-m4T2ieWLRDywH+eP3mAdi3qG5EBJQIT4p1+nmSDUNMw=";
   };
 
   nativeBuildInputs = [ cmake ];
