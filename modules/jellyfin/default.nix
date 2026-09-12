@@ -31,22 +31,23 @@ in
         hevc = true;
         hevc10bit = true;
         mpeg2 = true;
-        vc1 = true;
-        vp8 = true;
         vp9 = true;
+        av1 = true;
+        hevcRExt10bit = true;
+        hevcRExt12bit = true;
 
-        # Disabled
-        av1 = false;
-        hevcRExt10bit = false;
-        hevcRExt12bit = false;
+        # Arc Alchemist does not provide hardware decoders for these codecs.
+        vc1 = false;
+        vp8 = false;
       };
 
       hardwareEncodingCodecs = {
         hevc = true;
-        av1 = false;
+        av1 = true;
       };
 
-      enableIntelLowPowerEncoding = false;
+      # Arc Alchemist supports only the low-power (VDEnc/HuC) encode path.
+      enableIntelLowPowerEncoding = true;
 
       enableToneMapping = true;
       enableSubtitleExtraction = true;

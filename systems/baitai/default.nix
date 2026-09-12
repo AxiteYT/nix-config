@@ -9,14 +9,18 @@
 
   hardware.graphics = {
     enable = true;
+
+    # Intel Arc A310 (DG2): VA-API, oneVPL/QSV, and OpenCL tone mapping.
     extraPackages = with pkgs; [
       intel-media-driver
-      intel-compute-runtime-legacy1
+      vpl-gpu-rt
+      intel-compute-runtime
     ];
   };
 
   systemd.services.jellyfin.environment = {
     LIBVA_DRIVER_NAME = "iHD";
+    LD_LIBRARY_PATH = "/run/opengl-driver/lib";
   };
 
   hardware.intel-gpu-tools.enable = true;
