@@ -79,7 +79,7 @@ in
     brave
     cifs-utils
     codex
-    davinci-resolve-studio
+    # davinci-resolve-studio
     discord
     discord-rpc
     dolphin-emu
