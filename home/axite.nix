@@ -24,6 +24,7 @@
     '';
   };
   programs.home-manager.enable = true;
+  stylix.targets.rofi.enable = false;
   qt.kvantum.enable = lib.mkForce false;
 
   gtk = {
