@@ -22,6 +22,7 @@
           jbockle.jbockle-format-files
           jnoortheen.nix-ide
           kamikillerto.vscode-colorize
+          sumneko.lua
           yzhang.markdown-all-in-one
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
@@ -30,12 +31,6 @@
             publisher = "chrmarti";
             version = "0.6.0";
             sha256 = "Exw2CuSsJKphgSTAK72DxkO+oHv2I4LGo6BV3NvYVCs=";
-          }
-          {
-            name = "hyprlang-vscode";
-            publisher = "fireblast";
-            version = "0.0.3";
-            sha256 = "iMCyomgMGGUXaVqq1l7bgyvFgZa/W/eWHaqkA5RmExE=";
           }
           {
             name = "chatgpt";

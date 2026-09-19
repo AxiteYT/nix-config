@@ -110,10 +110,10 @@ host key.
   profile and uses Home Manager's `services.swaync` option.
 - `home/`: Home Manager profiles and reusable user modules. Put managed
   dotfiles and user-scoped programs here, not in `environment.systemPackages`.
-- `home/hyprland/config.nix`: shared generated Hyprland `conf.d` content plus
-  per-host monitor layouts. `mkConfigFiles` marks generated files with
-  `force = true`; deployment can replace existing files under
-  `~/.config/hypr/conf.d`.
+- `home/hyprland/config.nix`: shared generated Hyprland Lua modules plus
+  per-host monitor layouts. `mkLuaFiles` feeds the ordered modules to Home
+  Manager's `extraLuaFiles`; Home Manager generates `hyprland.lua` and loads
+  them from `~/.config/hypr`.
 - `home/zsh/p10k.nix`: an opaque, base64-backed generated Powerlevel10k
   artifact. Avoid reformatting its payload or making casual inline edits;
   regenerate it deliberately when prompt behavior changes.
@@ -252,9 +252,12 @@ test boot, hardware, remote mounts, container pulls, or service credentials.
 
 ## Current validation caveats
 
-As reviewed on 2026-09-03:
+As reviewed on 2026-09-19:
 
-- `axnix`, `axtop`, `besta`, and `baitai` all evaluate to system derivations.
+- `axnix`, `besta`, and `baitai` evaluate to system derivations.
+- `axtop` does not evaluate because `systems/axtop/default.nix` references the
+  undefined variable `pkgsStable` for LibreOffice. Its Home Manager generation
+  still evaluates and builds independently.
 - The x86_64 installer ISO evaluates to a derivation.
 - `axdarwin` does not evaluate because `home/axite-darwin.nix` imports the
   nonexistent tracked path `home/alacritty`; the available Alacritty module is
@@ -264,8 +267,6 @@ As reviewed on 2026-09-03:
   `nix flake check --all-systems` fail while `eachDefaultSystem` requests
   `x86_64-darwin`, which the pinned unstable nixpkgs no longer supports. Use
   targeted host evaluations until the supported-system list is corrected.
-- The `axtop` evaluation emits a Home Manager warning because its Hyprland
-  `configType` is implicit; `axnix` explicitly keeps `"hyprlang"`.
 
 Do not fix these caveats as part of an unrelated task. If a task touches one of
 them, report whether the baseline failure changed.

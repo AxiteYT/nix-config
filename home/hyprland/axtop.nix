@@ -15,27 +15,29 @@ in
     ../wofi
   ];
 
-  xdg.configFile = hyprConfig.mkConfigFiles hyprConfig.monitors.axtop;
-
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "lua";
+    extraLuaFiles = hyprConfig.mkLuaFiles hyprConfig.monitors.axtop;
     systemd = {
       enable = true;
       variables = [ "--all" ];
     };
-    extraConfig = hyprConfig.mainConfig + ''
-
-      # Stylix palette overrides
-      general {
-          col.active_border = ${argb "ff" colors.base0D}
-          col.inactive_border = ${argb "cc" colors.base03}
-      }
-
-      decoration {
-          shadow {
-              color = ${argb "ee" colors.base00}
-          }
-      }
+    extraConfig = ''
+      -- Stylix palette overrides
+      hl.config({
+          general = {
+              col = {
+                  active_border = ${argb "ff" colors.base0D},
+                  inactive_border = ${argb "cc" colors.base03},
+              },
+          },
+          decoration = {
+              shadow = {
+                  color = ${argb "ee" colors.base00},
+              },
+          },
+      })
     '';
   };
 
