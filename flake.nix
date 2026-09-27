@@ -80,9 +80,27 @@
         };
 
         treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs fmtcfg;
+
+        # Force complete derivation evaluation without building a host closure.
+        evalCheck =
+          name: drv: pkgs.writeText "eval-${name}" (builtins.unsafeDiscardStringContext drv.drvPath);
       in
       {
         formatter = treefmtEval.config.build.wrapper;
+        checks = {
+          formatting = treefmtEval.config.build.check self;
+          qbittorrent-pre-start = import ./tests/qbittorrent-pre-start.nix { inherit pkgs; };
+          wofi-style = import ./tests/wofi-style.nix {
+            inherit pkgs;
+            style =
+              self.nixosConfigurations.axnix.config.home-manager.users.axite.home.file.".config/wofi/style.css".text;
+          };
+          obs-aitum-stream-suite = self.nixosConfigurations.axnix.pkgs.obs-aitum-stream-suite;
+          eval-iso = evalCheck "iso" self.packages.${system}.bootable-iso;
+        }
+        // lib.mapAttrs' (
+          name: host: lib.nameValuePair "eval-${name}" (evalCheck name host.config.system.build.toplevel)
+        ) self.nixosConfigurations;
       }
       // lib.optionalAttrs (system == "x86_64-linux") {
         packages.axnix = self.nixosConfigurations.axnix.config.system.build.toplevel;
