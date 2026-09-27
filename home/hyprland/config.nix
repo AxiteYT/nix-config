@@ -273,10 +273,6 @@ let
       hl.monitor({ output = "HDMI-A-1", mode = "2560x1440@60", position = "2560x-400", scale = 1, transform = 3 })
     '';
 
-    axtop = ''
-      -- See https://wiki.hypr.land/configuring/core/monitors/
-      hl.monitor({ output = "eDP-1", mode = "2560x1440@240", position = "0x0", scale = 1.25 })
-    '';
   };
 in
 {

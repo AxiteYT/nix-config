@@ -9,9 +9,6 @@
     # Flake utils
     flake-utils.url = "github:numtide/flake-utils";
 
-    # Hardware
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
     # Disko
     disko = {
       url = "github:nix-community/disko";
@@ -39,12 +36,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Nix Darwin
-    nix-darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Stylix theming
     stylix = {
       url = "github:danth/stylix";
@@ -65,10 +56,8 @@
       home-manager,
       hytale-launcher,
       treefmt-nix,
-      nixos-hardware,
       stylix,
       sops-nix,
-      nix-darwin,
       ...
     }:
 
@@ -148,15 +137,6 @@
       # Overlays
 
       # Systems
-      darwinConfigurations = {
-        axdarwin = nix-darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
-          specialArgs = { inherit self inputs; };
-          modules = [
-            ./systems/darwin/axdarwin.nix
-          ];
-        };
-      };
       nixosConfigurations = {
         axnix = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -172,28 +152,6 @@
             # Disko Setup
             disko.nixosModules.disko
             { disko.devices.disk.main.device = "/dev/nvme0n1"; }
-            ./hardware/disk-config
-
-            # Home-manager
-            home-manager.nixosModules.home-manager
-          ];
-          specialArgs = { inherit self inputs; };
-        };
-        axtop = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-
-            # Common system config
-            ./systems/common
-
-            # System specific config
-            ./systems/axtop
-            stylix.nixosModules.stylix
-
-            nixos-hardware.nixosModules.microsoft-surface-pro-3
-
-            # Disko Setup
-            disko.nixosModules.disko
             ./hardware/disk-config
 
             # Home-manager
