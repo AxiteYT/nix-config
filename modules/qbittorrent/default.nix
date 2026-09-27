@@ -2,26 +2,12 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }:
 
 let
   qbittorrentConfigFile = builtins.head config.systemd.services.qbittorrent.restartTriggers;
-  qbittorrentPreStart = pkgs.writeShellScript "qbittorrent-pre-start" ''
-    ${pkgs.coreutils}/bin/install -Dm600 ${qbittorrentConfigFile} \
-      /var/lib/qBittorrent/qBittorrent/config/qBittorrent.conf
-
-    QBT_PASSWORD_PBKDF2="$(${pkgs.coreutils}/bin/cat ${config.sops.secrets.BestaQB.path})" \
-      ${pkgs.perl}/bin/perl -0pi -e 's/\@BestaQB\@/$ENV{QBT_PASSWORD_PBKDF2}/g' \
-      /var/lib/qBittorrent/qBittorrent/config/qBittorrent.conf
-
-    if ! ${pkgs.procps}/bin/pgrep -u qbittorrent -x qbittorrent-nox >/dev/null; then
-      ${pkgs.coreutils}/bin/rm -f \
-        /var/lib/qBittorrent/qBittorrent/config/lockfile \
-        /var/lib/qBittorrent/qBittorrent/config/ipc-socket
-    fi
-  '';
+  qbittorrentPreStart = import ./pre-start.nix { inherit pkgs; };
 in
 
 {
@@ -138,7 +124,15 @@ in
     };
   };
 
-  systemd.services.qbittorrent.serviceConfig.ExecStartPre = lib.mkForce qbittorrentPreStart;
+  systemd.services.qbittorrent.serviceConfig.ExecStartPre = lib.mkForce (
+    "${lib.getExe qbittorrentPreStart} "
+    + lib.escapeShellArgs [
+      (toString qbittorrentConfigFile)
+      config.sops.secrets.BestaQB.path
+      "${config.services.qbittorrent.profileDir}/qBittorrent/config"
+      config.services.qbittorrent.user
+    ]
+  );
 
   systemd.services.qui = {
     description = "qui for qBittorrent";
