@@ -5,4 +5,5 @@
     group = "servarr";
     openFirewall = true;
   };
+  systemd.services.sonarr.unitConfig.RequiresMountsFor = [ "/media/Baitai" ];
 }

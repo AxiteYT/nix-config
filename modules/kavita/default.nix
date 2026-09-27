@@ -4,7 +4,7 @@ let
   kavitaPort = 5000;
 in
 {
-  sops.secrets.BaitaiKavitaTokenKey = { };
+  sops.secrets.BaitaiKavitaTokenKey.restartUnits = [ "kavita.service" ];
 
   services.kavita = {
     enable = true;

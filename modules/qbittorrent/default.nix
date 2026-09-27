@@ -15,11 +15,13 @@ in
     owner = "qbittorrent";
     group = "servarr";
     mode = "0400";
+    restartUnits = [ "qbittorrent.service" ];
   };
   sops.secrets.BestaQuiPassword = {
     owner = "qbittorrent";
     group = "servarr";
     mode = "0400";
+    restartUnits = [ "qui.service" ];
   };
 
   services.qbittorrent = {
@@ -124,15 +126,18 @@ in
     };
   };
 
-  systemd.services.qbittorrent.serviceConfig.ExecStartPre = lib.mkForce (
-    "${lib.getExe qbittorrentPreStart} "
-    + lib.escapeShellArgs [
-      (toString qbittorrentConfigFile)
-      config.sops.secrets.BestaQB.path
-      "${config.services.qbittorrent.profileDir}/qBittorrent/config"
-      config.services.qbittorrent.user
-    ]
-  );
+  systemd.services.qbittorrent = {
+    unitConfig.RequiresMountsFor = [ "/media/Baitai" ];
+    serviceConfig.ExecStartPre = lib.mkForce (
+      "${lib.getExe qbittorrentPreStart} "
+      + lib.escapeShellArgs [
+        (toString qbittorrentConfigFile)
+        config.sops.secrets.BestaQB.path
+        "${config.services.qbittorrent.profileDir}/qBittorrent/config"
+        config.services.qbittorrent.user
+      ]
+    );
+  };
 
   systemd.services.qui = {
     description = "qui for qBittorrent";
@@ -142,6 +147,7 @@ in
     ];
     wants = [ "network-online.target" ];
     requires = [ "qbittorrent.service" ];
+    partOf = [ "qbittorrent.service" ];
     wantedBy = [ "multi-user.target" ];
 
     preStart = ''
