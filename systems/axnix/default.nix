@@ -19,45 +19,11 @@ in
     (self + /hardware/amd)
     (self + /hardware/keychron)
     (self + /hardware/openrazer)
-    (self + /modules/flatpak)
-    (self + /modules/hyprland)
+    (self + /systems/desktop)
     (self + /modules/steam)
     ./kernel.nix
     ./network-config.nix
   ];
-
-  # Stylix
-  stylix = {
-    enable = true;
-    polarity = "dark";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
-    fonts = {
-      serif = {
-        package = pkgs.noto-fonts;
-        name = "Noto Serif";
-      };
-      sansSerif = {
-        package = pkgs.noto-fonts;
-        name = "Noto Sans";
-      };
-      monospace = {
-        package = pkgs.nerd-fonts.fira-code;
-        name = "FiraCode Nerd Font";
-      };
-      emoji = {
-        package = pkgs.noto-fonts-color-emoji;
-        name = "Noto Color Emoji";
-      };
-    };
-    cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
-      size = 20;
-    };
-  };
-
-  # Ensure Qt apps (Dolphin, etc.) pick up the Stylix/Kvantum theme
-  environment.sessionVariables.QT_STYLE_OVERRIDE = "kvantum";
 
   # Enable home-manager
   home-manager = {
@@ -66,8 +32,6 @@ in
         (self + /home/axite.nix)
       ];
     };
-    backupFileExtension = "hm-bak";
-    overwriteBackup = true;
   };
 
   # System Packages
@@ -75,7 +39,6 @@ in
     (pkgs.bottles.override { removeWarningPopup = true; })
     blender
     bolt-launcher
-    brave
     cifs-utils
     codex
     # davinci-resolve-studio
@@ -91,18 +54,14 @@ in
       withVulkan = true;
     })
     filezilla
-    firefox
     flameshot
     gh
     gimp
     git
     github-desktop
     glogg
-    gnome-calculator
     gparted
-    grim
     handbrake
-    hunspell
     input-remapper
     inputs.hytale-launcher.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.mcp-nixos.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -115,7 +74,6 @@ in
     lm_sensors
     lmstudio
     lutris
-    networkmanagerapplet
     nexusmods-app-unfree
     nixfmt
     nixpkgs-fmt
@@ -130,7 +88,6 @@ in
     powershell
     prismlauncher
     protonup-qt
-    pulseaudioFull
     remmina
     pkgsStable.rpcs3
     ryubing
@@ -141,8 +98,6 @@ in
     vim
     vinegar
     virt-viewer
-    vlc
-    wayland-utils
     wgnord
     winetricks
     wineWow64Packages.stable
@@ -204,39 +159,6 @@ in
     spiceUSBRedirection.enable = true;
   };
   programs.virt-manager.enable = true;
-
-  # Enable sound
-  security.rtkit.enable = true;
-
-  services = {
-    pipewire = {
-      enable = true;
-      wireplumber = {
-        enable = true;
-      };
-      pulse.enable = true;
-      jack.enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-    };
-    pulseaudio = {
-      enable = false;
-      package = pkgs.pulseaudioFull;
-    };
-  };
-
-  # Enable Bluetooth
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        Experimental = true;
-      };
-    };
-  };
 
   # Enable ratbag daemon
   services.ratbagd.enable = true;
