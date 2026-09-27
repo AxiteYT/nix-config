@@ -2,7 +2,6 @@
 let
   colors = config.lib.stylix.colors;
   hex = c: "#${c}";
-  hexa = a: c: "#${c}${a}";
   font = config.stylix.fonts.sansSerif.name;
   monoFont = config.stylix.fonts.monospace.name;
 in
@@ -34,18 +33,16 @@ in
     };
     ".config/wofi/style.css" = {
       text = ''
-        :root {
-          --bg: ${hexa "33" colors.base00};      /* ~20% opacity */
-          --bg-weak: ${hexa "1a" colors.base00}; /* ~10% opacity */
-          --fg: ${hex colors.base06};
-          --accent: ${hex colors.base0D};
-          --muted: ${hex colors.base03};
-        }
+        @define-color bg alpha(${hex colors.base00}, 0.2);
+        @define-color bg_weak alpha(${hex colors.base00}, 0.1);
+        @define-color fg ${hex colors.base06};
+        @define-color accent ${hex colors.base0D};
+        @define-color muted ${hex colors.base03};
         /* The name of the window itself */
         #window {
-          background-color: var(--bg);
-          box-shadow: 0 10px 15px -3px var(--bg-weak),
-            0 4px 6px -4px var(--bg-weak);
+          background-color: @bg;
+          box-shadow: 0 10px 15px -3px @bg_weak,
+            0 4px 6px -4px @bg_weak;
           border-radius: 1rem;
           font-family: "${font}", "Noto Sans Symbols 2", "Noto Color Emoji", sans-serif;
           font-size: 1.2rem;
@@ -56,17 +53,16 @@ in
           /* The name of the scrolled window containing all of the entries */
         }
         #window #outer-box #input {
-          background-color: var(--bg);
-          color: var(--fg);
+          background-color: @bg;
+          color: @fg;
           border: none;
-          border-bottom: 1px solid var(--muted);
+          border-bottom: 1px solid @muted;
           font-family: "${font}", "Noto Sans Symbols 2", "Noto Color Emoji", sans-serif;
           padding: 0.8rem 1rem;
           font-size: 1.5rem;
           border-radius: 1rem 1rem 0 0;
         }
         #window #outer-box #input:focus,
-        #window #outer-box #input:focus-visible,
         #window #outer-box #input:active {
           border: none;
           outline: 2px solid transparent;
@@ -81,20 +77,20 @@ in
           /* entries with multiple actions */
         }
         #window #outer-box #scroll #inner-box #entry {
-          color: var(--fg);
-          background-color: var(--bg-weak);
+          color: @fg;
+          background-color: @bg_weak;
           font-family: "${font}", "${monoFont}", "Noto Sans Symbols 2", "Noto Color Emoji", sans-serif;
           padding: 0.6rem 1rem;
           /* The name of all images in entries displayed in image mode */
           /* The name of all the text in entries */
         }
         #window #outer-box #scroll #inner-box #entry #img {
-          width: 1rem;
+          min-width: 1rem;
           margin-right: 0.5rem;
         }
         #window #outer-box #scroll #inner-box #entry:selected {
-          color: var(--fg);
-          background-color: var(--accent);
+          color: @fg;
+          background-color: @accent;
           outline: none;
         }
 
