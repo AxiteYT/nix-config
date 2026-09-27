@@ -2,14 +2,15 @@
 
 ## Purpose and source of truth
 
-This repository is a personal, flake-based Nix configuration for four NixOS
-machines and one nix-darwin machine. `flake.nix` defines the inputs, outputs,
+This repository is a personal, flake-based Nix configuration for three NixOS
+machines. `flake.nix` defines the inputs, outputs,
 host composition, formatter, and installer ISO. `flake.lock` is generated pin
 state; change it through Nix commands, never by hand.
 
-There is no separate README, CI workflow, development shell, or flake `checks`
-output. Treat the evaluated host configurations as the primary validation
-surface.
+There is no separate README or development shell. `.github/workflows/validate.yml`
+runs the flake checks on pushes and pull requests, with manual dispatch also
+available. Checks evaluate every host and the installer ISO, check formatting,
+test qBittorrent startup and Wofi CSS, and build the local OBS plugin.
 
 These instructions cover the whole repository.
 
@@ -18,7 +19,7 @@ These instructions cover the whole repository.
 - Inspect `git status --short` and the relevant diff before editing. The
   worktree may contain user changes; preserve unrelated edits and never revert
   them as cleanup.
-- Do not run `nixos-rebuild switch`, `darwin-rebuild switch`, Disko install or
+- Do not run `nixos-rebuild switch`, Disko install or
   format operations, secret re-encryption, or broad flake updates unless the
   user explicitly asks for the corresponding state change.
 - `hardware/disk-config/default.nix` describes a destructive whole-disk GPT
@@ -46,29 +47,29 @@ These instructions cover the whole repository.
 - `nixpkgs-stable` follows `nixos-25.11`. Import it explicitly when a package
   must be pinned to stable; `systems/axnix/default.nix` calls that package set
   `pkgsStable` and currently uses it for LibreOffice and RPCS3.
-- Disko, Home Manager, SOPS-Nix, nix-darwin, Stylix, and MCP-NixOS follow the
-  primary `nixpkgs` input where configured. `nixos-hardware` and the Hytale
-  launcher are additional inputs.
+- Disko, Home Manager, SOPS-Nix, Stylix, and MCP-NixOS follow the primary
+  `nixpkgs` input where configured. The Hytale launcher is an additional input.
 - `specialArgs = { inherit self inputs; };` makes the flake source and all
   inputs available to host modules. Existing modules commonly import
   repository paths as `(self + /path)` and use relative imports for sibling
   files. Because `self` is a Git-flake snapshot, a newly created imported file
   is invisible to normal `.#...` evaluation until Git tracks it.
-- `flake-utils.lib.eachDefaultSystem` publishes the treefmt formatter for its
-  default systems. On `x86_64-linux` it also publishes `packages.axnix` and
-  `packages.bootable-iso`.
+- `flake-utils.lib.eachSystem` explicitly targets only `x86_64-linux`, the
+  platform of every deployed host. It publishes the treefmt formatter, checks,
+  `packages.axnix`, and `packages.bootable-iso`.
 - The installer ISO uses the stable NixOS module set but deliberately selects
   `linuxPackages_latest` from the primary package set and removes ZFS from its
   supported filesystems.
 - `systems/common/default.nix` enables unfree packages and defines the shared
   overlay. The overlay disables OpenLDAP checks for native and i686 package
   sets and exposes the local OBS Aitum package both at top level and under
-  `obs-studio-plugins`. It affects NixOS hosts only, not Darwin, the ISO, or the
+  `obs-studio-plugins`. It affects NixOS hosts only, not the ISO or the
   separately imported stable package set.
 - The common package policy permits the exact insecure package
   `nexusmods-app-unfree-0.21.1`. Treat a version change as a security-policy
   change, not just a package bump.
-- `pkgs/obs-aitum-stream-suite/default.nix` is the only local derivation. When
+- `pkgs/obs-aitum-stream-suite/default.nix` is the only local application package
+  under `pkgs/`. When
   updating it, keep the version/tag/hash aligned and validate a consuming host.
 - `patches/ffmpeg-tableprint-vlc-av_malloc.patch` is currently not referenced
   by any Nix expression and is not a valid standalone patch in its present
@@ -76,13 +77,11 @@ These instructions cover the whole repository.
 
 ## Host composition
 
-| Flake output                    | Platform         | Role and important composition                                                                                                                                                                                 |
-| ------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `nixosConfigurations.axnix`     | `x86_64-linux`   | Main AMD/Hyprland workstation. Common + `systems/axnix` + Stylix + Disko on `/dev/nvme0n1` + Home Manager `home/axite.nix`. Imports AMD, Keychron, OpenRazer, Flatpak, Steam, and the local Apollo filesystem. |
-| `nixosConfigurations.axtop`     | `x86_64-linux`   | Microsoft Surface Pro 3/Hyprland laptop. Common + `systems/axtop` + nixos-hardware Surface module + Stylix + Disko + Home Manager `home/axtop.nix`. Uses the Disko `/dev/sda` default.                         |
-| `nixosConfigurations.besta`     | `x86_64-linux`   | QEMU Servarr host at `10.1.10.85`. Common + server profile + `systems/besta` + Disko. Imports the Baitai NFS mount and the aggregate Servarr/qBittorrent stack.                                                |
-| `nixosConfigurations.baitai`    | `x86_64-linux`   | QEMU media host at `10.1.10.77`. Common + server profile + `systems/baitai` + Disko. Runs Jellyfin and Kavita with Intel graphics and the Baitai NFS mount.                                                    |
-| `darwinConfigurations.axdarwin` | `aarch64-darwin` | Apple Silicon host for user `axite`, with nix-darwin and Home Manager via `home/axite-darwin.nix`. See current caveats below before relying on this output.                                                    |
+| Flake output                 | Platform       | Role and important composition                                                                                                                                                                                                               |
+| ---------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `nixosConfigurations.axnix`  | `x86_64-linux` | Main AMD/Hyprland workstation. Common + desktop profile + `systems/axnix` + Stylix + Disko on `/dev/nvme0n1` + Home Manager `home/axite.nix`. Imports AMD, Keychron, OpenRazer, and Steam; the desktop profile imports Flatpak and Hyprland. |
+| `nixosConfigurations.besta`  | `x86_64-linux` | QEMU Servarr host at `10.1.10.85`. Common + server profile + `systems/besta` + Disko. Imports the Baitai NFS mount and the aggregate Servarr/qBittorrent stack.                                                                              |
+| `nixosConfigurations.baitai` | `x86_64-linux` | QEMU media host at `10.1.10.77`. Common + server profile + `systems/baitai` + Disko. Runs Jellyfin and Kavita with Intel graphics and the Baitai NFS mount.                                                                                  |
 
 All NixOS hosts inherit `systems/common/default.nix`. `besta` and `baitai` also
 inherit `systems/server/default.nix`, which selects QEMU guest support, static
@@ -96,11 +95,15 @@ host key.
   collection, baseline packages, and latest-kernel default.
 - `systems/server/`: shared QEMU server behavior. Keep machine-specific
   services and addresses in the relevant host directory.
+- `systems/desktop/`: shared desktop packages, Stylix palette/fonts/cursor,
+  Qt environment, Home Manager backup policy, PipeWire, and Bluetooth. The
+  profile imports the Flatpak and Hyprland modules. Host composition still
+  supplies the Stylix and Home Manager NixOS modules in `flake.nix`.
 - `systems/<host>/`: host imports, packages, hardware/session choices,
   networking, and state version. Desktop Home Manager profiles are wired here.
 - `systems/common/mounts/`: deployment-specific local/NFS mounts. Several
   media services require `/media/Baitai`, so mount changes affect their systemd
-  ordering and runtime access. The share source is `10.1.10.10`, which is not
+  ordering and runtime access. The share source is `10.1.10.101`, which is not
   the `baitai` host address (`10.1.10.77`).
 - `hardware/`: reusable device or platform fragments. Disko is separate from
   ordinary driver fragments because it defines storage layout and bootloader
@@ -110,10 +113,11 @@ host key.
   profile and uses Home Manager's `services.swaync` option.
 - `home/`: Home Manager profiles and reusable user modules. Put managed
   dotfiles and user-scoped programs here, not in `environment.systemPackages`.
-- `home/hyprland/config.nix`: shared generated Hyprland Lua modules plus
-  per-host monitor layouts. `mkLuaFiles` feeds the ordered modules to Home
-  Manager's `extraLuaFiles`; Home Manager generates `hyprland.lua` and loads
-  them from `~/.config/hypr`.
+- `home/hyprland/config.nix`: shared generated Hyprland Lua modules.
+  `home/hyprland/axite.nix` supplies workstation monitor geometry and autostarts.
+  `mkLuaFiles` combines the monitor module with shared modules for Home Manager's
+  `extraLuaFiles`; Home Manager generates `hyprland.lua` and loads them from
+  `~/.config/hypr`.
 - `home/zsh/p10k.nix`: an opaque, base64-backed generated Powerlevel10k
   artifact. Avoid reformatting its payload or making casual inline edits;
   regenerate it deliberately when prompt behavior changes.
@@ -123,6 +127,9 @@ host key.
 - `secrets/`: encrypted SOPS data only. Secret consumers declare
   `sops.secrets.<name>` in the relevant module and read the generated runtime
   path from `config.sops.secrets.<name>.path`.
+- `tests/`: build-time regression checks. The qBittorrent check uses synthetic
+  fixtures in the build sandbox; it must never read real SOPS secrets. The Wofi
+  check parses the generated stylesheet with the pinned GTK 3 library.
 
 Some empty local directories may exist from abandoned or future work. Nix and
 Git do not track empty directories; do not infer active features from their
@@ -135,17 +142,15 @@ Importing one enables its configuration; removing its import disables it.
 
 - `modules/hyprland/default.nix` provides system-level Hyprland, greetd, fonts,
   Nautilus integration, a Waybar audio/Bluetooth helper, and supporting
-  packages. Desktop hosts import it explicitly; portals come from the separate
-  `modules/flatpak` import.
-- Stylix is enabled per desktop host using One Dark and supplies palette/font
+  packages. The desktop profile imports it alongside `modules/flatpak` for
+  portal and Flatpak configuration.
+- Stylix is enabled by the desktop profile using One Dark and supplies palette/font
   values consumed by Home Manager modules such as Waybar, Wofi, Wleave, Satty,
   VSCodium, and Hyprland.
-- `home/axite.nix` is the workstation profile;
-  `home/axtop.nix` is the laptop profile. Their import lists are the clearest
-  place to enable or disable a user feature for one desktop.
+- `home/axite.nix` is the workstation profile. Its import list is the clearest
+  place to enable or disable a user feature.
 - Shared Hyprland behavior lives in `home/hyprland/config.nix`; monitor geometry
-  lives in its `monitors.axnix` and `monitors.axtop` values. Keep per-host
-  wrappers small.
+  and application autostarts live in `home/hyprland/axite.nix`.
 - NixOS-integrated Home Manager uses `backupFileExtension = "hm-bak"` and
   `overwriteBackup = true`, so activation may replace the previous backup.
 - Desktop packages are currently split between system package lists and Home
@@ -153,11 +158,11 @@ Importing one enables its configuration; removing its import disables it.
   changed; avoid installing the same package in both scopes without a reason.
 - NixOS `specialArgs` do not automatically become Home Manager arguments. Wire
   `home-manager.extraSpecialArgs` if a Linux Home Manager module needs `inputs`
-  or `self`; the Darwin configuration already does this explicitly.
+  or `self`.
 - Shared Hyprland config invokes external commands. In particular,
-  `brightnessctl` and `playerctl` are not currently provisioned directly, and
-  the shared OBS/StreamController autostarts also apply to `axtop` even though
-  those packages are only listed on `axnix`. Check both config and package
+  `brightnessctl` and `playerctl` are not currently provisioned directly.
+  These bindings and the existing MIME associations were intentionally left
+  unchanged in the 2026-09-27 review fixes. Check both config and package
   availability when changing commands.
 
 ## Server service structure
@@ -170,9 +175,16 @@ Importing one enables its configuration; removing its import disables it.
   localhost binding assumptions, startup ordering, and state-directory
   hardening when changing it. Its pre-start customization assumes the first
   upstream `restartTriggers` item is the generated configuration and replaces
-  the upstream `ExecStartPre`, so re-check it after nixpkgs module changes. It
-  writes to `/media/Baitai` without the explicit mount dependency used by the
-  other media services.
+  the upstream `ExecStartPre`, so re-check it after nixpkgs module changes.
+  `pre-start.nix` checks its inputs, prepares a mode-0600 temporary file, and
+  atomically replaces the configuration only after successful preparation.
+- qBittorrent, Sonarr, Radarr, and Bazarr declare `RequiresMountsFor` on
+  `/media/Baitai`; Kapowarr requires the corresponding mount unit. Preserve these
+  dependencies when changing service modules or mount paths.
+- SOPS restarts qBittorrent, qui, and Kavita when their startup credentials
+  change. qui has `PartOf=qbittorrent.service` so it follows qBittorrent restarts.
+  Recyclarr reads fresh credentials on each scheduled run, so it has no
+  secret-rotation restart hook.
 - Jellyfin and Kavita run on `baitai` and require `/media/Baitai`. Jellyfin uses
   Intel Quick Sync and an nginx virtual host; Kavita reads its token key from
   SOPS.
@@ -186,6 +198,7 @@ Importing one enables its configuration; removing its import disables it.
 ## Where to make common changes
 
 - Add a package to every NixOS host: `systems/common/default.nix`.
+- Add shared desktop policy or baseline packages: `systems/desktop/default.nix`.
 - Add a package to one host: that host's `environment.systemPackages`.
 - Add a user program or dotfile: a module under `home/`, imported by the
   intended Home Manager profile.
@@ -213,15 +226,27 @@ nix fmt -- --fail-on-change path/to/changed-file.nix
 git diff --check
 ```
 
-On the native `x86_64-linux` system, the normal non-building flake check is
-also useful and currently covers the formatter, Linux packages, and all four
-NixOS configurations:
+On `x86_64-linux`, evaluate all checks without building:
 
 ```sh
-nix flake check --no-build
+nix flake check --all-systems --no-build --no-write-lock-file
 ```
 
-Evaluate every changed NixOS host without building or activating it:
+The `checks.eval-<host>` and `checks.eval-iso` derivations explicitly force each
+`drvPath`, catching failures that a bare `nixosConfigurations` check can miss.
+They discard the derivation string context so building these small checks does
+not build the host closures or ISO.
+
+Run the full CI validation locally:
+
+```sh
+nix flake check --all-systems --no-write-lock-file --print-build-logs
+```
+
+This also builds the local OBS plugin, tests qBittorrent preparation and Wofi
+CSS, and checks formatting in a build sandbox without rewriting the worktree.
+
+For a targeted host evaluation without building or activating it:
 
 ```sh
 nix eval --raw .#nixosConfigurations.<host>.config.system.build.toplevel.drvPath
@@ -243,30 +268,18 @@ nix build .#packages.x86_64-linux.bootable-iso
 # Deployment commands; run only when explicitly requested, on the target OS.
 sudo nixos-rebuild test --flake .#<host>
 sudo nixos-rebuild switch --flake .#<host>
-darwin-rebuild switch --flake .#axdarwin
 ```
 
 For a change to a shared module, evaluate every host that imports it. A
 successful evaluation checks module types and package resolution, but does not
 test boot, hardware, remote mounts, container pulls, or service credentials.
 
-## Current validation caveats
+## Current validation status
 
-As reviewed on 2026-09-19:
+As reviewed on 2026-09-27:
 
-- `axnix`, `besta`, and `baitai` evaluate to system derivations.
-- `axtop` does not evaluate because `systems/axtop/default.nix` references the
-  undefined variable `pkgsStable` for LibreOffice. Its Home Manager generation
-  still evaluates and builds independently.
-- The x86_64 installer ISO evaluates to a derivation.
-- `axdarwin` does not evaluate because `home/axite-darwin.nix` imports the
-  nonexistent tracked path `home/alacritty`; the available Alacritty module is
-  under `home/zsh/alacritty` and should not be rewired without deciding whether
-  its Linux-oriented settings belong on Darwin.
-- Repository-wide `nix flake show --all-systems` and
-  `nix flake check --all-systems` fail while `eachDefaultSystem` requests
-  `x86_64-darwin`, which the pinned unstable nixpkgs no longer supports. Use
-  targeted host evaluations until the supported-system list is corrected.
-
-Do not fix these caveats as part of an unrelated task. If a task touches one of
-them, report whether the baseline failure changed.
+- All three hosts (`axnix`, `besta`, and `baitai`) and the installer ISO evaluate.
+- Full flake checks pass on `x86_64-linux`, including the local OBS plugin,
+  qBittorrent failure cases, Wofi CSS parsing, and repository formatting.
+- Checks do not build full host closures or the ISO, activate configurations,
+  decrypt secrets, or exercise hardware and external services.
