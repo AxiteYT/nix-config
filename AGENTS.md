@@ -81,7 +81,7 @@ These instructions cover the whole repository.
 | ---------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `nixosConfigurations.axnix`  | `x86_64-linux` | Main AMD/Hyprland workstation. Common + desktop profile + `systems/axnix` + Stylix + Disko on `/dev/nvme0n1` + Home Manager `home/axite.nix`. Imports AMD, Keychron, OpenRazer, and Steam; the desktop profile imports Flatpak and Hyprland. |
 | `nixosConfigurations.besta`  | `x86_64-linux` | QEMU Servarr host at `10.1.10.85`. Common + server profile + `systems/besta` + Disko. Imports the Baitai NFS mount and the aggregate Servarr/qBittorrent stack.                                                                              |
-| `nixosConfigurations.baitai` | `x86_64-linux` | QEMU media host at `10.1.10.77`. Common + server profile + `systems/baitai` + Disko. Runs Jellyfin and Kavita with Intel graphics and the Baitai NFS mount.                                                                                  |
+| `nixosConfigurations.baitai` | `x86_64-linux` | QEMU media host at `10.1.10.77`. Common + server profile + `systems/baitai` + Disko. Runs Jellyfin with Intel graphics and the Baitai NFS mount.                                                                                  |
 
 All NixOS hosts inherit `systems/common/default.nix`. `besta` and `baitai` also
 inherit `systems/server/default.nix`, which selects QEMU guest support, static
@@ -181,13 +181,12 @@ Importing one enables its configuration; removing its import disables it.
 - qBittorrent, Sonarr, Radarr, and Bazarr declare `RequiresMountsFor` on
   `/media/Baitai`; Chaptarr requires the corresponding mount unit. Preserve these
   dependencies when changing service modules or mount paths.
-- SOPS restarts qBittorrent, qui, and Kavita when their startup credentials
+- SOPS restarts qBittorrent and qui when their startup credentials
   change. qui has `PartOf=qbittorrent.service` so it follows qBittorrent restarts.
   Recyclarr reads fresh credentials on each scheduled run, so it has no
   secret-rotation restart hook.
-- Jellyfin and Kavita run on `baitai` and require `/media/Baitai`. Jellyfin uses
-  Intel Quick Sync and an nginx virtual host; Kavita reads its token key from
-  SOPS.
+- Jellyfin runs on `baitai` and requires `/media/Baitai`. Jellyfin uses
+  Intel Quick Sync and an nginx virtual host.
 - Chaptarr uses a mutable `chaptarr/chaptarr:latest` OCI image, host networking,
   and root PUID/PGID. Evaluation does not prove that the image or external NFS
   content will be available at runtime.

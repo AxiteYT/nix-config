@@ -1,7 +1,6 @@
 { pkgs, self, ... }:
 {
   imports = [
-    (self + /modules/kavita)
     (self + /modules/jellyfin)
     (self + /systems/common/mounts/baitai.nix)
     ./network-config.nix
