@@ -160,6 +160,19 @@ in
   };
   programs.virt-manager.enable = true;
 
+# Syncthing
+services.syncthing = {
+  enable = true;
+
+  user = "axite";
+  group = "users";
+
+  dataDir = "/home/axite/.local/state/syncthing";
+  configDir = "/home/axite/.config/syncthing";
+
+  openDefaultPorts = true;
+};
+
   # Enable ratbag daemon
   services.ratbagd.enable = true;
 
