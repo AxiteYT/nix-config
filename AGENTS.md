@@ -168,7 +168,7 @@ Importing one enables its configuration; removing its import disables it.
 ## Server service structure
 
 - `modules/servarr/default.nix` is an aggregate module for qBittorrent, Bazarr,
-  Flaresolverr, Kapowarr, Prowlarr, Radarr, Recyclarr, Seerr, and Sonarr. It also
+  Chaptarr, Flaresolverr, Prowlarr, Radarr, Recyclarr, Seerr, and Sonarr. It also
   creates the shared `servarr` group.
 - `modules/qbittorrent/default.nix` injects SOPS values at service start and
   manages the companion `qui` service. Preserve secret ownership/modes,
@@ -179,7 +179,7 @@ Importing one enables its configuration; removing its import disables it.
   `pre-start.nix` checks its inputs, prepares a mode-0600 temporary file, and
   atomically replaces the configuration only after successful preparation.
 - qBittorrent, Sonarr, Radarr, and Bazarr declare `RequiresMountsFor` on
-  `/media/Baitai`; Kapowarr requires the corresponding mount unit. Preserve these
+  `/media/Baitai`; Chaptarr requires the corresponding mount unit. Preserve these
   dependencies when changing service modules or mount paths.
 - SOPS restarts qBittorrent, qui, and Kavita when their startup credentials
   change. qui has `PartOf=qbittorrent.service` so it follows qBittorrent restarts.
@@ -188,7 +188,7 @@ Importing one enables its configuration; removing its import disables it.
 - Jellyfin and Kavita run on `baitai` and require `/media/Baitai`. Jellyfin uses
   Intel Quick Sync and an nginx virtual host; Kavita reads its token key from
   SOPS.
-- Kapowarr uses a mutable `mrcas/kapowarr:latest` OCI image, host networking,
+- Chaptarr uses a mutable `chaptarr/chaptarr:latest` OCI image, host networking,
   and root PUID/PGID. Evaluation does not prove that the image or external NFS
   content will be available at runtime.
 - Service modules intentionally open several firewall ports. Review both the

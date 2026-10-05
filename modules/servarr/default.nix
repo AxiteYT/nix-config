@@ -2,8 +2,8 @@
   imports = [
     ../qbittorrent
     ./bazarr
+    ./chaptarr
     ./flaresolverr
-    ./kapowarr
     ./prowlarr
     ./radarr
     ./recyclarr
