@@ -80,8 +80,8 @@ These instructions cover the whole repository.
 | Flake output                 | Platform       | Role and important composition                                                                                                                                                                                                               |
 | ---------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `nixosConfigurations.axnix`  | `x86_64-linux` | Main AMD/Hyprland workstation. Common + desktop profile + `systems/axnix` + Stylix + Disko on `/dev/nvme0n1` + Home Manager `home/axite.nix`. Imports AMD, Keychron, OpenRazer, and Steam; the desktop profile imports Flatpak and Hyprland. |
-| `nixosConfigurations.besta`  | `x86_64-linux` | QEMU Servarr host at `10.1.10.85`. Common + server profile + `systems/besta` + Disko. Imports the Baitai NFS mount and the aggregate Servarr/qBittorrent stack.                                                                              |
-| `nixosConfigurations.baitai` | `x86_64-linux` | QEMU media host at `10.1.10.77`. Common + server profile + `systems/baitai` + Disko. Runs Jellyfin with Intel graphics and the Baitai NFS mount.                                                                                  |
+| `nixosConfigurations.besta`  | `x86_64-linux` | QEMU Servarr host at `10.10.30.85`. Common + server profile + `systems/besta` + Disko. Imports the Baitai NFS mount and the aggregate Servarr/qBittorrent stack.                                                                             |
+| `nixosConfigurations.baitai` | `x86_64-linux` | QEMU media host at `10.10.30.77`. Common + server profile + `systems/baitai` + Disko. Runs Jellyfin with Intel graphics and the Baitai NFS mount.                                                                                            |
 
 All NixOS hosts inherit `systems/common/default.nix`. `besta` and `baitai` also
 inherit `systems/server/default.nix`, which selects QEMU guest support, static
@@ -103,8 +103,8 @@ host key.
   networking, and state version. Desktop Home Manager profiles are wired here.
 - `systems/common/mounts/`: deployment-specific local/NFS mounts. Several
   media services require `/media/Baitai`, so mount changes affect their systemd
-  ordering and runtime access. The share source is `10.1.10.101`, which is not
-  the `baitai` host address (`10.1.10.77`).
+  ordering and runtime access. The share source is `10.10.40.10`, which is not
+  the `baitai` host address (`10.10.30.77`).
 - `hardware/`: reusable device or platform fragments. Disko is separate from
   ordinary driver fragments because it defines storage layout and bootloader
   behavior.
