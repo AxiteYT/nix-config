@@ -7,7 +7,7 @@
     interfaces = {
       ens18.ipv4.addresses = [
         {
-          address = "10.1.10.77";
+          address = "10.10.30.77";
           prefixLength = 24;
         }
       ];

@@ -1,6 +1,6 @@
 {
   fileSystems."/media/Baitai" = {
-    device = "10.1.10.101:/volume1/Baitai";
+    device = "10.10.40.10:/volume1/Baitai";
     fsType = "nfs";
     options = [
       "nfsvers=4.1"

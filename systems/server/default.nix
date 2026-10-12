@@ -20,8 +20,8 @@
   # Disable DHCP
   networking = {
     useDHCP = false;
-    defaultGateway = "10.1.10.1";
-    nameservers = [ "10.1.10.1" ];
+    defaultGateway = lib.mkDefault "10.10.30.1";
+    nameservers = lib.mkDefault [ "10.10.30.1" ];
   };
 
   # Enable serial port

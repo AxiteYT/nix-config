@@ -3,14 +3,15 @@
   networking = {
     hostName = "besta";
 
+    nameservers = lib.mkDefault [ "10.10.30.1" ];
     defaultGateway = {
-      address = "10.1.10.1";
+      address = lib.mkForce "10.10.50.1";
       interface = "ens18";
     };
     interfaces.ens18 = {
       ipv4.addresses = [
         {
-          address = "10.1.10.85";
+          address = "10.10.50.85";
           prefixLength = 24;
         }
       ];
