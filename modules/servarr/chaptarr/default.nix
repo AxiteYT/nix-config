@@ -5,7 +5,7 @@ let
 in
 {
   virtualisation.oci-containers.containers.chaptarr = {
-    image = "chaptarr/chaptarr:latest";
+    image = "docker.io/chaptarr/chaptarr:latest";
     extraOptions = [ "--network=host" ];
     environment = {
       PUID = "0";
@@ -14,8 +14,7 @@ in
     };
     volumes = [
       "/var/lib/chaptarr:/config"
-      "${mediaRoot}/Downloads:${mediaRoot}/Downloads"
-      "${mediaRoot}/Books:/ebooks"
+      "${mediaRoot}:${mediaRoot}"
     ];
   };
 

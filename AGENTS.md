@@ -187,7 +187,7 @@ Importing one enables its configuration; removing its import disables it.
   secret-rotation restart hook.
 - Jellyfin runs on `baitai` and requires `/media/Baitai`. Jellyfin uses
   Intel Quick Sync and an nginx virtual host.
-- Chaptarr uses a mutable `chaptarr/chaptarr:latest` OCI image, host networking,
+- Chaptarr uses a mutable `docker.io/chaptarr/chaptarr:latest` OCI image, host networking,
   and root PUID/PGID. Evaluation does not prove that the image or external NFS
   content will be available at runtime.
 - Service modules intentionally open several firewall ports. Review both the
