@@ -7,8 +7,9 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    (pkgs.ffmpeg-full.override {
+    (pkgs.ffmpeg-headless.override {
       withUnfree = true;
+      withWhisper = false;
     })
   ];
 
