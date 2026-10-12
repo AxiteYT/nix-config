@@ -4,13 +4,13 @@
     hostName = "besta";
 
     defaultGateway = {
-      address = "10.1.10.1";
+      address = "10.10.30.1";
       interface = "ens18";
     };
     interfaces.ens18 = {
       ipv4.addresses = [
         {
-          address = "10.1.10.85";
+          address = "10.10.30.85";
           prefixLength = 24;
         }
       ];
