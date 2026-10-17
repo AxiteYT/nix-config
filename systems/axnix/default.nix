@@ -21,6 +21,7 @@ in
     (self + /hardware/openrazer)
     (self + /systems/desktop)
     (self + /modules/steam)
+    (self + /modules/artcraft)
     ./kernel.nix
     ./network-config.nix
   ];

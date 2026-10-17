@@ -44,6 +44,12 @@
 
     # HytaleLauncherFlake
     hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
+
+    # ArtCraft Adobe alternatives
+    artcraft = {
+      url = "github:ipeglin/artcraft-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
