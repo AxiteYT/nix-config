@@ -22,6 +22,7 @@ in
     (self + /systems/desktop)
     (self + /modules/steam)
     (self + /modules/artcraft)
+    ./openrgb.nix
     ./kernel.nix
     ./network-config.nix
   ];
@@ -93,6 +94,7 @@ in
     pkgsStable.rpcs3
     ryubing
     spotify
+    social-stream-ninja
     streamcontroller
     stress-ng
     unityhub
@@ -136,7 +138,7 @@ in
       '';
     };
     plugins = with pkgs.obs-studio-plugins; [
-      obs-aitum-stream-suite
+      obs-aitum-multistream
       obs-backgroundremoval
       obs-gstreamer
       obs-teleport
@@ -176,22 +178,6 @@ in
 
   # Enable ratbag daemon
   services.ratbagd.enable = true;
-
-  # Enable open-rgb
-  services.hardware.openrgb = {
-    enable = true;
-    package = pkgs.openrgb-with-all-plugins;
-    motherboard = "amd";
-    startupProfile = "/home/axite/.config/OpenRGB/axite.orp";
-  };
-
-  systemd.services.openrgb = {
-    wants = [ "systemd-udev-settle.service" ];
-    after = [ "systemd-udev-settle.service" ];
-    preStart = ''
-      ${pkgs.systemd}/bin/udevadm settle --timeout=10
-    '';
-  };
 
   # Open Razer
   users.users.axite.extraGroups = [ "openrazer" ];

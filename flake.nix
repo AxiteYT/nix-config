@@ -102,6 +102,7 @@
               self.nixosConfigurations.axnix.config.home-manager.users.axite.home.file.".config/wofi/style.css".text;
           };
           social-stream-ninja = self.nixosConfigurations.axnix.pkgs.social-stream-ninja;
+          openrgb-settings = self.nixosConfigurations.axnix.config.system.build.openrgb-settings;
           eval-iso = evalCheck "iso" self.packages.${system}.bootable-iso;
         }
         // lib.mapAttrs' (

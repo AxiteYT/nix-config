@@ -10,7 +10,8 @@ state; change it through Nix commands, never by hand.
 There is no separate README or development shell. `.github/workflows/validate.yml`
 runs the flake checks on pushes and pull requests, with manual dispatch also
 available. Checks evaluate every host and the installer ISO, check formatting,
-test qBittorrent startup and Wofi CSS, and build the local OBS plugin.
+test qBittorrent startup and Wofi CSS, validate OpenRGB detector settings, and
+build the local Social Stream Ninja package.
 
 These instructions cover the whole repository.
 
@@ -146,6 +147,12 @@ Importing one enables its configuration; removing its import disables it.
 - Stylix is enabled by the desktop profile using One Dark and supplies palette/font
   values consumed by Home Manager modules such as Waybar, Wofi, Wleave, Satty,
   VSCodium, and Hyprland.
+- `systems/axnix/openrgb.nix` manages internal lighting with an explicit detector
+  allowlist, white RAM/motherboard/ARGB effects, GPU off, and an SDK shutdown
+  command. Its server uses a fresh `/run/OpenRGB` configuration; user profiles
+  remain separate. The 256-address ARGB range is controller capacity, not a
+  measured fan LED count. A Corsair USB hub was not detected; a passive hub
+  must be connected to a motherboard ARGB header and set to motherboard sync.
 - `home/axite.nix` is the workstation profile. Its import list is the clearest
   place to enable or disable a user feature.
 - Shared Hyprland behavior lives in `home/hyprland/config.nix`; monitor geometry
