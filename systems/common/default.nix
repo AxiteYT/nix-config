@@ -24,7 +24,6 @@
       (
         final: prev:
         let
-          obsAitumStreamSuite = prev.qt6Packages.callPackage (self + /pkgs/obs-aitum-stream-suite) { };
           disableOpenLdapChecks =
             pkg:
             pkg.overrideAttrs (
@@ -46,10 +45,7 @@
           pkgsi686Linux = prev.pkgsi686Linux // {
             openldap = disableOpenLdapChecks prev.pkgsi686Linux.openldap;
           };
-          obs-aitum-stream-suite = obsAitumStreamSuite;
-          obs-studio-plugins = prev.obs-studio-plugins // {
-            obs-aitum-stream-suite = obsAitumStreamSuite;
-          };
+          social-stream-ninja = final.callPackage (self + /pkgs/social-stream-ninja) { };
         }
       )
     ];

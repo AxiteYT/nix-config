@@ -101,7 +101,7 @@
             style =
               self.nixosConfigurations.axnix.config.home-manager.users.axite.home.file.".config/wofi/style.css".text;
           };
-          obs-aitum-stream-suite = self.nixosConfigurations.axnix.pkgs.obs-aitum-stream-suite;
+          social-stream-ninja = self.nixosConfigurations.axnix.pkgs.social-stream-ninja;
           eval-iso = evalCheck "iso" self.packages.${system}.bootable-iso;
         }
         // lib.mapAttrs' (

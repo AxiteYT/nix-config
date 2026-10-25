@@ -62,15 +62,14 @@ These instructions cover the whole repository.
   supported filesystems.
 - `systems/common/default.nix` enables unfree packages and defines the shared
   overlay. The overlay disables OpenLDAP checks for native and i686 package
-  sets and exposes the local OBS Aitum package both at top level and under
-  `obs-studio-plugins`. It affects NixOS hosts only, not the ISO or the
-  separately imported stable package set.
+  sets and exposes the local `social-stream-ninja` package. It affects NixOS
+  hosts only, not the ISO or the separately imported stable package set.
+  OBS uses `pkgs.obs-studio-plugins.obs-aitum-multistream` from unstable.
 - The common package policy permits the exact insecure package
   `nexusmods-app-unfree-0.21.1`. Treat a version change as a security-policy
   change, not just a package bump.
-- `pkgs/obs-aitum-stream-suite/default.nix` is the only local application package
-  under `pkgs/`. When
-  updating it, keep the version/tag/hash aligned and validate a consuming host.
+- `pkgs/social-stream-ninja/default.nix` wraps the upstream Linux AppImage. Keep
+  the version, release URL, and hash aligned and validate the desktop entry.
 - `patches/ffmpeg-tableprint-vlc-av_malloc.patch` is currently not referenced
   by any Nix expression and is not a valid standalone patch in its present
   form. Do not assume that merely editing it changes a build.
@@ -242,8 +241,9 @@ Run the full CI validation locally:
 nix flake check --all-systems --no-write-lock-file --print-build-logs
 ```
 
-This also builds the local OBS plugin, tests qBittorrent preparation and Wofi
-CSS, and checks formatting in a build sandbox without rewriting the worktree.
+This also builds Social Stream Ninja, validates OpenRGB settings, tests
+qBittorrent preparation and Wofi CSS, and checks formatting in a build sandbox
+without rewriting the worktree.
 
 For a targeted host evaluation without building or activating it:
 
@@ -257,8 +257,8 @@ Useful targeted commands are:
 # Build, but do not activate, a host closure.
 nix build .#nixosConfigurations.<host>.config.system.build.toplevel
 
-# Build the local OBS plugin without replacing the ignored result symlink.
-nix build .#nixosConfigurations.axnix.pkgs.obs-aitum-stream-suite --no-link
+# Build the OBS plugin without replacing the ignored result symlink.
+nix build .#nixosConfigurations.axnix.pkgs.obs-studio-plugins.obs-aitum-multistream --no-link
 
 # Evaluate or build the installer ISO on x86_64 Linux.
 nix eval --raw .#packages.x86_64-linux.bootable-iso.drvPath
