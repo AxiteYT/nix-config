@@ -2,6 +2,7 @@
   lib,
   appimageTools,
   fetchurl,
+  makeWrapper,
 }:
 let
   pname = "social-stream-ninja";
@@ -15,11 +16,16 @@ in
 appimageTools.wrapType2 {
   inherit pname version src;
 
+  nativeBuildInputs = [ makeWrapper ];
+
   extraInstallCommands = ''
     install -Dm444 ${extracted}/*.desktop $out/share/applications/social-stream-ninja.desktop
     substituteInPlace $out/share/applications/social-stream-ninja.desktop \
       --replace-fail 'Exec=AppRun' 'Exec=social-stream-ninja'
     install -Dm444 ${extracted}/*.png $out/share/icons/hicolor/512x512/apps/socialstreamninja.png
+    # Electron does not select a secure password store automatically on Hyprland.
+    wrapProgram $out/bin/social-stream-ninja \
+      --add-flags '--password-store=gnome-libsecret'
   '';
 
   meta = {

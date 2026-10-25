@@ -179,6 +179,9 @@ in
   # Enable ratbag daemon
   services.ratbagd.enable = true;
 
+  # Ebavke Gnome keyring
+  services.gnome.gnome-keyring.enable = true;
+
   # Open Razer
   users.users.axite.extraGroups = [ "openrazer" ];
 
