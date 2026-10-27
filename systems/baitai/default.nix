@@ -24,12 +24,6 @@
 
   hardware.intel-gpu-tools.enable = true;
 
-  # Add handbrake
-  environment.systemPackages = with pkgs; [
-    handbrake
-    ffmpeg
-  ];
-
   users.users.baitai = {
     isNormalUser = true;
     home = "/home/baitai";
