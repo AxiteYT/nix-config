@@ -6,7 +6,7 @@ let
       ---------------------
 
       return {
-          terminal = "alacritty",
+          terminal = "ghostty",
           fileManager = "nautilus",
           menu = "wofi --show drun",
       }

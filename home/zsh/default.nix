@@ -6,7 +6,7 @@
 }:
 
 {
-  imports = [ ./alacritty ];
+  imports = [ ./ghostty ];
 
   home.file.".p10k.zsh".source = import ./p10k.nix { inherit pkgs; };
 

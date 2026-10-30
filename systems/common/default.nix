@@ -71,7 +71,6 @@
   # Add packages
   environment.systemPackages = with pkgs; [
     age
-    alacritty
     btop
     curl
     dig

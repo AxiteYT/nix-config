@@ -28,7 +28,7 @@
   # Enable open terminal in nautilus
   programs.nautilus-open-any-terminal = {
     enable = true;
-    terminal = "alacritty";
+    terminal = "ghostty";
   };
 
   # Enable trash for nautilus
