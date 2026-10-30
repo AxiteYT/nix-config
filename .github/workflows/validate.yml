@@ -25,5 +25,5 @@ jobs:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Evaluate every host and the installer
         run: nix flake check --all-systems --no-build --no-write-lock-file
-      - name: Check formatting, runtime configuration, and the OBS plugin build
+      - name: Check formatting, runtime configuration, and local packages
         run: nix flake check --all-systems --no-write-lock-file --print-build-logs
