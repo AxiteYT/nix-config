@@ -27,6 +27,22 @@ in
     ./network-config.nix
   ];
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      mcp-nixos = inputs.mcp-nixos.lib.mkMcpNixos {
+        pkgs = final;
+        # Upstream inspects mcp-types.version while choosing its MCP pair.
+        # Anchor that inherited version to the unmodified package set to
+        # avoid recursing through the scoped MCP override.
+        python3Packages = prev.python3Packages.overrideScope (
+          _: pyPrev: {
+            mcp-types = pyPrev.mcp-types.override { mcp = prev.python3Packages.mcp; };
+          }
+        );
+      };
+    })
+  ];
+
   # Enable home-manager
   home-manager = {
     users.axite = {
@@ -66,7 +82,7 @@ in
     handbrake
     input-remapper
     inputs.hytale-launcher.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.mcp-nixos.packages.${pkgs.stdenv.hostPlatform.system}.default
+    mcp-nixos
     jellyfin-desktop
     qdirstat
     kdePackages.ark
