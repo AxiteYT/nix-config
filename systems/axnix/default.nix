@@ -29,6 +29,12 @@ in
 
   nixpkgs.overlays = [
     (final: prev: {
+      # UDisks regenerates gtk-doc inputs during build/check. Running those
+      # targets in parallel can remove udisks2-sections.txt while it is read.
+      udisks = prev.udisks.overrideAttrs {
+        enableParallelBuilding = false;
+      };
+
       mcp-nixos = inputs.mcp-nixos.lib.mkMcpNixos {
         pkgs = final;
         # Upstream inspects mcp-types.version while choosing its MCP pair.
