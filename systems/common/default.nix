@@ -78,6 +78,7 @@
     fastfetch
     gawk
     gitMinimal
+    ghostty.terminfo
     home-manager
     htop
     killall
