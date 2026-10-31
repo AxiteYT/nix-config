@@ -174,7 +174,7 @@ Importing one enables its configuration; removing its import disables it.
 ## Server service structure
 
 - `modules/servarr/default.nix` is an aggregate module for qBittorrent, Bazarr,
-  Flaresolverr, Komga, Prowlarr, Radarr, Recyclarr, Seerr, and Sonarr. It also
+  Flaresolverr, Prowlarr, Radarr, Recyclarr, Seerr, and Sonarr. It also
   creates the shared `servarr` group.
 - `modules/qbittorrent/default.nix` injects SOPS values at service start and
   manages the companion `qui` service. Preserve secret ownership/modes,
@@ -184,7 +184,7 @@ Importing one enables its configuration; removing its import disables it.
   the upstream `ExecStartPre`, so re-check it after nixpkgs module changes.
   `pre-start.nix` checks its inputs, prepares a mode-0600 temporary file, and
   atomically replaces the configuration only after successful preparation.
-- qBittorrent, Sonarr, Radarr, Bazarr, and Komga declare `RequiresMountsFor` on
+- qBittorrent, Sonarr, Radarr, and Bazarr declare `RequiresMountsFor` on
   `/media/Baitai`. Preserve these
   dependencies when changing service modules or mount paths.
 - SOPS restarts qBittorrent and qui when their startup credentials
@@ -193,9 +193,6 @@ Importing one enables its configuration; removing its import disables it.
   secret-rotation restart hook.
 - Jellyfin runs on `baitai` and requires `/media/Baitai`. Jellyfin uses
   Intel Quick Sync and an nginx virtual host.
-- Komga runs as a native NixOS service with the shared `servarr` group, listens
-  on port 8789, and stores its state in `/var/lib/komga`. Evaluation does not
-  prove that external NFS content will be accessible at runtime.
 - Service modules intentionally open several firewall ports. Review both the
   service's `openFirewall` option and explicit firewall lists when changing
   exposure.
