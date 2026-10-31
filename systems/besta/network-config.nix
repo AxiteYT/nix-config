@@ -3,6 +3,8 @@
   networking = {
     hostName = "besta";
 
+    nameservers = [ "10.2.0.1" ];
+
     defaultGateway = {
       address = "10.10.30.1";
       interface = "ens18";
