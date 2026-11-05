@@ -16,6 +16,8 @@
       # Hyprland supplies background blur for transparent windows.
       window-padding-balance = true;
       command = "${pkgs.zsh}/bin/zsh";
+      # Prepare remote terminal support automatically when using SSH.
+      shell-integration-features = "ssh-env,ssh-terminfo";
     };
   };
 }
