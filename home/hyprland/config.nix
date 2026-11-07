@@ -138,6 +138,12 @@ let
           name = "epic-mouse-v1",
           sensitivity = -0.5,
       })
+
+      -- Keep the DualSense Edge touchpad from controlling the desktop cursor.
+      hl.device({
+          name = "sony-interactive-entertainment-dualsense-edge-wireless-controller-touchpad",
+          enabled = false,
+      })
     '';
 
     "60-keybindings" = ''
