@@ -71,6 +71,7 @@
     grim
     hunspell
     networkmanagerapplet
+    pipewire.jack
     pulseaudioFull
     vlc
     wayland-utils
@@ -86,7 +87,6 @@
         enable = true;
       };
       pulse.enable = true;
-      jack.enable = true;
       alsa = {
         enable = true;
         support32Bit = true;
