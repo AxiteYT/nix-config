@@ -218,7 +218,16 @@ Importing one enables its configuration; removing its import disables it.
 
 ## Formatting and validation
 
-The flake formatter is treefmt with nixfmt, Prettier, and shfmt. Even
+Use native block comments for comments spanning multiple lines: `/* ... */`
+in Nix and CSS, `--[[ ... ]]` in Lua, and `<!-- ... -->` in Markdown/HTML.
+For embedded code, follow the embedded language's syntax. Keep line comments
+for single-line comments and languages without native block comments, such as
+YAML, shell, and Python; do not substitute strings or executable constructs.
+
+The flake formatter imports the pinned nixpkgs `ci/treefmt.nix` pipeline and
+uses nixpkgs' CI-pinned tools, including nixfmt and its formatting/lint checks.
+Encrypted `secrets/**` files
+are excluded. `.editorconfig` supplies the repository whitespace policy. Even
 `--fail-on-change` may rewrite files before reporting failure, so limit it to
 the files in scope and inspect the resulting diff when unrelated worktree
 changes are present:

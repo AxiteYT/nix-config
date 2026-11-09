@@ -6,7 +6,7 @@
     ./network-config.nix
   ];
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
     (pkgs.ffmpeg-headless.override {
       withUnfree = true;
       withWhisper = false;

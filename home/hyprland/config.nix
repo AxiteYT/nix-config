@@ -1,9 +1,9 @@
 let
   sharedLuaFiles = {
     "10-programs" = ''
-      ---------------------
-      ---- MY PROGRAMS ----
-      ---------------------
+      --[[
+        MY PROGRAMS
+      ]]
 
       return {
           terminal = "ghostty",
@@ -13,9 +13,9 @@ let
     '';
 
     "30-env" = ''
-      -------------------------------
-      ---- ENVIRONMENT VARIABLES ----
-      -------------------------------
+      --[[
+        ENVIRONMENT VARIABLES
+      ]]
 
       -- See https://wiki.hypr.land/configuring/core/environment-variables/
       hl.env("XCURSOR_SIZE", "20")
@@ -23,9 +23,9 @@ let
     '';
 
     "40-look-and-feel" = ''
-      -----------------------
-      ---- LOOK AND FEEL ----
-      -----------------------
+      --[[
+        LOOK AND FEEL
+      ]]
 
       -- See https://wiki.hypr.land/configuring/core/config-options/
       hl.config({
@@ -113,9 +113,9 @@ let
     '';
 
     "50-input" = ''
-      ---------------
-      ---- INPUT ----
-      ---------------
+      --[[
+        INPUT
+      ]]
 
       -- See https://wiki.hypr.land/configuring/core/config-options/#input
       hl.config({
@@ -147,9 +147,9 @@ let
     '';
 
     "60-keybindings" = ''
-      ---------------------
-      ---- KEYBINDINGS ----
-      ---------------------
+      --[[
+        KEYBINDINGS
+      ]]
 
       -- See https://wiki.hypr.land/configuring/core/binds/
       local programs = require("10-programs")
@@ -203,9 +203,9 @@ let
     '';
 
     "70-rules" = ''
-      --------------------------------
-      ---- WINDOWS AND WORKSPACES ----
-      --------------------------------
+      --[[
+        WINDOWS AND WORKSPACES
+      ]]
 
       -- See https://wiki.hypr.land/configuring/core/rules/window-rules/
       hl.window_rule({

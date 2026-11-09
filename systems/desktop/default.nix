@@ -9,8 +9,10 @@
   stylix = {
     enable = true;
     polarity = "dark";
-    # One Dark from base16-schemes. Keep the palette directly evaluable:
-    # flake check --no-build cannot read a scheme from an unbuilt package.
+    /*
+      One Dark from base16-schemes. Keep the palette directly evaluable:
+      flake check --no-build cannot read a scheme from an unbuilt package.
+    */
     base16Scheme = {
       base00 = "282c34";
       base01 = "353b45";

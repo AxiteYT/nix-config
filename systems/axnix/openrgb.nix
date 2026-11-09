@@ -5,9 +5,11 @@ let
   ram = "Corsair Vengeance RGB DDR5";
   gpu = "Sapphire Radeon RX 7900 XTX Nitro+";
 
-  # Generate the complete detector list from the pinned binary in the build
-  # sandbox, then enable only this machine's internal lighting controllers.
-  # This also excludes new keyboard/mouse detectors after package updates.
+  /*
+    Generate the complete detector list from the pinned binary in the build
+    sandbox, then enable only this machine's internal lighting controllers.
+    This also excludes new keyboard/mouse detectors after package updates.
+  */
   settings = pkgs.runCommand "axnix-openrgb.json" { nativeBuildInputs = [ pkgs.jq ]; } ''
     export XDG_CONFIG_HOME="$TMPDIR"
     mkdir -p "$TMPDIR/OpenRGB"
@@ -23,11 +25,13 @@ let
     jq -e '[.Detectors.detectors[] | select(. == true)] | length == 3' "$out"
   '';
 
-  # The running controller exposes 256 addresses per ARGB header. Use that
-  # range for uniform hardware effects, including fans behind a passive hub;
-  # this capacity is not the number of physical fan LEDs.
-  # Reconnect after resizing: the SDK refreshes controller objects, so cached
-  # device references from the resizing command must not be used for colours.
+  /*
+    The running controller exposes 256 addresses per ARGB header. Use that
+    range for uniform hardware effects, including fans behind a passive hub;
+    this capacity is not the number of physical fan LEDs.
+    Reconnect after resizing: the SDK refreshes controller objects, so cached
+    device references from the resizing command must not be used for colours.
+  */
   configureZones =
     lib.concatMapStringsSep "\n"
       (
@@ -72,9 +76,11 @@ let
       "--mode"
       "Off"
     ];
-  # Automatic local SDK connection waits for the device list; explicit
-  # --client can race device enumeration in OpenRGB 1.0. --nodetect prevents
-  # the client from probing hardware if the server is unavailable.
+  /*
+    Automatic local SDK connection waits for the device list; explicit
+    --client can race device enumeration in OpenRGB 1.0. --nodetect prevents
+    the client from probing hardware if the server is unavailable.
+  */
   client = "${openrgb} --config /run/OpenRGB --nodetect";
   apply =
     args:

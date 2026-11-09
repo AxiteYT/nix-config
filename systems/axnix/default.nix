@@ -37,9 +37,11 @@ in
 
       mcp-nixos = inputs.mcp-nixos.lib.mkMcpNixos {
         pkgs = final;
-        # Upstream inspects mcp-types.version while choosing its MCP pair.
-        # Anchor that inherited version to the unmodified package set to
-        # avoid recursing through the scoped MCP override.
+        /*
+          Upstream inspects mcp-types.version while choosing its MCP pair.
+          Anchor that inherited version to the unmodified package set to
+          avoid recursing through the scoped MCP override.
+        */
         python3Packages = prev.python3Packages.overrideScope (
           _: pyPrev: {
             mcp-types = pyPrev.mcp-types.override { mcp = prev.python3Packages.mcp; };

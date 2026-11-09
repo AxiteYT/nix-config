@@ -49,8 +49,10 @@ in
           /* The name of the box that contains everything */
         }
         #window #outer-box {
-          /* The name of the search bar */
-          /* The name of the scrolled window containing all of the entries */
+          /*
+            The name of the search bar
+            The name of the scrolled window containing all of the entries
+          */
         }
         #window #outer-box #input {
           background-color: @bg;
@@ -72,17 +74,21 @@ in
           /* The name of the box containing all of the entries */
         }
         #window #outer-box #scroll #inner-box {
-          /* The name of all entries */
-          /* The name of all boxes shown when expanding  */
-          /* entries with multiple actions */
+          /*
+            The name of all entries
+            The name of all boxes shown when expanding
+            entries with multiple actions
+          */
         }
         #window #outer-box #scroll #inner-box #entry {
           color: @fg;
           background-color: @bg_weak;
           font-family: "${font}", "${monoFont}", "Noto Sans Symbols 2", "Noto Color Emoji", sans-serif;
           padding: 0.6rem 1rem;
-          /* The name of all images in entries displayed in image mode */
-          /* The name of all the text in entries */
+          /*
+            The name of all images in entries displayed in image mode
+            The name of all the text in entries
+          */
         }
         #window #outer-box #scroll #inner-box #entry #img {
           min-width: 1rem;

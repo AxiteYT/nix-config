@@ -28,9 +28,9 @@ in
       '')
       // {
         "20-autostart" = ''
-          -----------------
-          ---- AUTOSTART ----
-          -----------------
+          --[[
+            AUTOSTART
+          ]]
 
           -- See https://wiki.hypr.land/configuring/core/autostart/
           hl.on("hyprland.start", function()

@@ -27,9 +27,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Treefmt
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-
     # MCP-NixOS
     mcp-nixos = {
       url = "github:utensils/mcp-nixos";
@@ -61,7 +58,6 @@
       disko,
       home-manager,
       hytale-launcher,
-      treefmt-nix,
       stylix,
       sops-nix,
       ...
@@ -73,28 +69,22 @@
         pkgs = import nixpkgs { inherit system; };
         lib = nixpkgs.lib;
 
-        fmtcfg = {
-          projectRootFile = "flake.nix";
-          programs = {
-            nixfmt.enable = true;
-            prettier = {
-              enable = true;
-              package = pkgs.prettier;
-            };
-            shfmt.enable = true;
-          };
+        formatterPkgs = (import (nixpkgs + /ci) { inherit system; }).pkgs;
+        formatter = formatterPkgs.treefmt.withConfig {
+          # Use the same formatting and lint pipeline as the Nixpkgs flake.
+          imports = [ (nixpkgs + /ci/treefmt.nix) ];
+          settings.tree-root-file = "flake.nix";
+          settings.excludes = [ "secrets/**" ];
         };
-
-        treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs fmtcfg;
 
         # Force complete derivation evaluation without building a host closure.
         evalCheck =
           name: drv: pkgs.writeText "eval-${name}" (builtins.unsafeDiscardStringContext drv.drvPath);
       in
       {
-        formatter = treefmtEval.config.build.wrapper;
+        inherit formatter;
         checks = {
-          formatting = treefmtEval.config.build.check self;
+          formatting = formatter.check self;
           qbittorrent-pre-start = import ./tests/qbittorrent-pre-start.nix { inherit pkgs; };
           wofi-style = import ./tests/wofi-style.nix {
             inherit pkgs;
