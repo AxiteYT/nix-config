@@ -35,6 +35,15 @@ in
           system = pkgs.stdenv.hostPlatform.system;
           config.allowUnfree = true;
         }).brave;
+      # The Rust setup hook requires system libraries for these vendored crates.
+      codex = prev.codex.overrideAttrs (old: {
+        buildInputs = (old.buildInputs or [ ]) ++ [
+          final.aws-lc
+          final.oniguruma
+          final.sqlite
+          final.zstd
+        ];
+      });
       /*
         UDisks regenerates gtk-doc inputs during build/check. Running those
         targets in parallel can remove udisks2-sections.txt while it is read.
