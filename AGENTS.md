@@ -48,6 +48,9 @@ These instructions cover the whole repository.
 - `nixpkgs-stable` follows `nixos-25.11`. Import it explicitly when a package
   must be pinned to stable; `systems/axnix/default.nix` calls that package set
   `pkgsStable` and currently uses it for LibreOffice and RPCS3.
+- `nixpkgs-master` follows `master` and is locked separately for Brave.
+  The `axnix` overlay selects only Brave from this input; its Home Manager
+  package set shares that browser so the custom desktop launchers match.
 - Disko, Home Manager, SOPS-Nix, Stylix, and MCP-NixOS follow the primary
   `nixpkgs` input where configured. The Hytale launcher is an additional input.
 - `specialArgs = { inherit self inputs; };` makes the flake source and all

@@ -29,8 +29,16 @@ in
 
   nixpkgs.overlays = [
     (final: prev: {
-      # UDisks regenerates gtk-doc inputs during build/check. Running those
-      # targets in parallel can remove udisks2-sections.txt while it is read.
+      # TODO: Pin Brave until unstable catches up and evaluates.
+      brave =
+        (import inputs.nixpkgs-master {
+          system = pkgs.stdenv.hostPlatform.system;
+          config.allowUnfree = true;
+        }).brave;
+      /*
+        UDisks regenerates gtk-doc inputs during build/check. Running those
+        targets in parallel can remove udisks2-sections.txt while it is read.
+      */
       udisks = prev.udisks.overrideAttrs {
         enableParallelBuilding = false;
       };
@@ -54,6 +62,8 @@ in
   # Enable home-manager
   home-manager = {
     users.axite = {
+      # Home Manager has its own package set; share the pinned browser.
+      nixpkgs.overlays = [ (_: _: { inherit (pkgs) brave; }) ];
       imports = [
         (self + /home/axite.nix)
       ];
