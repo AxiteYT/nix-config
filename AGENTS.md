@@ -70,9 +70,6 @@ These instructions cover the whole repository.
   change, not just a package bump.
 - `pkgs/social-stream-ninja/default.nix` wraps the upstream Linux AppImage. Keep
   the version, release URL, and hash aligned and validate the desktop entry.
-- `patches/ffmpeg-tableprint-vlc-av_malloc.patch` is currently not referenced
-  by any Nix expression and is not a valid standalone patch in its present
-  form. Do not assume that merely editing it changes a build.
 
 ## Host composition
 
@@ -121,8 +118,6 @@ host key.
   artifact. Avoid reformatting its payload or making casual inline edits;
   regenerate it deliberately when prompt behavior changes.
 - `pkgs/`: local package expressions consumed through the common overlay.
-- `patches/`: source patches; verify that a patch is actually referenced before
-  treating it as active.
 - `secrets/`: encrypted SOPS data only. Secret consumers declare
   `sops.secrets.<name>` in the relevant module and read the generated runtime
   path from `config.sops.secrets.<name>.path`.
