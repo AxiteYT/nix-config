@@ -28,36 +28,14 @@ in
   ];
 
   nixpkgs.overlays = [
-    (final: prev: {
-      # The Rust setup hook requires system libraries for these vendored crates.
-      codex = prev.codex.overrideAttrs (old: {
-        buildInputs = (old.buildInputs or [ ]) ++ [
-          final.aws-lc
-          final.oniguruma
-          final.sqlite
-          final.zstd
-        ];
-      });
+    inputs.mcp-nixos.overlays.default
+    (_: prev: {
       /*
         UDisks regenerates gtk-doc inputs during build/check. Running those
         targets in parallel can remove udisks2-sections.txt while it is read.
       */
       udisks = prev.udisks.overrideAttrs {
         enableParallelBuilding = false;
-      };
-
-      mcp-nixos = inputs.mcp-nixos.lib.mkMcpNixos {
-        pkgs = final;
-        /*
-          Upstream inspects mcp-types.version while choosing its MCP pair.
-          Anchor that inherited version to the unmodified package set to
-          avoid recursing through the scoped MCP override.
-        */
-        python3Packages = prev.python3Packages.overrideScope (
-          _: pyPrev: {
-            mcp-types = pyPrev.mcp-types.override { mcp = prev.python3Packages.mcp; };
-          }
-        );
       };
     })
   ];
