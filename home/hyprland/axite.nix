@@ -34,7 +34,7 @@ in
 
           -- See https://wiki.hypr.land/configuring/core/autostart/
           hl.on("hyprland.start", function()
-              hl.exec_cmd("obs --startreplaybuffer")
+              hl.exec_cmd("obs --disable-shutdown-check --startreplaybuffer")
               hl.exec_cmd("streamcontroller -b")
               hl.exec_cmd("waybar")
               hl.exec_cmd("steam")
