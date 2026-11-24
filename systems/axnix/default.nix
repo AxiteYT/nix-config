@@ -29,12 +29,6 @@ in
 
   nixpkgs.overlays = [
     (final: prev: {
-      # TODO: Pin Brave until unstable catches up and evaluates.
-      brave =
-        (import inputs.nixpkgs-master {
-          system = pkgs.stdenv.hostPlatform.system;
-          config.allowUnfree = true;
-        }).brave;
       # The Rust setup hook requires system libraries for these vendored crates.
       codex = prev.codex.overrideAttrs (old: {
         buildInputs = (old.buildInputs or [ ]) ++ [
@@ -71,8 +65,6 @@ in
   # Enable home-manager
   home-manager = {
     users.axite = {
-      # Home Manager has its own package set; share the pinned browser.
-      nixpkgs.overlays = [ (_: _: { inherit (pkgs) brave; }) ];
       imports = [
         (self + /home/axite.nix)
       ];
