@@ -113,7 +113,6 @@ in
     jellyfin-desktop
     qdirstat
     kdePackages.ark
-    kdePackages.kdenlive
     killall
     pkgsStable.libreoffice
     lm_sensors
