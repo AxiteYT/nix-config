@@ -62,8 +62,7 @@ These instructions cover the whole repository.
   `linuxPackages_latest` from the primary package set and removes ZFS from its
   supported filesystems.
 - `systems/common/default.nix` enables unfree packages and defines the shared
-  overlay. The overlay disables OpenLDAP checks for native and i686 package
-  sets and exposes the local `social-stream-ninja` package. It affects NixOS
+  overlay. The overlay exposes the local `social-stream-ninja` package. It affects NixOS
   hosts only, not the ISO or the separately imported stable package set.
   OBS uses `pkgs.obs-studio-plugins.obs-aitum-multistream` from unstable.
 - The common package policy permits the exact insecure package

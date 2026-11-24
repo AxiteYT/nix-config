@@ -21,33 +21,9 @@
       permittedInsecurePackages = [ "nexusmods-app-unfree-0.21.1" ];
     };
     overlays = [
-      (
-        final: prev:
-        let
-          disableOpenLdapChecks =
-            pkg:
-            pkg.overrideAttrs (
-              old:
-              {
-                doCheck = false;
-                doInstallCheck = false;
-              }
-              // lib.optionalAttrs (old ? checkTarget) {
-                checkTarget = null;
-              }
-              // lib.optionalAttrs (old ? installCheckTarget) {
-                installCheckTarget = null;
-              }
-            );
-        in
-        {
-          openldap = disableOpenLdapChecks prev.openldap;
-          pkgsi686Linux = prev.pkgsi686Linux // {
-            openldap = disableOpenLdapChecks prev.pkgsi686Linux.openldap;
-          };
-          social-stream-ninja = final.callPackage (self + /pkgs/social-stream-ninja) { };
-        }
-      )
+      (final: _: {
+        social-stream-ninja = final.callPackage (self + /pkgs/social-stream-ninja) { };
+      })
     ];
   };
 
